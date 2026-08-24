@@ -1,0 +1,141 @@
+/* =========================================
+   ETHIO MOCK EXAM
+   GLOBAL STYLE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   LIGHT MODE
+========================================= */
+
+:root {
+
+    --bg: #f5f6fb;
+
+    --card: #ffffff;
+
+    --text: #25283b;
+
+    --muted: #7d8296;
+
+    --border: #e5e7ef;
+
+    --accent: #7168e8;
+
+    --accentSoft: #eeeaff;
+
+    --shadow:
+        0 15px 35px rgba(30, 35, 60, .08);
+
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+:root.dark {
+
+    --bg: #111522;
+
+    --card: #1c2232;
+
+    --text: #f5f7ff;
+
+    --muted: #aeb5c8;
+
+    --border: #30374b;
+
+    --accent: #958cff;
+
+    --accentSoft: #302d50;
+
+    --shadow:
+        0 15px 35px rgba(0, 0, 0, .35);
+
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    transition:
+        background-color .35s ease,
+        color .35s ease;
+
+}
+
+
+/* =========================================
+   COMMON ELEMENTS
+========================================= */
+
+.card,
+header,
+button,
+input,
+textarea,
+select {
+
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+
+/* =========================================
+   DARK MODE INPUTS
+========================================= */
+
+:root.dark input,
+:root.dark textarea,
+:root.dark select {
+
+    background: #161c2b;
+
+    color: #ffffff;
+
+    border-color: var(--border);
+
+}
+
+
+/* =========================================
+   DARK MODE BUTTON
+========================================= */
+
+:root.dark button {
+
+    color: var(--text);
+
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+
+    color: var(--accent);
+
+}

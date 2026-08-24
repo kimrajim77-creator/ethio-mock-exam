@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Waiting Room | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(55px);
+    opacity: .25;
+    animation: blobMove 9s infinite alternate ease-in-out;
+}
+
+.blob1 {
+    width: 330px;
+    height: 330px;
+    background: #756cff;
+    top: -140px;
+    right: -100px;
+}
+
+.blob2 {
+    width: 300px;
+    height: 300px;
+    background: #ff72a8;
+    bottom: -140px;
+    left: -110px;
+}
+
+.blob3 {
+    width: 200px;
+    height: 200px;
+    background: #4ddcff;
+    top: 42%;
+    left: 45%;
+}
+
+@keyframes blobMove {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate(35px,-25px)
+            scale(1.12);
+    }
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    height: 70px;
+
+    padding:
+        0 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    background:
+        var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.logo {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        var(--text);
+
+    font-weight:
+        bold;
+}
+
+.logoIcon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border-radius:
+        14px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color:
+        white;
+
+    font-size:
+        20px;
+
+    animation:
+        logoFloat 3s infinite ease-in-out;
+}
+
+@keyframes logoFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-6px);
+    }
+}
+
+.roomCodeHeader {
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--accentSoft);
+
+    color:
+        var(--accent);
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    width:
+        min(1100px,94%);
+
+    margin:
+        auto;
+
+    padding:
+        35px 0 70px;
+}
+
+.pageTitle {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        25px;
+
+    animation:
+        appear .6s ease;
+}
+
+.pageTitle h1 {
+
+    color:
+        var(--text);
+
+    font-size:
+        30px;
+
+    margin:
+        0 0 8px;
+}
+
+.pageTitle p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    margin:
+        0;
+}
+
+
+/* =====================================================
+   ROOM GRID
+===================================================== */
+
+.roomGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.2fr .8fr;
+
+    gap:
+        18px;
+
+    align-items:
+        start;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        25px;
+
+    padding:
+        25px;
+
+    box-shadow:
+        var(--shadow);
+
+    animation:
+        appear .7s ease;
+}
+
+.cardTitle {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        20px;
+}
+
+.cardTitle h2 {
+
+    color:
+        var(--text);
+
+    font-size:
+        17px;
+
+    margin:
+        0;
+}
+
+.cardTitle span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+}
+
+
+/* =====================================================
+   PLAYERS
+===================================================== */
+
+.players {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+}
+
+.player {
+
+    text-align:
+        center;
+
+    padding:
+        20px 10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        22px;
+
+    background:
+        var(--card);
+
+    transition:
+        .25s;
+}
+
+.player:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        var(--accent);
+}
+
+.animal {
+
+    width:
+        100px;
+
+    height:
+        100px;
+
+    margin:
+        auto;
+
+    border-radius:
+        32px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        58px;
+
+    background:
+        var(--accentSoft);
+
+    animation:
+        animalFloat 3s infinite ease-in-out;
+}
+
+@keyframes animalFloat {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(2deg);
+    }
+}
+
+.playerName {
+
+    color:
+        var(--text);
+
+    font-size:
+        15px;
+
+    font-weight:
+        bold;
+
+    margin:
+        12px 0 5px;
+}
+
+.playerInfo {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    margin-bottom:
+        8px;
+}
+
+.status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+
+    padding:
+        6px 9px;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--accentSoft);
+
+    color:
+        var(--accent);
+
+    font-size:
+        9px;
+
+    font-weight:
+        bold;
+}
+
+.statusDot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        #35c879;
+}
+
+.vs {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color:
+        white;
+
+    font-weight:
+        bold;
+
+    font-size:
+        13px;
+
+    animation:
+        pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   MODE
+===================================================== */
+
+.modeBadge {
+
+    text-align:
+        center;
+
+    margin:
+        20px 0;
+
+    padding:
+        12px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--accentSoft);
+
+    color:
+        var(--accent);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+.settingLabel {
+
+    color:
+        var(--text);
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    margin:
+        18px 0 9px;
+}
+
+.select {
+
+    width:
+        100%;
+
+    padding:
+        12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    outline:
+        none;
+
+    cursor:
+        pointer;
+}
+
+.select:focus {
+
+    border-color:
+        var(--accent);
+}
+
+
+/* =====================================================
+   QUESTION COUNT
+===================================================== */
+
+.questionOptions {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        8px;
+}
+
+.questionButton {
+
+    padding:
+        11px 5px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    transition:
+        .2s;
+}
+
+.questionButton:hover {
+
+    border-color:
+        var(--accent);
+}
+
+.questionButton.selected {
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    border-color:
+        var(--accent);
+}
+
+
+/* =====================================================
+   COMMUNICATION
+===================================================== */
+
+.communication {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        8px;
+
+    margin-top:
+        20px;
+}
+
+.communicationButton {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    padding:
+        12px 5px;
+
+    cursor:
+        pointer;
+
+    font-size:
+        10px;
+
+    font-weight:
+        bold;
+
+    transition:
+        .2s;
+}
+
+.communicationButton:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+}
+
+.communicationButton.active {
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    border-color:
+        var(--accent);
+}
+
+.communicationIcon {
+
+    display:
+        block;
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        5px;
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+.chatPanel {
+
+    display:
+        none;
+
+    margin-top:
+        10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        15px;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--card);
+}
+
+.chatPanel.open {
+
+    display:
+        block;
+
+    animation:
+        appear .25s ease;
+}
+
+.chatHeader {
+
+    padding:
+        11px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    color:
+        var(--text);
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+}
+
+.chatMessages {
+
+    height:
+        90px;
+
+    overflow-y:
+        auto;
+
+    padding:
+        10px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+}
+
+.chatInputArea {
+
+    display:
+        flex;
+
+    gap:
+        5px;
+
+    padding:
+        7px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.chatInput {
+
+    flex:
+        1;
+
+    min-width:
+        0;
+
+    padding:
+        8px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        8px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    outline:
+        none;
+
+    font-size:
+        10px;
+}
+
+.sendButton {
+
+    border:
+        none;
+
+    border-radius:
+        8px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    padding:
+        0 10px;
+
+    cursor:
+        pointer;
+}
+
+
+/* =====================================================
+   START BUTTON
+===================================================== */
+
+.startButton {
+
+    width:
+        100%;
+
+    margin-top:
+        20px;
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        .25s;
+}
+
+.startButton:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(113,104,232,.25);
+}
+
+
+/* =====================================================
+   WAITING
+===================================================== */
+
+.waiting {
+
+    margin-top:
+        15px;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+}
+
+.waitingDot {
+
+    display:
+        inline-block;
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        #35c879;
+
+    margin-right:
+        5px;
+
+    animation:
+        blink 1.4s infinite;
+}
+
+@keyframes blink {
+
+    0%,100% {
+        opacity:
+            1;
+    }
+
+    50% {
+        opacity:
+            .3;
+    }
+}
+
+
+/* =====================================================
+   ANIMAL COLLECTION
+===================================================== */
+
+.animalCollection {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        8px;
+}
+
+.animalChoice {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+    background:
+        var(--card);
+
+    padding:
+        10px 5px;
+
+    cursor:
+        pointer;
+
+    color:
+        var(--text);
+
+    transition:
+        .2s;
+}
+
+.animalChoice:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--accent);
+}
+
+.animalChoice.selected {
+
+    border:
+        2px solid var(--accent);
+
+    background:
+        var(--accentSoft);
+}
+
+.animalEmoji {
+
+    display:
+        block;
+
+    font-size:
+        27px;
+
+    margin-bottom:
+        4px;
+}
+
+.animalName {
+
+    font-size:
+        8px;
+
+    color:
+        var(--muted);
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes appear {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px) {
+
+    .roomGrid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    header {
+
+        padding:
+            0 14px;
+    }
+
+    main {
+
+        width:
+            94%;
+
+        padding-top:
+            25px;
+    }
+
+    .players {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .vs {
+
+        margin:
+            auto;
+    }
+
+    .animal {
+
+        width:
+            85px;
+
+        height:
+            85px;
+
+        font-size:
+            48px;
+    }
+
+    .animalCollection {
+
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+}
+
+
+/* =====================================================
+   ANIMATION SETTING
+===================================================== */
+
+body.animations-off *,
+body.animations-off *::before,
+body.animations-off *::after {
+
+    animation:
+        none !important;
+
+    transition:
+        none !important;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     THEME.JS
+===================================================== -->
+
+<script src="theme.js"></script>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <div
+        class="roomCodeHeader"
+        id="headerRoomCode">
+
+        ROOM: DEMO
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<div class="pageTitle">
+
+    <h1>
+        Study Room 🐼🦊
+    </h1>
+
+    <p>
+        Get ready to learn together!
+    </p>
+
+</div>
+
+
+<div class="roomGrid">
+
+
+<!-- =====================================================
+     LEFT SIDE
+===================================================== -->
+
+<section class="card">
+
+
+    <div class="cardTitle">
+
+        <h2>
+            👥 Players
+        </h2>
+
+        <span>
+            2 players
+        </span>
+
+    </div>
+
+
+    <div class="players">
+
+
+        <!-- =================================================
+             YOU
+        ================================================= -->
+
+        <div class="player">
+
+            <div
+                class="animal"
+                id="myAnimal">
+
+                🐼
+
+            </div>
+
+
+            <div
+                class="playerName"
+                id="myName">
+
+                Student
+
+            </div>
+
+
+            <div
+                class="playerInfo">
+
+                ⭐
+                <span id="myXP">
+                    0
+                </span>
+                XP
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="statusDot"></span>
+
+                You • Ready
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             VS
+        ================================================= -->
+
+        <div class="vs">
+            VS
+        </div>
+
+
+        <!-- =================================================
+             FRIEND
+        ================================================= -->
+
+        <div class="player">
+
+            <div
+                class="animal"
+                id="friendAnimal">
+
+                🦊
+
+            </div>
+
+
+            <div
+                class="playerName"
+                id="friendName">
+
+                Your Friend
+
+            </div>
+
+
+            <div
+                class="playerInfo">
+
+                ⭐
+                <span id="friendXP">
+                    0
+                </span>
+                XP
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="statusDot"></span>
+
+                Waiting
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         MODE
+    ================================================= -->
+
+    <div
+        class="modeBadge"
+        id="modeBadge">
+
+        🎯 Play & Compete
+
+    </div>
+
+
+    <!-- =================================================
+         COMMUNICATION
+    ================================================= -->
+
+    <div class="communication">
+
+
+        <button
+            type="button"
+            class="communicationButton"
+            id="voiceButton"
+            onclick="toggleVoice()">
+
+            <span
+                class="communicationIcon"
+                id="voiceIcon">
+
+                🎙️
+
+            </span>
+
+            <span id="voiceText">
+                Voice
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="communicationButton"
+            id="videoButton"
+            onclick="toggleVideo()">
+
+            <span
+                class="communicationIcon"
+                id="videoIcon">
+
+                📹
+
+            </span>
+
+            <span id="videoText">
+                Video
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="communicationButton"
+            onclick="toggleChat()">
+
+            <span class="communicationIcon">
+                💬
+            </span>
+
+            Chat
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         CHAT
+    ================================================= -->
+
+    <div
+        class="chatPanel"
+        id="chatPanel">
+
+        <div class="chatHeader">
+
+            💬 Room Chat
+
+        </div>
+
+
+        <div
+            class="chatMessages"
+            id="chatMessages">
+
+            👋 Say hello to your friend!
+
+        </div>
+
+
+        <div class="chatInputArea">
+
+            <input
+                type="text"
+                id="chatInput"
+                class="chatInput"
+                placeholder="Write a message..."
+            >
+
+
+            <button
+                type="button"
+                class="sendButton"
+                onclick="sendMessage()">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="waiting">
+
+        <span class="waitingDot"></span>
+
+        Waiting for your friend to get ready...
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     RIGHT SIDE
+===================================================== -->
+
+<section class="card">
+
+
+    <div class="cardTitle">
+
+        <h2>
+            ⚙️ Challenge Setup
+        </h2>
+
+        <span>
+            Customize
+        </span>
+
+    </div>
+
+
+    <!-- =================================================
+         GRADE
+    ================================================= -->
+
+    <div class="settingLabel">
+
+        🎓 Grade
+
+    </div>
+
+
+    <select
+        class="select"
+        id="gradeSelect">
+
+        <option value="9">
+            Grade 9
+        </option>
+
+        <option
+            value="10"
+            selected>
+
+            Grade 10
+
+        </option>
+
+        <option value="11">
+            Grade 11
+        </option>
+
+        <option value="12">
+            Grade 12
+        </option>
+
+    </select>
+
+
+    <!-- =================================================
+         SUBJECT
+    ================================================= -->
+
+    <div class="settingLabel">
+
+        📚 Subject
+
+    </div>
+
+
+    <select
+        class="select"
+        id="subjectSelect">
+
+    </select>
+
+
+    <!-- =================================================
+         QUESTIONS
+    ================================================= -->
+
+    <div class="settingLabel">
+
+        🔢 Number of Questions
+
+    </div>
+
+
+    <div class="questionOptions">
+
+
+        <button
+            type="button"
+            class="questionButton selected"
+            onclick="selectQuestions(10,this)">
+
+            10
+
+        </button>
+
+
+        <button
+            type="button"
+            class="questionButton"
+            onclick="selectQuestions(20,this)">
+
+            20
+
+        </button>
+
+
+        <button
+            type="button"
+            class="questionButton"
+            onclick="selectQuestions(25,this)">
+
+            25
+
+        </button>
+
+
+        <button
+            type="button"
+            class="questionButton"
+            onclick="selectQuestions(30,this)">
+
+            30
+
+        </button>
+
+
+        <button
+            type="button"
+            class="questionButton"
+            onclick="selectQuestions(40,this)">
+
+            40
+
+        </button>
+
+
+        <button
+            type="button"
+            class="questionButton"
+            onclick="selectQuestions(50,this)">
+
+            50
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         ANIMAL
+    ================================================= -->
+
+    <div class="settingLabel">
+
+        🐾 Your Animal
+
+    </div>
+
+
+    <div class="animalCollection">
+
+
+        <button
+            type="button"
+            class="animalChoice selected"
+            onclick="chooseAnimal('🐼','Panda',this)">
+
+            <span class="animalEmoji">
+                🐼
+            </span>
+
+            <span class="animalName">
+                Panda
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🦊','Fox',this)">
+
+            <span class="animalEmoji">
+                🦊
+            </span>
+
+            <span class="animalName">
+                Fox
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🐰','Bunny',this)">
+
+            <span class="animalEmoji">
+                🐰
+            </span>
+
+            <span class="animalName">
+                Bunny
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🦉','Owl',this)">
+
+            <span class="animalEmoji">
+                🦉
+            </span>
+
+            <span class="animalName">
+                Owl
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🐯','Tiger',this)">
+
+            <span class="animalEmoji">
+                🐯
+            </span>
+
+            <span class="animalName">
+                Tiger
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🐨','Koala',this)">
+
+            <span class="animalEmoji">
+                🐨
+            </span>
+
+            <span class="animalName">
+                Koala
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🐧','Penguin',this)">
+
+            <span class="animalEmoji">
+                🐧
+            </span>
+
+            <span class="animalName">
+                Penguin
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="animalChoice"
+            onclick="chooseAnimal('🦁','Lion',this)">
+
+            <span class="animalEmoji">
+                🦁
+            </span>
+
+            <span class="animalName">
+                Lion
+            </span>
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         START
+    ================================================= -->
+
+    <button
+        type="button"
+        class="startButton"
+        onclick="startRoom()">
+
+        🚀 Start Learning
+
+    </button>
+
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ROOM INFORMATION
+===================================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const roomCode =
+    params.get("code")
+    ||
+    localStorage.getItem(
+        "friendRoomCode"
+    )
+    ||
+    "DEMO";
+
+
+document.getElementById(
+    "headerRoomCode"
+).textContent =
+    "ROOM: " + roomCode;
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+const userName =
+    localStorage.getItem(
+        "ethioUserName"
+    )
+    ||
+    "Student";
+
+
+const userXP =
+    localStorage.getItem(
+        "ethioXP"
+    )
+    ||
+    "0";
+
+
+document.getElementById(
+    "myName"
+).textContent =
+    userName;
+
+
+document.getElementById(
+    "myXP"
+).textContent =
+    userXP;
+
+
+/* =====================================================
+   FRIEND
+===================================================== */
+
+/*
+   For now this is a demo friend.
+
+   Later the backend will replace
+   this with the real invited student.
+*/
+
+const friendName =
+    localStorage.getItem(
+        "demoFriendName"
+    )
+    ||
+    "Your Friend";
+
+
+document.getElementById(
+    "friendName"
+).textContent =
+    friendName;
+
+
+document.getElementById(
+    "friendAnimal"
+).textContent =
+    localStorage.getItem(
+        "demoFriendAnimal"
+    )
+    ||
+    "🦊";
+
+
+document.getElementById(
+    "friendXP"
+).textContent =
+    localStorage.getItem(
+        "demoFriendXP"
+    )
+    ||
+    "120";
+
+
+/* =====================================================
+   MODE
+===================================================== */
+
+const mode =
+    localStorage.getItem(
+        "friendMode"
+    )
+    ||
+    "compete";
+
+
+if (
+    mode === "study"
+) {
+
+    document.getElementById(
+        "modeBadge"
+    ).textContent =
+        "📚 Study Together";
+
+} else {
+
+    document.getElementById(
+        "modeBadge"
+    ).textContent =
+        "🎯 Play & Compete";
+
+}
+
+
+/* =====================================================
+   SUBJECTS BY GRADE
+===================================================== */
+
+const subjects = {
+
+    9: [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Geography",
+        "History",
+        "Civics"
+    ],
+
+    10: [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Geography",
+        "History",
+        "Civics",
+        "Economics"
+    ],
+
+    11: [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Economics",
+        "Geography",
+        "History",
+        "Civics"
+    ],
+
+    12: [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Economics",
+        "Geography",
+        "History",
+        "Civics"
+    ]
+
+};
+
+
+const gradeSelect =
+    document.getElementById(
+        "gradeSelect"
+    );
+
+
+const subjectSelect =
+    document.getElementById(
+        "subjectSelect"
+    );
+
+
+function updateSubjects() {
+
+    const grade =
+        gradeSelect.value;
+
+
+    subjectSelect.innerHTML =
+        "";
+
+
+    subjects[grade].forEach(
+        function(subject) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                subject;
+
+            option.textContent =
+                subject;
+
+            subjectSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+gradeSelect.addEventListener(
+    "change",
+    updateSubjects
+);
+
+
+updateSubjects();
+
+
+/* =====================================================
+   QUESTION COUNT
+===================================================== */
+
+let questionCount =
+    10;
+
+
+function selectQuestions(
+    number,
+    button
+) {
+
+    questionCount =
+        number;
+
+
+    document
+        .querySelectorAll(
+            ".questionButton"
+        )
+        .forEach(
+            function(btn) {
+
+                btn.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+}
+
+
+/* =====================================================
+   ANIMAL
+===================================================== */
+
+let selectedAnimal =
+    "🐼";
+
+
+let selectedAnimalName =
+    "Panda";
+
+
+function chooseAnimal(
+    emoji,
+    name,
+    button
+) {
+
+    selectedAnimal =
+        emoji;
+
+
+    selectedAnimalName =
+        name;
+
+
+    document
+        .querySelectorAll(
+            ".animalChoice"
+        )
+        .forEach(
+            function(btn) {
+
+                btn.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+
+    document.getElementById(
+        "myAnimal"
+    ).textContent =
+        emoji;
+
+
+    localStorage.setItem(
+        "ethioAnimal",
+        emoji
+    );
+
+
+    localStorage.setItem(
+        "ethioAnimalName",
+        name
+    );
+
+}
+
+
+/* =====================================================
+   LOAD SAVED ANIMAL
+===================================================== */
+
+const savedAnimal =
+    localStorage.getItem(
+        "ethioAnimal"
+    );
+
+
+if (savedAnimal) {
+
+    selectedAnimal =
+        savedAnimal;
+
+    document.getElementById(
+        "myAnimal"
+    ).textContent =
+        savedAnimal;
+
+}
+
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+let voiceEnabled =
+    localStorage.getItem(
+        "voiceEnabled"
+    ) === "true";
+
+
+function toggleVoice() {
+
+    voiceEnabled =
+        !voiceEnabled;
+
+
+    const button =
+        document.getElementById(
+            "voiceButton"
+        );
+
+
+    const text =
+        document.getElementById(
+            "voiceText"
+        );
+
+
+    const icon =
+        document.getElementById(
+            "voiceIcon"
+        );
+
+
+    if (voiceEnabled) {
+
+        button.classList.add(
+            "active"
+        );
+
+        text.textContent =
+            "Voice ON";
+
+        icon.textContent =
+            "🎙️";
+
+    } else {
+
+        button.classList.remove(
+            "active"
+        );
+
+        text.textContent =
+            "Voice";
+
+        icon.textContent =
+            "🔇";
+
+    }
+
+
+    localStorage.setItem(
+        "voiceEnabled",
+        voiceEnabled
+    );
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+let videoEnabled =
+    localStorage.getItem(
+        "videoEnabled"
+    ) === "true";
+
+
+function toggleVideo() {
+
+    videoEnabled =
+        !videoEnabled;
+
+
+    const button =
+        document.getElementById(
+            "videoButton"
+        );
+
+
+    const text =
+        document.getElementById(
+            "videoText"
+        );
+
+
+    const icon =
+        document.getElementById(
+            "videoIcon"
+        );
+
+
+    if (videoEnabled) {
+
+        button.classList.add(
+            "active"
+        );
+
+        text.textContent =
+            "Video ON";
+
+        icon.textContent =
+            "📹";
+
+    } else {
+
+        button.classList.remove(
+            "active"
+        );
+
+        text.textContent =
+            "Video";
+
+        icon.textContent =
+            "📵";
+
+    }
+
+
+    localStorage.setItem(
+        "videoEnabled",
+        videoEnabled
+    );
+
+}
+
+
+/* =====================================================
+   RESTORE COMMUNICATION STATE
+===================================================== */
+
+if (voiceEnabled) {
+
+    document.getElementById(
+        "voiceButton"
+    ).classList.add(
+        "active"
+    );
+
+    document.getElementById(
+        "voiceText"
+    ).textContent =
+        "Voice ON";
+
+}
+
+
+if (videoEnabled) {
+
+    document.getElementById(
+        "videoButton"
+    ).classList.add(
+        "active"
+    );
+
+    document.getElementById(
+        "videoText"
+    ).textContent =
+        "Video ON";
+
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+function toggleChat() {
+
+    document.getElementById(
+        "chatPanel"
+    ).classList.toggle(
+        "open"
+    );
+
+}
+
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+        return;
+    }
+
+
+    const messages =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.style.marginBottom =
+        "7px";
+
+
+    item.textContent =
+        "🧑 You: " + message;
+
+
+    messages.appendChild(
+        item
+    );
+
+
+    input.value =
+        "";
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+document.getElementById(
+    "chatInput"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START ROOM
+===================================================== */
+
+function startRoom() {
+
+    const grade =
+        gradeSelect.value;
+
+
+    const subject =
+        subjectSelect.value;
+
+
+    localStorage.setItem(
+        "challengeGrade",
+        grade
+    );
+
+
+    localStorage.setItem(
+        "challengeSubject",
+        subject
+    );
+
+
+    localStorage.setItem(
+        "challengeQuestions",
+        questionCount
+    );
+
+
+    localStorage.setItem(
+        "challengeAnimal",
+        selectedAnimal
+    );
+
+
+    localStorage.setItem(
+        "challengeAnimalName",
+        selectedAnimalName
+    );
+
+
+    if (
+        mode === "study"
+    ) {
+
+        /*
+           We will create this page later.
+        */
+
+        window.location.href =
+            "studyroom.html";
+
+    } else {
+
+        /*
+           Your existing exercise
+           page can receive these
+           settings.
+        */
+
+        window.location.href =
+            "exercise.html";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Ethio Mock Exam | Questions</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+
+<style>
+
+/* =====================================
+   PAGE
+===================================== */
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================
+   BACKGROUND
+===================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+
+.circle {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(8px);
+
+    opacity: .3;
+
+}
+
+
+.circle1 {
+
+    width: 330px;
+
+    height: 330px;
+
+    background: #756cff;
+
+    top: -150px;
+
+    right: -100px;
+
+}
+
+
+.circle2 {
+
+    width: 280px;
+
+    height: 280px;
+
+    background: #ff77a9;
+
+    bottom: -140px;
+
+    left: -100px;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+header {
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.logoIcon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+}
+
+
+.headerRight {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.gradeBadge {
+
+    padding: 9px 12px;
+
+    border-radius: 12px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.xpBox {
+
+    padding: 9px 12px;
+
+    border-radius: 12px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================
+   MAIN
+===================================== */
+
+main {
+
+    width: min(850px, 92%);
+
+    margin: auto;
+
+    padding: 30px 0 70px;
+
+}
+
+
+/* =====================================
+   EXAM INFO
+===================================== */
+
+.examInfo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.examDetails {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.infoBadge {
+
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.questionNumber {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================
+   PROGRESS
+===================================== */
+
+.progress {
+
+    width: 100%;
+
+    height: 9px;
+
+    background: var(--border);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 25px;
+
+}
+
+
+.progressBar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    transition:
+        width .4s ease;
+
+}
+
+
+/* =====================================
+   QUESTION CARD
+===================================== */
+
+.questionCard {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    padding: 30px;
+
+    box-shadow: var(--shadow);
+
+    animation:
+        appear .5s ease;
+
+}
+
+
+.questionLabel {
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.questionText {
+
+    color: var(--text);
+
+    font-size: 22px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =====================================
+   ANSWERS
+===================================== */
+
+.answers {
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+
+.answer {
+
+    width: 100%;
+
+    padding: 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: .2s;
+
+}
+
+
+.answer:hover {
+
+    border-color:
+        var(--accent);
+
+    transform:
+        translateX(3px);
+
+}
+
+
+.answer.correct {
+
+    border:
+        2px solid #27ae60;
+
+    background:
+        rgba(39,174,96,.12);
+
+}
+
+
+.answer.wrong {
+
+    border:
+        2px solid #e74c3c;
+
+    background:
+        rgba(231,76,60,.12);
+
+}
+
+
+.answer:disabled {
+
+    cursor: default;
+
+}
+
+
+/* =====================================
+   EXPLANATION
+===================================== */
+
+.explanation {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background: var(--accentSoft);
+
+    color: var(--text);
+
+}
+
+
+.explanationTitle {
+
+    font-weight: bold;
+
+    color: var(--accent);
+
+    margin-bottom: 7px;
+
+}
+
+
+.explanationText {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: var(--muted);
+
+}
+
+
+/* =====================================
+   NEXT BUTTON
+===================================== */
+
+.nextButton {
+
+    display: none;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.nextButton:hover {
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =====================================
+   RESULT
+===================================== */
+
+.result {
+
+    display: none;
+
+    text-align: center;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    padding: 40px 25px;
+
+    box-shadow: var(--shadow);
+
+    animation:
+        appear .6s ease;
+
+}
+
+
+.resultIcon {
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.result h1 {
+
+    color: var(--text);
+
+    margin-bottom: 10px;
+
+}
+
+
+.result p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+}
+
+
+.score {
+
+    font-size: 45px;
+
+    font-weight: bold;
+
+    color: var(--accent);
+
+    margin: 20px 0;
+
+}
+
+
+.resultInfo {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin: 20px 0;
+
+}
+
+
+.resultBadge {
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.resultButtons {
+
+    display: flex;
+
+    gap: 10px;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+}
+
+
+.resultButton {
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.resultButton.secondary {
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+}
+
+
+/* =====================================
+   ANIMATION
+===================================== */
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:600px) {
+
+    header {
+
+        padding: 0 14px;
+
+    }
+
+
+    .gradeBadge {
+
+        display: none;
+
+    }
+
+
+    main {
+
+        width: 94%;
+
+    }
+
+
+    .questionCard {
+
+        padding: 22px;
+
+    }
+
+
+    .questionText {
+
+        font-size: 19px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     THEME.JS
+===================================== -->
+
+<script src="theme.js"></script>
+
+
+<!-- =====================================
+     BACKGROUND
+===================================== -->
+
+<div class="background">
+
+    <div class="circle circle1"></div>
+
+    <div class="circle circle2"></div>
+
+</div>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            🧠
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <div class="headerRight">
+
+        <div
+            class="gradeBadge"
+            id="headerGrade">
+
+            Grade 10
+
+        </div>
+
+
+        <div class="xpBox">
+
+            ⭐
+            <span id="xp">
+                0
+            </span>
+            XP
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main>
+
+
+<!-- =====================================
+     QUIZ AREA
+===================================== -->
+
+<div id="quizArea">
+
+
+    <div class="examInfo">
+
+
+        <div class="examDetails">
+
+
+            <div
+                class="infoBadge"
+                id="gradeBadge">
+
+                Grade 10
+
+            </div>
+
+
+            <div
+                class="infoBadge"
+                id="subjectBadge">
+
+                Biology
+
+            </div>
+
+
+            <div
+                class="infoBadge"
+                id="difficultyBadge">
+
+                Medium
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="questionNumber"
+            id="questionNumber">
+
+            Question 1 / 20
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress">
+
+        <div
+            class="progressBar"
+            id="progressBar">
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <section
+        class="questionCard"
+        id="questionCard">
+
+
+        <div class="questionLabel">
+
+            QUESTION
+
+        </div>
+
+
+        <div
+            class="questionText"
+            id="questionText">
+
+            Loading question...
+
+        </div>
+
+
+        <div
+            class="answers"
+            id="answers">
+
+        </div>
+
+
+        <!-- EXPLANATION -->
+
+        <div
+            class="explanation"
+            id="explanation">
+
+
+            <div class="explanationTitle">
+
+                💡 Explanation
+
+            </div>
+
+
+            <div
+                class="explanationText"
+                id="explanationText">
+
+            </div>
+
+
+        </div>
+
+
+        <!-- NEXT -->
+
+        <button
+            class="nextButton"
+            id="nextButton"
+            onclick="nextQuestion()">
+
+            Next Question →
+
+        </button>
+
+
+    </section>
+
+
+</div>
+
+
+<!-- =====================================
+     RESULT
+===================================== -->
+
+<section
+    class="result"
+    id="result">
+
+
+    <div class="resultIcon">
+
+        🏆
+
+    </div>
+
+
+    <h1>
+
+        Exam Complete!
+
+    </h1>
+
+
+    <p>
+
+        Great job! Here's your result.
+
+    </p>
+
+
+    <div
+        class="score"
+        id="finalScore">
+
+        0 / 20
+
+    </div>
+
+
+    <div class="resultInfo">
+
+
+        <div
+            class="resultBadge"
+            id="resultGrade">
+
+            Grade 10
+
+        </div>
+
+
+        <div
+            class="resultBadge"
+            id="resultSubject">
+
+            Biology
+
+        </div>
+
+
+        <div
+            class="resultBadge"
+            id="resultXP">
+
+            +0 XP
+
+        </div>
+
+
+    </div>
+
+
+    <p id="resultMessage">
+
+        Keep practicing!
+
+    </p>
+
+
+    <div class="resultButtons">
+
+
+        <button
+            class="resultButton"
+            onclick="tryAgain()">
+
+            🔄 Try Again
+
+        </button>
+
+
+        <button
+            class="resultButton secondary"
+            onclick="goHome()">
+
+            🏠 Home
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =====================================
+   GET EXAM SETTINGS
+===================================== */
+
+
+const subject =
+
+    localStorage.getItem(
+        "examSubject"
+    ) || "Biology";
+
+
+const questionCount =
+
+    Number(
+        localStorage.getItem(
+            "examQuestions"
+        )
+    ) || 20;
+
+
+const difficulty =
+
+    localStorage.getItem(
+        "examDifficulty"
+    ) || "Medium";
+
+
+/*
+   GET THE STUDENT'S GRADE
+
+   This comes from profile.html.
+*/
+
+const grade =
+
+    localStorage.getItem(
+        "ethioGrade"
+    ) || "10";
+
+
+/* =====================================
+   SHOW EXAM INFORMATION
+===================================== */
+
+
+document.getElementById(
+    "headerGrade"
+).textContent =
+
+    "Grade " + grade;
+
+
+document.getElementById(
+    "gradeBadge"
+).textContent =
+
+    "Grade " + grade;
+
+
+document.getElementById(
+    "subjectBadge"
+).textContent =
+
+    subject;
+
+
+document.getElementById(
+    "difficultyBadge"
+).textContent =
+
+    difficulty;
+
+
+/* =====================================
+   XP
+===================================== */
+
+
+let xp =
+
+    Number(
+        localStorage.getItem(
+            "ethioXP"
+        )
+    ) || 0;
+
+
+document.getElementById(
+    "xp"
+).textContent = xp;
+
+
+/* =====================================
+   TEMPORARY QUESTION BANK
+=====================================
+
+   IMPORTANT:
+
+   These are sample questions for now.
+
+   Later the backend will generate
+   questions according to:
+
+   Grade
+   Subject
+   Number
+   Difficulty
+
+===================================== */
+
+
+const questionBank = {
+
+
+    Biology: [
+
+        {
+            question:
+                "Which organelle is known as the powerhouse of the cell?",
+
+            answers: [
+                "Nucleus",
+                "Mitochondria",
+                "Ribosome",
+                "Cell wall"
+            ],
+
+            correct: 1,
+
+            explanation:
+                "Mitochondria produce most of the usable energy for the cell in the form of ATP."
+        },
+
+
+        {
+            question:
+                "What process do green plants use to make their own food?",
+
+            answers: [
+                "Respiration",
+                "Digestion",
+                "Photosynthesis",
+                "Transpiration"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "Photosynthesis allows green plants to use light energy to make glucose from carbon dioxide and water."
+        },
+
+
+        {
+            question:
+                "Which part of a plant mainly absorbs water from the soil?",
+
+            answers: [
+                "Flower",
+                "Leaf",
+                "Root",
+                "Fruit"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "Roots, especially root hairs, absorb water and minerals from the soil."
+        },
+
+
+        {
+            question:
+                "Which molecule carries genetic information in most living organisms?",
+
+            answers: [
+                "DNA",
+                "Glucose",
+                "ATP",
+                "Water"
+            ],
+
+            correct: 0,
+
+            explanation:
+                "DNA stores genetic information used by living organisms."
+        },
+
+
+        {
+            question:
+                "Which blood cells help defend the body against infections?",
+
+            answers: [
+                "Red blood cells",
+                "White blood cells",
+                "Platelets",
+                "Plasma"
+            ],
+
+            correct: 1,
+
+            explanation:
+                "White blood cells are part of the immune system and help defend the body against pathogens."
+        }
+
+    ],
+
+
+    Chemistry: [
+
+        {
+            question:
+                "What is the chemical symbol for oxygen?",
+
+            answers: [
+                "Ox",
+                "O",
+                "Og",
+                "C"
+            ],
+
+            correct: 1,
+
+            explanation:
+                "The chemical symbol for oxygen is O."
+        },
+
+
+        {
+            question:
+                "What is the pH of a neutral solution at room temperature?",
+
+            answers: [
+                "0",
+                "5",
+                "7",
+                "14"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "A neutral solution has a pH of 7 at room temperature."
+        },
+
+
+        {
+            question:
+                "Which particle has a negative electrical charge?",
+
+            answers: [
+                "Proton",
+                "Neutron",
+                "Electron",
+                "Nucleus"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "Electrons carry a negative electrical charge."
+        }
+
+    ],
+
+
+    Physics: [
+
+        {
+            question:
+                "What is the SI unit of force?",
+
+            answers: [
+                "Joule",
+                "Watt",
+                "Newton",
+                "Pascal"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "The SI unit of force is the newton (N)."
+        },
+
+
+        {
+            question:
+                "Which quantity describes how fast an object is moving?",
+
+            answers: [
+                "Mass",
+                "Speed",
+                "Density",
+                "Force"
+            ],
+
+            correct: 1,
+
+            explanation:
+                "Speed describes how much distance an object travels per unit of time."
+        },
+
+
+        {
+            question:
+                "What happens to the speed of an object when it accelerates in the direction of motion?",
+
+            answers: [
+                "It increases",
+                "It becomes zero",
+                "It decreases",
+                "Its mass increases"
+            ],
+
+            correct: 0,
+
+            explanation:
+                "Acceleration in the same direction as motion causes speed to increase."
+        }
+
+    ],
+
+
+    Mathematics: [
+
+        {
+            question:
+                "What is the value of 5 × 6?",
+
+            answers: [
+                "11",
+                "20",
+                "30",
+                "35"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "5 multiplied by 6 equals 30."
+        },
+
+
+        {
+            question:
+                "What is the square root of 81?",
+
+            answers: [
+                "7",
+                "8",
+                "9",
+                "10"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "9 × 9 = 81, so the square root of 81 is 9."
+        },
+
+
+        {
+            question:
+                "If x + 5 = 12, what is x?",
+
+            answers: [
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "Subtract 5 from both sides: x = 12 − 5 = 7."
+        }
+
+    ],
+
+
+    English: [
+
+        {
+            question:
+                "Which word is a synonym for 'happy'?",
+
+            answers: [
+                "Sad",
+                "Angry",
+                "Joyful",
+                "Tired"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "Joyful means feeling or showing happiness."
+        },
+
+
+        {
+            question:
+                "Which word is a noun?",
+
+            answers: [
+                "Run",
+                "Beautiful",
+                "School",
+                "Quickly"
+            ],
+
+            correct: 2,
+
+            explanation:
+                "School is a noun because it names a place or institution."
+        }
+
+    ]
+
+};
+
+
+/* =====================================
+   SELECT QUESTION BANK
+===================================== */
+
+
+let availableQuestions =
+
+    questionBank[subject] ||
+
+    questionBank.Biology;
+
+
+/* =====================================
+   CREATE QUESTIONS
+===================================== */
+
+
+let questions = [];
+
+
+for (
+    let i = 0;
+    i < questionCount;
+    i++
+) {
+
+    questions.push(
+
+        availableQuestions[
+            i %
+            availableQuestions.length
+        ]
+
+    );
+
+}
+
+
+/* =====================================
+   QUIZ VARIABLES
+===================================== */
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+
+const answersElement =
+    document.getElementById(
+        "answers"
+    );
+
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
+
+const explanation =
+    document.getElementById(
+        "explanation"
+    );
+
+
+const explanationText =
+    document.getElementById(
+        "explanationText"
+    );
+
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+
+/* =====================================
+   SHOW QUESTION
+===================================== */
+
+
+function showQuestion() {
+
+
+    answered = false;
+
+
+    explanation.style.display =
+        "none";
+
+
+    nextButton.style.display =
+        "none";
+
+
+    const q =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionText.textContent =
+        q.question;
+
+
+    questionNumber.textContent =
+
+        "Question " +
+
+        (currentQuestion + 1) +
+
+        " / " +
+
+        questions.length;
+
+
+    const progress =
+
+        (
+            currentQuestion /
+            questions.length
+        ) * 100;
+
+
+    progressBar.style.width =
+        progress + "%";
+
+
+    answersElement.innerHTML =
+        "";
+
+
+    q.answers.forEach(
+
+        function(answer, index) {
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer";
+
+
+            button.textContent =
+
+                String.fromCharCode(
+                    65 + index
+                ) +
+
+                ". " +
+
+                answer;
+
+
+            button.onclick =
+
+                function() {
+
+                    chooseAnswer(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            answersElement.appendChild(
+                button
+            );
+
+
+        }
+
+    );
+
+}
+
+
+/* =====================================
+   CHOOSE ANSWER
+===================================== */
+
+
+function chooseAnswer(
+    selectedIndex,
+    selectedButton
+) {
+
+
+    if (answered) {
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    const q =
+        questions[
+            currentQuestion
+        ];
+
+
+    const allButtons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    allButtons.forEach(
+
+        function(button) {
+
+            button.disabled =
+                true;
+
+        }
+
+    );
+
+
+    if (
+        selectedIndex ===
+        q.correct
+    ) {
+
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        /*
+           10 XP for correct answer
+        */
+
+        xp += 10;
+
+
+        localStorage.setItem(
+            "ethioXP",
+            xp
+        );
+
+
+        document.getElementById(
+            "xp"
+        ).textContent =
+            xp;
+
+
+        explanationText.textContent =
+
+            "Correct! " +
+
+            q.explanation;
+
+
+    } else {
+
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        allButtons[
+            q.correct
+        ].classList.add(
+            "correct"
+        );
+
+
+        explanationText.textContent =
+
+            "The correct answer is " +
+
+            q.answers[
+                q.correct
+            ] +
+
+            ". " +
+
+            q.explanation;
+
+    }
+
+
+    explanation.style.display =
+        "block";
+
+
+    nextButton.style.display =
+        "block";
+
+
+    if (
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextButton.textContent =
+            "🏆 See My Results";
+
+    }
+
+}
+
+
+/* =====================================
+   NEXT QUESTION
+===================================== */
+
+
+function nextQuestion() {
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        questions.length
+    ) {
+
+        showResults();
+
+        return;
+
+    }
+
+
+    showQuestion();
+
+}
+
+
+/* =====================================
+   RESULTS
+===================================== */
+
+
+function showResults() {
+
+
+    document.getElementById(
+        "quizArea"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+
+        score +
+
+        " / " +
+
+        questions.length;
+
+
+    document.getElementById(
+        "resultGrade"
+    ).textContent =
+
+        "Grade " +
+        grade;
+
+
+    document.getElementById(
+        "resultSubject"
+    ).textContent =
+        subject;
+
+
+    document.getElementById(
+        "resultXP"
+    ).textContent =
+
+        "+" +
+
+        (score * 10) +
+
+        " XP";
+
+
+    const percentage =
+
+        Math.round(
+
+            (
+                score /
+                questions.length
+            ) * 100
+
+        );
+
+
+    let message;
+
+
+    if (percentage >= 90) {
+
+        message =
+            "🌟 Excellent! You're doing amazing!";
+
+    }
+
+    else if (percentage >= 70) {
+
+        message =
+            "🔥 Great work! Keep practicing!";
+
+    }
+
+    else if (percentage >= 50) {
+
+        message =
+            "💪 Good effort! You can improve even more.";
+
+    }
+
+    else {
+
+        message =
+            "📚 Keep studying! Every practice makes you stronger.";
+
+    }
+
+
+    document.getElementById(
+        "resultMessage"
+    ).textContent =
+
+        message;
+
+
+    /*
+       SAVE LAST RESULT
+
+       This will be useful later
+       for the profile/statistics page.
+    */
+
+    localStorage.setItem(
+        "lastExamGrade",
+        grade
+    );
+
+
+    localStorage.setItem(
+        "lastExamSubject",
+        subject
+    );
+
+
+    localStorage.setItem(
+        "lastExamScore",
+        score
+    );
+
+
+    localStorage.setItem(
+        "lastExamTotal",
+        questions.length
+    );
+
+
+    localStorage.setItem(
+        "lastExamDifficulty",
+        difficulty
+    );
+
+}
+
+
+/* =====================================
+   TRY AGAIN
+===================================== */
+
+
+function tryAgain() {
+
+    window.location.href =
+        "exercise.html";
+
+}
+
+
+/* =====================================
+   HOME
+===================================== */
+
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =====================================
+   START QUIZ
+===================================== */
+
+
+showQuestion();
+
+</script>
+
+</body>
+
+</html>

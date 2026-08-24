@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.profileBackground{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.profileOrb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(55px);
+    opacity:.25;
+}
+
+.orb1{
+    width:300px;
+    height:300px;
+    background:#7168e8;
+    top:-120px;
+    left:-100px;
+}
+
+.orb2{
+    width:250px;
+    height:250px;
+    background:#ff72a8;
+    right:-90px;
+    bottom:-100px;
+}
+
+.profileHeader{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 24px;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.backButton,
+.settingsButton{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    cursor:pointer;
+}
+
+.backButton{
+    padding:10px 14px;
+    border-radius:12px;
+}
+
+.settingsButton{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    font-size:17px;
+}
+
+.headerTitle{
+    text-align:center;
+}
+
+.headerTitle h1{
+    font-size:18px;
+}
+
+.headerTitle p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.profileContainer{
+    width:min(1000px,92%);
+    margin:auto;
+    padding:35px 0 70px;
+}
+
+.profileHero{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #9b74ff,
+            #ff72a8
+        );
+    color:white;
+    border-radius:30px;
+    padding:30px;
+    min-height:260px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    animation:appear .7s ease;
+}
+
+.heroDecoration{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    right:-50px;
+    top:-60px;
+}
+
+.heroDecoration2{
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    left:45%;
+    bottom:-60px;
+}
+
+.bigAvatar{
+    width:125px;
+    height:125px;
+    min-width:125px;
+    border-radius:38px;
+    background:rgba(255,255,255,.2);
+    border:3px solid rgba(255,255,255,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:52px;
+    font-weight:bold;
+    animation:float 3s infinite ease-in-out;
+    position:relative;
+    z-index:2;
+}
+
+.heroInfo{
+    position:relative;
+    z-index:2;
+}
+
+.heroInfo small{
+    opacity:.8;
+    letter-spacing:1px;
+}
+
+.heroInfo h2{
+    font-size:32px;
+    margin:8px 0;
+}
+
+.heroInfo p{
+    opacity:.85;
+    font-size:13px;
+}
+
+.levelBadge{
+    display:inline-block;
+    margin-top:14px;
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(255,255,255,.18);
+    font-size:11px;
+    font-weight:bold;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:18px;
+}
+
+.statCard{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.statIcon{
+    font-size:27px;
+    margin-bottom:9px;
+}
+
+.statNumber{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.statLabel{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+.contentGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:18px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:24px;
+    box-shadow:var(--shadow);
+}
+
+.cardTitle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.cardTitle h3{
+    font-size:16px;
+}
+
+.progressItem{
+    margin-bottom:18px;
+}
+
+.progressTop{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.progressTop span:last-child{
+    color:var(--accent);
+    font-weight:bold;
+}
+
+.progressBar{
+    height:8px;
+    background:var(--border);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressFill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(
+        90deg,
+        var(--accent),
+        #ff72a8
+    );
+}
+
+.achievementGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.achievement{
+    text-align:center;
+    padding:13px 7px;
+    border-radius:16px;
+    background:var(--accentSoft);
+}
+
+.achievementIcon{
+    font-size:26px;
+    margin-bottom:7px;
+}
+
+.achievement p{
+    font-size:9px;
+    color:var(--muted);
+}
+
+.infoRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.infoRow:last-child{
+    border-bottom:0;
+}
+
+.infoLabel{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.infoValue{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.editButton{
+    border:0;
+    background:var(--accentSoft);
+    color:var(--accent);
+    padding:9px 13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.editForm{
+    display:none;
+    margin-top:15px;
+}
+
+.editForm.active{
+    display:block;
+}
+
+.editForm label{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin:12px 0 6px;
+}
+
+.editForm input{
+    width:100%;
+    padding:11px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+}
+
+.saveButton{
+    margin-top:15px;
+    border:0;
+    padding:11px 15px;
+    border-radius:11px;
+    background:var(--accent);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* CONTINUE HOME */
+
+.homeButton{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border:0;
+    border-radius:15px;
+    background:linear-gradient(
+        135deg,
+        var(--accent),
+        #ff72a8
+    );
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(100,100,220,.2);
+    transition:.3s;
+}
+
+.homeButton:hover{
+    transform:translateY(-3px);
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(22px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+    50%{
+        transform:translateY(-9px) rotate(2deg);
+    }
+}
+
+@media(max-width:750px){
+    .contentGrid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .profileHeader{
+        padding:0 12px;
+    }
+
+    .profileContainer{
+        width:94%;
+    }
+
+    .profileHero{
+        padding:24px;
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .heroInfo h2{
+        font-size:27px;
+    }
+
+    .stats{
+        gap:8px;
+    }
+
+    .statCard{
+        padding:15px 5px;
+    }
+
+    .statNumber{
+        font-size:19px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<script src="theme.js"></script>
+
+<div class="profileBackground">
+    <div class="profileOrb orb1"></div>
+    <div class="profileOrb orb2"></div>
+</div>
+
+<header class="profileHeader">
+
+    <button class="backButton" onclick="goHome()">
+        ← Home
+    </button>
+
+    <div class="headerTitle">
+        <h1>My Profile</h1>
+        <p>Your learning journey</p>
+    </div>
+
+    <button class="settingsButton" onclick="goSettings()">
+        ⚙️
+    </button>
+
+</header>
+
+<main class="profileContainer">
+
+<section class="profileHero">
+
+    <div class="heroDecoration"></div>
+    <div class="heroDecoration2"></div>
+
+    <div class="bigAvatar" id="bigAvatar">
+        S
+    </div>
+
+    <div class="heroInfo">
+
+        <small>STUDENT PROFILE</small>
+
+        <h2 id="profileName">
+            Student
+        </h2>
+
+        <p id="profileSchool">
+            Ethio Mock Exam Student
+        </p>
+
+        <div class="levelBadge">
+            🏆 Level
+            <span id="level">1</span>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="statCard">
+        <div class="statIcon">⭐</div>
+        <div class="statNumber" id="xpValue">0</div>
+        <div class="statLabel">XP Earned</div>
+    </div>
+
+    <div class="statCard">
+        <div class="statIcon">🔥</div>
+        <div class="statNumber" id="streakValue">0</div>
+        <div class="statLabel">Day Streak</div>
+    </div>
+
+    <div class="statCard">
+        <div class="statIcon">🎯</div>
+        <div class="statNumber" id="questionValue">0</div>
+        <div class="statLabel">Questions</div>
+    </div>
+
+</section>
+
+<section class="contentGrid">
+
+<div class="card">
+
+    <div class="cardTitle">
+        <h3>📈 My Progress</h3>
+    </div>
+
+    <div class="progressItem">
+        <div class="progressTop">
+            <span>Biology</span>
+            <span>72%</span>
+        </div>
+        <div class="progressBar">
+            <div class="progressFill" style="width:72%"></div>
+        </div>
+    </div>
+
+    <div class="progressItem">
+        <div class="progressTop">
+            <span>Mathematics</span>
+            <span>58%</span>
+        </div>
+        <div class="progressBar">
+            <div class="progressFill" style="width:58%"></div>
+        </div>
+    </div>
+
+    <div class="progressItem">
+        <div class="progressTop">
+            <span>Physics</span>
+            <span>64%</span>
+        </div>
+        <div class="progressBar">
+            <div class="progressFill" style="width:64%"></div>
+        </div>
+    </div>
+
+    <div class="progressItem">
+        <div class="progressTop">
+            <span>Chemistry</span>
+            <span>45%</span>
+        </div>
+        <div class="progressBar">
+            <div class="progressFill" style="width:45%"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="cardTitle">
+        <h3>🏆 Achievements</h3>
+    </div>
+
+    <div class="achievementGrid">
+
+        <div class="achievement">
+            <div class="achievementIcon">🌟</div>
+            <p>First Step</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievementIcon">🔥</div>
+            <p>3 Day Streak</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievementIcon">🧠</div>
+            <p>Brain Power</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievementIcon">🎯</div>
+            <p>Quiz Master</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievementIcon">📚</div>
+            <p>Bookworm</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievementIcon">🚀</div>
+            <p>Rising Star</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="cardTitle">
+
+        <h3>👤 Personal Information</h3>
+
+        <button class="editButton" onclick="toggleEdit()">
+            Edit
+        </button>
+
+    </div>
+
+    <div class="infoRow">
+        <span class="infoLabel">Name</span>
+        <span class="infoValue" id="infoName">Student</span>
+    </div>
+
+    <div class="infoRow">
+        <span class="infoLabel">Grade</span>
+        <span class="infoValue" id="infoGrade">Grade 10</span>
+    </div>
+
+    <div class="infoRow">
+        <span class="infoLabel">School</span>
+        <span class="infoValue" id="infoSchool">Not added</span>
+    </div>
+
+    <div class="infoRow">
+        <span class="infoLabel">Age</span>
+        <span class="infoValue" id="infoAge">Not added</span>
+    </div>
+
+    <div class="editForm" id="editForm">
+
+        <label>Name</label>
+        <input id="editName" type="text">
+
+        <label>Grade</label>
+        <input id="editGrade" type="text">
+
+        <label>School</label>
+        <input id="editSchool" type="text">
+
+        <label>Age</label>
+        <input id="editAge" type="number">
+
+        <button class="saveButton" onclick="saveProfile()">
+            Save Profile
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- IMPORTANT -->
+<button class="homeButton" onclick="goHome()">
+    Continue to Home 🏠
+</button>
+
+</main>
+
+<script>
+
+function loadProfile(){
+
+    const name =
+        localStorage.getItem("ethioUserName") ||
+        "Student";
+
+    const school =
+        localStorage.getItem("ethioSchool") ||
+        "Ethio Mock Exam Student";
+
+    const grade =
+        localStorage.getItem("ethioGrade") ||
+        "Grade 10";
+
+    const age =
+        localStorage.getItem("ethioAge") ||
+        "Not added";
+
+    const xp =
+        Number(localStorage.getItem("ethioXP") || 0);
+
+    const streak =
+        Number(localStorage.getItem("ethioStreak") || 0);
+
+    const questions =
+        Number(localStorage.getItem("ethioQuestions") || 0);
+
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileSchool").textContent = school;
+
+    document.getElementById("infoName").textContent = name;
+    document.getElementById("infoGrade").textContent = grade;
+    document.getElementById("infoSchool").textContent = school;
+    document.getElementById("infoAge").textContent = age;
+
+    document.getElementById("xpValue").textContent = xp;
+    document.getElementById("streakValue").textContent = streak;
+    document.getElementById("questionValue").textContent = questions;
+
+    document.getElementById("bigAvatar").textContent =
+        name.charAt(0).toUpperCase();
+
+    document.getElementById("level").textContent =
+        Math.floor(xp / 100) + 1;
+}
+
+
+function toggleEdit(){
+
+    const form =
+        document.getElementById("editForm");
+
+    form.classList.toggle("active");
+
+    document.getElementById("editName").value =
+        localStorage.getItem("ethioUserName") || "";
+
+    document.getElementById("editGrade").value =
+        localStorage.getItem("ethioGrade") || "";
+
+    document.getElementById("editSchool").value =
+        localStorage.getItem("ethioSchool") || "";
+
+    document.getElementById("editAge").value =
+        localStorage.getItem("ethioAge") || "";
+}
+
+
+function saveProfile(){
+
+    const name =
+        document.getElementById("editName").value.trim();
+
+    const grade =
+        document.getElementById("editGrade").value.trim();
+
+    const school =
+        document.getElementById("editSchool").value.trim();
+
+    const age =
+        document.getElementById("editAge").value.trim();
+
+    if(name)
+        localStorage.setItem("ethioUserName",name);
+
+    if(grade)
+        localStorage.setItem("ethioGrade",grade);
+
+    if(school)
+        localStorage.setItem("ethioSchool",school);
+
+    if(age)
+        localStorage.setItem("ethioAge",age);
+
+    document.getElementById("editForm")
+        .classList.remove("active");
+
+    loadProfile();
+}
+
+
+/* =========================================
+   NAVIGATION FIX
+========================================= */
+
+function goHome(){
+
+    window.location.replace("home.html");
+}
+
+function goSettings(){
+
+    window.location.href = "settings.html";
+}
+
+loadProfile();
+
+</script>
+
+</body>
+</html>

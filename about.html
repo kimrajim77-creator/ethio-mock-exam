@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | Ethio Mock Exam</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#edf6ff;
+    --text:#29324d;
+    --muted:#6b7691;
+    --card:rgba(255,255,255,.9);
+    --border:rgba(100,110,150,.12);
+    --primary:#6571e8;
+    --pink:#ff789f;
+    --soft:#eef0ff;
+}
+
+body.dark{
+    --bg:#181c32;
+    --text:#ffffff;
+    --muted:#b9bdd3;
+    --card:rgba(38,42,70,.94);
+    --border:rgba(255,255,255,.08);
+    --soft:#292e4b;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.4s;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #cce9ff,
+        #eef8ff 55%,
+        #fff0f6
+    );
+}
+
+body.dark .background{
+    background:
+    linear-gradient(
+        180deg,
+        #242a50,
+        #181c32 60%,
+        #28203e
+    );
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    opacity:.25;
+}
+
+.orb1{
+    width:300px;
+    height:300px;
+    background:#6571e8;
+    top:-100px;
+    left:-100px;
+}
+
+.orb2{
+    width:280px;
+    height:280px;
+    background:#ff789f;
+    right:-100px;
+    bottom:-100px;
+}
+
+/* HEADER */
+
+header{
+    height:72px;
+    padding:0 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(15px);
+
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+}
+
+.logoIcon{
+    width:43px;
+    height:43px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:21px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6571e8,
+        #ff789f
+    );
+}
+
+.headerButtons{
+    display:flex;
+    gap:10px;
+}
+
+.headerButton{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.headerButton:hover{
+    transform:translateY(-2px);
+}
+
+/* MAIN */
+
+.container{
+    width:min(1000px,92%);
+    margin:auto;
+    padding:40px 0 70px;
+}
+
+/* HERO */
+
+.hero{
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        #8d78f5,
+        var(--pink)
+    );
+
+    color:white;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    position:relative;
+    overflow:hidden;
+
+    text-align:center;
+
+    animation:appear .7s ease;
+}
+
+.heroCircle{
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    right:-50px;
+    top:-70px;
+}
+
+.heroCircle2{
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.1);
+
+    left:-40px;
+    bottom:-50px;
+}
+
+.heroContent{
+    position:relative;
+    z-index:2;
+}
+
+.heroIcon{
+    font-size:55px;
+    margin-bottom:10px;
+
+    animation:float 3s infinite ease-in-out;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    opacity:.9;
+}
+
+/* SECTION */
+
+.sectionTitle{
+    text-align:center;
+    margin:35px 0 20px;
+}
+
+.sectionTitle h2{
+    font-size:25px;
+}
+
+.sectionTitle p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:7px;
+}
+
+/* MISSION */
+
+.mission{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.missionCard{
+    background:var(--card);
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 35px rgba(50,60,100,.08);
+
+    transition:.3s;
+
+    animation:cardAppear .7s both;
+}
+
+.missionCard:hover{
+    transform:translateY(-7px);
+}
+
+.missionIcon{
+    width:60px;
+    height:60px;
+
+    margin:0 auto 15px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    background:var(--soft);
+}
+
+.missionCard h3{
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.missionCard p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.featureCard{
+    background:var(--card);
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    display:flex;
+    gap:15px;
+
+    align-items:flex-start;
+
+    box-shadow:
+    0 15px 35px rgba(50,60,100,.07);
+
+    transition:.3s;
+}
+
+.featureCard:hover{
+    transform:translateY(-4px);
+}
+
+.featureIcon{
+    width:48px;
+    height:48px;
+
+    min-width:48px;
+
+    border-radius:15px;
+
+    background:var(--soft);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+}
+
+.featureCard h3{
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.featureCard p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* STORY */
+
+.story{
+    margin-top:15px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:25px;
+
+    padding:28px;
+
+    box-shadow:
+    0 15px 35px rgba(50,60,100,.07);
+
+    text-align:center;
+}
+
+.story p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
+}
+
+/* VALUES */
+
+.values{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:18px;
+}
+
+.value{
+    padding:11px 16px;
+
+    border-radius:20px;
+
+    background:var(--soft);
+
+    color:var(--primary);
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+/* CTA */
+
+.cta{
+    margin-top:30px;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    text-align:center;
+}
+
+.cta h2{
+    margin-bottom:8px;
+}
+
+.cta p{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.homeButton{
+    border:0;
+
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6571e8,
+        #7f89ff
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 10px 25px rgba(95,105,230,.25);
+}
+
+.homeButton:hover{
+    transform:translateY(-4px);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    padding:25px;
+}
+
+/* ANIMATIONS */
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        padding:0 12px;
+    }
+
+    .logo{
+        font-size:13px;
+    }
+
+    .headerButton{
+        padding:9px 10px;
+        font-size:11px;
+    }
+
+    .container{
+        width:94%;
+        padding-top:25px;
+    }
+
+    .hero{
+        padding:30px 20px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .mission{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+</div>
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+    <div class="headerButtons">
+
+        <button
+            class="headerButton"
+            onclick="toggleTheme()"
+            id="themeButton">
+
+            🌙
+
+        </button>
+
+        <button
+            class="headerButton"
+            onclick="goHome()">
+
+            🏠 Home
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="heroCircle"></div>
+        <div class="heroCircle2"></div>
+
+        <div class="heroContent">
+
+            <div class="heroIcon">
+                🦊
+            </div>
+
+            <h1>
+                About Ethio Mock Exam
+            </h1>
+
+            <p>
+                A fun and interactive learning space
+                designed to help students learn,
+                practice, challenge themselves,
+                and grow with confidence.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MISSION -->
+
+    <div class="sectionTitle">
+
+        <h2>
+            🎯 What We Believe
+        </h2>
+
+        <p>
+            Learning should be useful, interactive and fun.
+        </p>
+
+    </div>
+
+
+    <section class="mission">
+
+        <div class="missionCard">
+
+            <div class="missionIcon">
+                📚
+            </div>
+
+            <h3>
+                Learn
+            </h3>
+
+            <p>
+                Discover short notes and learning
+                materials organized around your
+                grade and subjects.
+            </p>
+
+        </div>
+
+
+        <div class="missionCard">
+
+            <div class="missionIcon">
+                🧠
+            </div>
+
+            <h3>
+                Practice
+            </h3>
+
+            <p>
+                Turn what you learn into practice
+                questions and test your understanding.
+            </p>
+
+        </div>
+
+
+        <div class="missionCard">
+
+            <div class="missionIcon">
+                🚀
+            </div>
+
+            <h3>
+                Grow
+            </h3>
+
+            <p>
+                Build your knowledge, earn XP,
+                maintain streaks and become a
+                stronger learner.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <div class="sectionTitle">
+
+        <h2>
+            ✨ What You Can Do
+        </h2>
+
+        <p>
+            Everything is designed around your learning journey.
+        </p>
+
+    </div>
+
+
+    <section class="features">
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                📝
+            </div>
+
+            <div>
+
+                <h3>
+                    Smart Practice
+                </h3>
+
+                <p>
+                    Practice questions based on
+                    your learning materials and
+                    school subjects.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                📖
+            </div>
+
+            <div>
+
+                <h3>
+                    Short Notes
+                </h3>
+
+                <p>
+                    Find useful study notes and
+                    explore topics according to
+                    your grade.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                🎯
+            </div>
+
+            <div>
+
+                <h3>
+                    Daily Goals
+                </h3>
+
+                <p>
+                    Set small learning goals and
+                    keep making progress every day.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                🔥
+            </div>
+
+            <div>
+
+                <h3>
+                    Streaks & XP
+                </h3>
+
+                <p>
+                    Stay motivated by building
+                    streaks and earning experience
+                    points.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                🦊
+            </div>
+
+            <div>
+
+                <h3>
+                    Cute Study Friends
+                </h3>
+
+                <p>
+                    Your learning journey can have
+                    a fun animal companion to make
+                    the experience more enjoyable.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="featureCard">
+
+            <div class="featureIcon">
+                🤝
+            </div>
+
+            <div>
+
+                <h3>
+                    Study Together
+                </h3>
+
+                <p>
+                    Invite friends to challenges
+                    and study sessions when the
+                    multiplayer features are connected.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <div class="sectionTitle">
+
+        <h2>
+            💡 Why We Created It
+        </h2>
+
+    </div>
+
+
+    <section class="story">
+
+        <p>
+            Studying can sometimes feel repetitive.
+            Ethio Mock Exam was designed to make
+            learning more engaging by combining
+            studying with practice, goals,
+            progress tracking and friendly
+            competition.
+        </p>
+
+        <br>
+
+        <p>
+            Instead of simply reading and forgetting,
+            students can learn, practice what they
+            know, see their progress and keep
+            improving step by step.
+        </p>
+
+
+        <div class="values">
+
+            <div class="value">
+                🌟 Confidence
+            </div>
+
+            <div class="value">
+                🧠 Knowledge
+            </div>
+
+            <div class="value">
+                🎯 Progress
+            </div>
+
+            <div class="value">
+                🤝 Friendship
+            </div>
+
+            <div class="value">
+                🚀 Growth
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <h2>
+            Ready to keep learning? 🦊
+        </h2>
+
+        <p>
+            Go back to your dashboard and
+            continue your study adventure.
+        </p>
+
+        <button
+            class="homeButton"
+            onclick="goHome()">
+
+            🏠 Back to Home
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 Ethio Mock Exam • Learn • Practice • Grow
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   THEME
+===================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark");
+
+    const button =
+        document.getElementById("themeButton");
+
+    if(
+        document.body.classList.contains("dark")
+    ){
+
+        button.textContent="☀️";
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+
+    }else{
+
+        button.textContent="🌙";
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* LOAD THEME */
+
+if(
+    localStorage.getItem("theme")
+    === "dark"
+){
+
+    document.body.classList.add("dark");
+
+    document.getElementById(
+        "themeButton"
+    ).textContent="☀️";
+
+}
+
+
+/* =====================================
+   HOME
+===================================== */
+
+function goHome(){
+
+    window.location.href="home.html";
+
+}
+
+</script>
+
+</body>
+</html>

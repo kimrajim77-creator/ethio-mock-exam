@@ -1,0 +1,3004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Practice Arena | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================================
+   GENERAL
+========================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.examBackground{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.examOrb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.22;
+}
+
+.orb1{
+    width:350px;
+    height:350px;
+    background:#7168e8;
+    top:-150px;
+    right:-100px;
+}
+
+.orb2{
+    width:300px;
+    height:300px;
+    background:#ff72a8;
+    bottom:-130px;
+    left:-100px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.examHeader{
+
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 24px;
+
+    background:var(--card);
+
+    border-bottom:1px solid var(--border);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+}
+
+.backButton{
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+.examTitle{
+    text-align:center;
+}
+
+.examTitle h1{
+    font-size:18px;
+}
+
+.examTitle p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.headerIcon{
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:var(--accentSoft);
+
+    font-size:19px;
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.examContainer{
+
+    width:min(900px,93%);
+
+    margin:auto;
+
+    padding:35px 0 70px;
+
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.setupIntro{
+
+    text-align:center;
+
+    margin-bottom:27px;
+
+    animation:appear .7s ease;
+
+}
+
+.mascot{
+
+    width:85px;
+    height:85px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:29px;
+
+    background:var(--accentSoft);
+
+    font-size:44px;
+
+    animation:float 3s infinite ease-in-out;
+
+}
+
+.setupIntro h2{
+
+    font-size:29px;
+
+    margin-top:16px;
+
+}
+
+.setupIntro p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:7px;
+
+}
+
+
+/* =========================================
+   SETUP CARD
+========================================= */
+
+.setupCard{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:27px;
+
+    padding:27px;
+
+    box-shadow:var(--shadow);
+
+    animation:appear .8s ease;
+
+}
+
+.optionGroup{
+
+    margin-bottom:28px;
+
+}
+
+.optionHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:13px;
+
+}
+
+.optionHeader h3{
+
+    font-size:14px;
+
+}
+
+.optionHeader span{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================
+   SUBJECTS
+========================================= */
+
+.subjectGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+.subjectButton{
+
+    border:1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    border-radius:15px;
+
+    padding:15px 10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+
+}
+
+.subjectButton:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--accent);
+
+}
+
+.subjectIcon{
+
+    font-size:23px;
+
+    margin-bottom:8px;
+
+}
+
+.subjectName{
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.subjectButton.selected{
+
+    background:var(--accentSoft);
+
+    border:2px solid var(--accent);
+
+    color:var(--accent);
+
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.optionButtons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+}
+
+.optionButton{
+
+    border:1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    padding:11px 15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+}
+
+.optionButton.selected{
+
+    background:var(--accent);
+
+    color:white;
+
+    border-color:var(--accent);
+
+}
+
+
+/* =========================================
+   QUESTION COUNT
+========================================= */
+
+.countGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(8,1fr);
+
+    gap:8px;
+
+}
+
+.countButton{
+
+    border:1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    padding:12px 5px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.countButton.selected{
+
+    background:var(--accent);
+
+    color:white;
+
+    border-color:var(--accent);
+
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.examSummary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:var(--accentSoft);
+
+}
+
+.summaryItem{
+
+    text-align:center;
+
+}
+
+.summaryValue{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:var(--accent);
+
+}
+
+.summaryLabel{
+
+    font-size:9px;
+
+    color:var(--muted);
+
+    margin-top:4px;
+
+}
+
+
+/* =========================================
+   START BUTTON
+========================================= */
+
+.startButton{
+
+    width:100%;
+
+    border:0;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 28px
+        rgba(113,104,232,.25);
+
+    transition:.25s;
+
+}
+
+.startButton:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =========================================
+   EXAM SCREEN
+========================================= */
+
+.examScreen{
+
+    display:none;
+
+    animation:appear .5s ease;
+
+}
+
+.examTop{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:13px;
+
+}
+
+.questionCounter{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+.timer{
+
+    padding:9px 13px;
+
+    border-radius:11px;
+
+    background:var(--accentSoft);
+
+    color:var(--accent);
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+.progress{
+
+    height:8px;
+
+    background:var(--border);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+}
+
+.progressFill{
+
+    height:100%;
+
+    width:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    transition:.4s;
+
+}
+
+
+/* =========================================
+   QUESTION CARD
+========================================= */
+
+.questionCard{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:27px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.questionTag{
+
+    display:inline-block;
+
+    padding:7px 11px;
+
+    border-radius:9px;
+
+    background:var(--accentSoft);
+
+    color:var(--accent);
+
+    font-size:10px;
+
+    font-weight:bold;
+
+}
+
+.questionText{
+
+    font-size:21px;
+
+    line-height:1.5;
+
+    margin:20px 0 24px;
+
+}
+
+
+/* =========================================
+   ANSWERS
+========================================= */
+
+.answers{
+
+    display:grid;
+
+    gap:11px;
+
+}
+
+.answer{
+
+    width:100%;
+
+    text-align:left;
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    transition:.2s;
+
+}
+
+.answer:hover{
+
+    transform:translateX(4px);
+
+    border-color:var(--accent);
+
+}
+
+.answer:disabled{
+
+    cursor:default;
+
+}
+
+.answer.correct{
+
+    background:
+        rgba(53,166,111,.12);
+
+    border-color:#35a66f;
+
+}
+
+.answer.wrong{
+
+    background:
+        rgba(224,91,110,.12);
+
+    border-color:#e05b6e;
+
+}
+
+
+/* =========================================
+   FEEDBACK BOX
+========================================= */
+
+.feedbackBox{
+
+    display:none;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+    animation:feedbackAppear .4s ease;
+
+}
+
+.feedbackBox.correctFeedback{
+
+    background:
+        rgba(53,166,111,.08);
+
+    border-color:#35a66f;
+
+}
+
+.feedbackBox.wrongFeedback{
+
+    background:
+        rgba(224,91,110,.08);
+
+    border-color:#e05b6e;
+
+}
+
+.feedbackTitle{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+.feedbackAnswer{
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    margin-bottom:10px;
+
+}
+
+.explanationTitle{
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    margin-bottom:5px;
+
+}
+
+.explanation{
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    color:var(--text);
+
+}
+
+
+/* =========================================
+   XP
+========================================= */
+
+.xpReward{
+
+    display:none;
+
+    margin-top:12px;
+
+    color:#d99b00;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.examControls{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.controlButton{
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.controlButton.primary{
+
+    background:var(--accent);
+
+    border-color:var(--accent);
+
+    color:white;
+
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.resultScreen{
+
+    display:none;
+
+    animation:appear .6s ease;
+
+}
+
+.resultCard{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:30px;
+
+    padding:35px 25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.resultHeader{
+
+    text-align:center;
+
+}
+
+.resultMascot{
+
+    font-size:70px;
+
+    animation:float 3s infinite ease-in-out;
+
+}
+
+.resultCard h2{
+
+    font-size:27px;
+
+    margin-top:10px;
+
+}
+
+.scoreCircle{
+
+    width:135px;
+    height:135px;
+
+    margin:25px auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:var(--accentSoft);
+
+    border:8px solid var(--accent);
+
+}
+
+.scoreNumber{
+
+    color:var(--accent);
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.scoreLabel{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.resultStats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin:20px 0;
+
+}
+
+.resultStat{
+
+    padding:15px 5px;
+
+    border-radius:15px;
+
+    background:var(--accentSoft);
+
+    text-align:center;
+
+}
+
+.resultStat strong{
+
+    display:block;
+
+    color:var(--accent);
+
+    font-size:16px;
+
+}
+
+.resultStat span{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.resultMessage{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    text-align:center;
+
+}
+
+
+/* =========================================
+   REVIEW MISTAKES
+========================================= */
+
+.reviewSection{
+
+    margin-top:25px;
+
+    display:none;
+
+}
+
+.reviewTitle{
+
+    font-size:18px;
+
+    margin-bottom:13px;
+
+}
+
+.mistakeCard{
+
+    background:var(--bg);
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:17px;
+
+    margin-bottom:12px;
+
+}
+
+.mistakeNumber{
+
+    color:var(--accent);
+
+    font-size:10px;
+
+    font-weight:bold;
+
+}
+
+.mistakeQuestion{
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    margin:8px 0;
+
+}
+
+.yourAnswer{
+
+    color:#e05b6e;
+
+    font-size:10px;
+
+    margin-top:7px;
+
+}
+
+.correctAnswer{
+
+    color:#35a66f;
+
+    font-size:10px;
+
+    margin-top:5px;
+
+}
+
+.mistakeExplanation{
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border-radius:11px;
+
+    background:var(--accentSoft);
+
+    color:var(--text);
+
+    font-size:10px;
+
+    line-height:1.6;
+
+}
+
+.resultButtons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.resultButton{
+
+    border:0;
+
+    padding:12px 17px;
+
+    border-radius:12px;
+
+    background:var(--accent);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.resultButton.secondary{
+
+    background:var(--accentSoft);
+
+    color:var(--accent);
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes appear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-9px)
+            rotate(2deg);
+
+    }
+
+}
+
+@keyframes feedbackAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* =========================================
+   NO ANIMATION
+========================================= */
+
+:root.noAnimations *,
+:root.noAnimations *::before{
+
+    animation:none !important;
+
+    transition:none !important;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:700px){
+
+    .subjectGrid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .countGrid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .examHeader{
+
+        padding:0 12px;
+
+    }
+
+    .examContainer{
+
+        width:94%;
+
+    }
+
+    .setupCard{
+
+        padding:20px;
+
+    }
+
+    .questionText{
+
+        font-size:18px;
+
+    }
+
+    .examControls{
+
+        flex-direction:column-reverse;
+
+    }
+
+    .controlButton{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- THEME -->
+
+<script src="theme.js"></script>
+
+
+<!-- BACKGROUND -->
+
+<div class="examBackground">
+
+    <div class="examOrb orb1"></div>
+
+    <div class="examOrb orb2"></div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="examHeader">
+
+    <button
+        class="backButton"
+        onclick="goHome()">
+
+        ← Back
+
+    </button>
+
+
+    <div class="examTitle">
+
+        <h1>
+            Practice Arena
+        </h1>
+
+        <p>
+            Learn • Practice • Improve
+        </p>
+
+    </div>
+
+
+    <div class="headerIcon">
+        🎯
+    </div>
+
+</header>
+
+
+<main class="examContainer">
+
+
+<!-- =========================================
+     SETUP
+========================================= -->
+
+<section id="setupScreen">
+
+
+    <div class="setupIntro">
+
+        <div class="mascot">
+            🦊
+        </div>
+
+        <h2>
+            Ready for a challenge?
+        </h2>
+
+        <p>
+            Build your own mock exam and learn from every answer.
+        </p>
+
+    </div>
+
+
+    <div class="setupCard">
+
+
+        <!-- SUBJECT -->
+
+        <div class="optionGroup">
+
+            <div class="optionHeader">
+
+                <h3>
+                    📚 Choose Subject
+                </h3>
+
+                <span id="selectedSubjectText">
+                    Biology
+                </span>
+
+            </div>
+
+
+            <div class="subjectGrid">
+
+
+                <button
+                    class="subjectButton selected"
+                    data-value="Biology"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        🧬
+                    </div>
+
+                    <div class="subjectName">
+                        Biology
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Mathematics"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        📐
+                    </div>
+
+                    <div class="subjectName">
+                        Mathematics
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Physics"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        ⚡
+                    </div>
+
+                    <div class="subjectName">
+                        Physics
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Chemistry"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        🧪
+                    </div>
+
+                    <div class="subjectName">
+                        Chemistry
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="English"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        📖
+                    </div>
+
+                    <div class="subjectName">
+                        English
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Geography"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        🌍
+                    </div>
+
+                    <div class="subjectName">
+                        Geography
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="History"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        🏛️
+                    </div>
+
+                    <div class="subjectName">
+                        History
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Economics"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        📊
+                    </div>
+
+                    <div class="subjectName">
+                        Economics
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="subjectButton"
+                    data-value="Civics"
+                    onclick="selectSubject(this)">
+
+                    <div class="subjectIcon">
+                        ⚖️
+                    </div>
+
+                    <div class="subjectName">
+                        Civics
+                    </div>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DIFFICULTY -->
+
+        <div class="optionGroup">
+
+            <div class="optionHeader">
+
+                <h3>
+                    🧠 Difficulty
+                </h3>
+
+                <span id="selectedDifficultyText">
+                    Easy
+                </span>
+
+            </div>
+
+
+            <div class="optionButtons">
+
+                <button
+                    class="optionButton selected"
+                    data-value="Easy"
+                    onclick="selectDifficulty(this)">
+
+                    🌱 Easy
+
+                </button>
+
+
+                <button
+                    class="optionButton"
+                    data-value="Medium"
+                    onclick="selectDifficulty(this)">
+
+                    🔥 Medium
+
+                </button>
+
+
+                <button
+                    class="optionButton"
+                    data-value="Hard"
+                    onclick="selectDifficulty(this)">
+
+                    🚀 Hard
+
+                </button>
+
+
+                <button
+                    class="optionButton"
+                    data-value="Mixed"
+                    onclick="selectDifficulty(this)">
+
+                    🎲 Mixed
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION COUNT -->
+
+        <div class="optionGroup">
+
+            <div class="optionHeader">
+
+                <h3>
+                    📝 Number of Questions
+                </h3>
+
+                <span id="selectedCountText">
+                    10 Questions
+                </span>
+
+            </div>
+
+
+            <div class="countGrid">
+
+                <button
+                    class="countButton"
+                    data-value="5"
+                    onclick="selectCount(this)">
+                    5
+                </button>
+
+                <button
+                    class="countButton selected"
+                    data-value="10"
+                    onclick="selectCount(this)">
+                    10
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="15"
+                    onclick="selectCount(this)">
+                    15
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="20"
+                    onclick="selectCount(this)">
+                    20
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="25"
+                    onclick="selectCount(this)">
+                    25
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="30"
+                    onclick="selectCount(this)">
+                    30
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="40"
+                    onclick="selectCount(this)">
+                    40
+                </button>
+
+                <button
+                    class="countButton"
+                    data-value="50"
+                    onclick="selectCount(this)">
+                    50
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="examSummary">
+
+            <div class="summaryItem">
+
+                <div
+                    class="summaryValue"
+                    id="summarySubject">
+
+                    Biology
+
+                </div>
+
+                <div class="summaryLabel">
+                    Subject
+                </div>
+
+            </div>
+
+
+            <div class="summaryItem">
+
+                <div
+                    class="summaryValue"
+                    id="summaryDifficulty">
+
+                    Easy
+
+                </div>
+
+                <div class="summaryLabel">
+                    Difficulty
+                </div>
+
+            </div>
+
+
+            <div class="summaryItem">
+
+                <div
+                    class="summaryValue"
+                    id="summaryCount">
+
+                    10
+
+                </div>
+
+                <div class="summaryLabel">
+                    Questions
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="startButton"
+            onclick="startExam()">
+
+            🚀 Start Mock Exam
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     EXAM
+========================================= -->
+
+<section
+    class="examScreen"
+    id="examScreen">
+
+
+    <div class="examTop">
+
+        <div
+            class="questionCounter"
+            id="questionCounter">
+
+            Question 1 of 10
+
+        </div>
+
+
+        <div
+            class="timer"
+            id="timer">
+
+            ⏱ 10:00
+
+        </div>
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+            class="progressFill"
+            id="progressFill">
+
+        </div>
+
+    </div>
+
+
+    <div class="questionCard">
+
+
+        <div
+            class="questionTag"
+            id="questionSubject">
+
+            Biology
+
+        </div>
+
+
+        <div
+            class="questionText"
+            id="questionText">
+
+            Loading question...
+
+        </div>
+
+
+        <div
+            class="answers"
+            id="answers">
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            class="feedbackBox"
+            id="feedbackBox">
+
+            <div
+                class="feedbackTitle"
+                id="feedbackTitle">
+
+            </div>
+
+
+            <div
+                class="feedbackAnswer"
+                id="feedbackAnswer">
+
+            </div>
+
+
+            <div class="explanationTitle">
+
+                💡 Why?
+
+            </div>
+
+
+            <div
+                class="explanation"
+                id="explanation">
+
+            </div>
+
+
+            <div
+                class="xpReward"
+                id="xpReward">
+
+                ⭐ +10 XP
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="examControls">
+
+            <button
+                class="controlButton"
+                onclick="previousQuestion()">
+
+                ← Previous
+
+            </button>
+
+
+            <button
+                class="controlButton primary"
+                id="nextButton"
+                onclick="nextQuestion()">
+
+                Next →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     RESULT
+========================================= -->
+
+<section
+    class="resultScreen"
+    id="resultScreen">
+
+
+    <div class="resultCard">
+
+
+        <div class="resultHeader">
+
+            <div class="resultMascot">
+                🦊
+            </div>
+
+
+            <h2>
+                Exam Complete!
+            </h2>
+
+
+            <div class="scoreCircle">
+
+                <div
+                    class="scoreNumber"
+                    id="scoreNumber">
+
+                    0%
+
+                </div>
+
+                <div class="scoreLabel">
+                    SCORE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT STATS -->
+
+        <div class="resultStats">
+
+
+            <div class="resultStat">
+
+                <strong id="correctCount">
+                    0
+                </strong>
+
+                <span>
+                    Correct
+                </span>
+
+            </div>
+
+
+            <div class="resultStat">
+
+                <strong id="wrongCount">
+                    0
+                </strong>
+
+                <span>
+                    Wrong
+                </span>
+
+            </div>
+
+
+            <div class="resultStat">
+
+                <strong id="xpEarned">
+                    0
+                </strong>
+
+                <span>
+                    XP Earned
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <p
+            class="resultMessage"
+            id="resultMessage">
+
+        </p>
+
+
+        <!-- REVIEW -->
+
+        <div
+            class="reviewSection"
+            id="reviewSection">
+
+            <div class="reviewTitle">
+
+                📖 Review Your Mistakes
+
+            </div>
+
+
+            <div
+                id="mistakesContainer">
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="resultButtons">
+
+            <button
+                class="resultButton"
+                onclick="restartExam()">
+
+                🔄 Try Again
+
+            </button>
+
+
+            <button
+                class="resultButton secondary"
+                onclick="goHome()">
+
+                🏠 Home
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+let selectedSubject = "Biology";
+
+let selectedDifficulty = "Easy";
+
+let selectedCount = 10;
+
+
+/* =========================================
+   QUESTION DATABASE
+========================================= */
+
+const questionBank = {
+
+Biology:[
+
+{
+q:"Which organelle is known as the powerhouse of the cell?",
+a:["Nucleus","Mitochondria","Ribosome","Cell wall"],
+c:1,
+e:"Mitochondria produce most of the usable energy for the cell through cellular respiration."
+},
+
+{
+q:"Which process do green plants use to make food?",
+a:["Respiration","Digestion","Photosynthesis","Fermentation"],
+c:2,
+e:"Photosynthesis allows green plants to use light energy to make glucose from carbon dioxide and water."
+},
+
+{
+q:"Which part of a plant mainly absorbs water from the soil?",
+a:["Flower","Root","Fruit","Leaf"],
+c:1,
+e:"Roots contain structures that absorb water and mineral nutrients from the soil."
+},
+
+{
+q:"What carries genetic information in most living organisms?",
+a:["DNA","Water","Glucose","Oxygen"],
+c:0,
+e:"DNA stores the genetic instructions used for growth, development and reproduction."
+},
+
+{
+q:"Which gas is released during photosynthesis?",
+a:["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],
+c:2,
+e:"During photosynthesis, plants release oxygen as a product of the process."
+}
+
+],
+
+Mathematics:[
+
+{
+q:"What is 12 × 5?",
+a:["50","60","70","80"],
+c:1,
+e:"12 multiplied by 5 equals 60."
+},
+
+{
+q:"What is the square root of 81?",
+a:["7","8","9","10"],
+c:2,
+e:"9 × 9 = 81, so the square root of 81 is 9."
+},
+
+{
+q:"What is 25% of 200?",
+a:["25","40","50","75"],
+c:2,
+e:"25% means one quarter. One quarter of 200 is 50."
+}
+
+],
+
+Physics:[
+
+{
+q:"What is the SI unit of force?",
+a:["Joule","Watt","Newton","Pascal"],
+c:2,
+e:"The Newton (N) is the SI unit used to measure force."
+},
+
+{
+q:"Which quantity measures how fast an object moves?",
+a:["Mass","Speed","Force","Energy"],
+c:1,
+e:"Speed describes how much distance an object travels per unit of time."
+}
+
+],
+
+Chemistry:[
+
+{
+q:"What is the chemical formula for water?",
+a:["CO₂","H₂O","O₂","NaCl"],
+c:1,
+e:"A water molecule contains two hydrogen atoms and one oxygen atom, giving H₂O."
+},
+
+{
+q:"What is the atomic number of hydrogen?",
+a:["1","2","8","10"],
+c:0,
+e:"Hydrogen has one proton in its nucleus, so its atomic number is 1."
+}
+
+],
+
+English:[
+
+{
+q:"Which word is a noun?",
+a:["Run","Beautiful","School","Quickly"],
+c:2,
+e:"School is a noun because it names a place or institution."
+},
+
+{
+q:"Choose the correct plural of 'child'.",
+a:["Childs","Children","Childes","Childrens"],
+c:1,
+e:"Children is the irregular plural form of child."
+}
+
+],
+
+Geography:[
+
+{
+q:"Which is the largest continent?",
+a:["Africa","Asia","Europe","Australia"],
+c:1,
+e:"Asia is the largest continent by both area and population."
+},
+
+{
+q:"What is the capital city of Ethiopia?",
+a:["Dire Dawa","Adama","Addis Ababa","Gondar"],
+c:2,
+e:"Addis Ababa is the capital city of Ethiopia."
+}
+
+],
+
+History:[
+
+{
+q:"Which ancient civilization built the pyramids of Giza?",
+a:["Romans","Greeks","Egyptians","Persians"],
+c:2,
+e:"The pyramids of Giza were built in ancient Egypt."
+},
+
+{
+q:"History mainly studies what?",
+a:["Past events","Future events","Weather","Plants"],
+c:0,
+e:"History is the study of past events, people, societies and changes over time."
+}
+
+],
+
+Economics:[
+
+{
+q:"What does supply refer to?",
+a:[
+"Goods producers are willing to sell",
+"Money saved",
+"Government laws",
+"Consumer income"
+],
+c:0,
+e:"Supply refers to the amount of a good or service that producers are willing and able to sell."
+},
+
+{
+q:"What is inflation?",
+a:[
+"A fall in population",
+"A general rise in prices",
+"A rise in rainfall",
+"A decrease in production"
+],
+c:1,
+e:"Inflation is a general increase in the prices of goods and services over time."
+}
+
+],
+
+Civics:[
+
+{
+q:"What is a constitution?",
+a:[
+"A country's fundamental law",
+"A school timetable",
+"A business plan",
+"A newspaper"
+],
+c:0,
+e:"A constitution establishes fundamental principles, structures and rules for governing a country."
+},
+
+{
+q:"Which is an important responsibility of citizens?",
+a:[
+"Ignoring laws",
+"Respecting laws",
+"Avoiding education",
+"Destroying public property"
+],
+c:1,
+e:"Respecting laws helps maintain order and protects the rights of people in society."
+}
+
+]
+
+};
+
+
+/* =========================================
+   EXAM VARIABLES
+========================================= */
+
+let questions=[];
+
+let currentQuestion=0;
+
+let score=0;
+
+let answersGiven=[];
+
+let timeLeft=600;
+
+let timer;
+
+
+/* =========================================
+   SELECT SUBJECT
+========================================= */
+
+function selectSubject(button){
+
+document
+.querySelectorAll(".subjectButton")
+.forEach(btn=>{
+btn.classList.remove("selected");
+});
+
+button.classList.add("selected");
+
+selectedSubject=
+button.dataset.value;
+
+document.getElementById(
+"selectedSubjectText"
+).textContent=
+selectedSubject;
+
+document.getElementById(
+"summarySubject"
+).textContent=
+selectedSubject;
+
+}
+
+
+/* =========================================
+   SELECT DIFFICULTY
+========================================= */
+
+function selectDifficulty(button){
+
+document
+.querySelectorAll(".optionButton")
+.forEach(btn=>{
+btn.classList.remove("selected");
+});
+
+button.classList.add("selected");
+
+selectedDifficulty=
+button.dataset.value;
+
+document.getElementById(
+"selectedDifficultyText"
+).textContent=
+selectedDifficulty;
+
+document.getElementById(
+"summaryDifficulty"
+).textContent=
+selectedDifficulty;
+
+}
+
+
+/* =========================================
+   SELECT COUNT
+========================================= */
+
+function selectCount(button){
+
+document
+.querySelectorAll(".countButton")
+.forEach(btn=>{
+btn.classList.remove("selected");
+});
+
+button.classList.add("selected");
+
+selectedCount=
+Number(button.dataset.value);
+
+document.getElementById(
+"selectedCountText"
+).textContent=
+selectedCount+
+" Questions";
+
+document.getElementById(
+"summaryCount"
+).textContent=
+selectedCount;
+
+}
+
+
+/* =========================================
+   BUILD QUESTIONS
+========================================= */
+
+function buildQuestions(){
+
+const bank=
+questionBank[selectedSubject]
+||questionBank.Biology;
+
+questions=[];
+
+for(
+let i=0;
+i<selectedCount;
+i++
+){
+
+questions.push(
+bank[i%bank.length]
+);
+
+}
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+function startExam(){
+
+buildQuestions();
+
+currentQuestion=0;
+
+score=0;
+
+answersGiven=[];
+
+timeLeft=
+selectedCount*60;
+
+document.getElementById(
+"setupScreen"
+).style.display=
+"none";
+
+document.getElementById(
+"examScreen"
+).style.display=
+"block";
+
+document.getElementById(
+"resultScreen"
+).style.display=
+"none";
+
+startTimer();
+
+showQuestion();
+
+}
+
+
+/* =========================================
+   SHOW QUESTION
+========================================= */
+
+function showQuestion(){
+
+const question=
+questions[currentQuestion];
+
+document.getElementById(
+"questionCounter"
+).textContent=
+"Question "+
+(currentQuestion+1)+
+" of "+
+selectedCount;
+
+document.getElementById(
+"questionSubject"
+).textContent=
+selectedSubject;
+
+document.getElementById(
+"questionText"
+).textContent=
+question.q;
+
+const answers=
+document.getElementById("answers");
+
+answers.innerHTML="";
+
+
+question.a.forEach(
+(answer,index)=>{
+
+const button=
+document.createElement("button");
+
+button.className="answer";
+
+button.textContent=
+String.fromCharCode(65+index)+
+". "+
+answer;
+
+button.onclick=
+()=>{
+chooseAnswer(index,button);
+};
+
+answers.appendChild(button);
+
+});
+
+
+/* RESET FEEDBACK */
+
+const feedback=
+document.getElementById(
+"feedbackBox"
+);
+
+feedback.style.display="none";
+
+feedback.className=
+"feedbackBox";
+
+document.getElementById(
+"xpReward"
+).style.display="none";
+
+
+/* PROGRESS */
+
+document.getElementById(
+"progressFill"
+).style.width=
+(
+((currentQuestion+1)/
+selectedCount)*100
+)+"%";
+
+
+document.getElementById(
+"nextButton"
+).textContent=
+currentQuestion===
+selectedCount-1
+?"Finish ✓"
+:"Next →";
+
+}
+
+
+/* =========================================
+   CHOOSE ANSWER
+========================================= */
+
+function chooseAnswer(index,button){
+
+if(
+answersGiven[currentQuestion]
+!==undefined
+){
+return;
+}
+
+answersGiven[currentQuestion]=index;
+
+const question=
+questions[currentQuestion];
+
+const allAnswers=
+document.querySelectorAll(".answer");
+
+
+allAnswers.forEach(
+(btn,i)=>{
+
+btn.disabled=true;
+
+if(i===question.c){
+
+btn.classList.add("correct");
+
+}
+
+});
+
+
+const feedback=
+document.getElementById(
+"feedbackBox"
+);
+
+const title=
+document.getElementById(
+"feedbackTitle"
+);
+
+const answerText=
+document.getElementById(
+"feedbackAnswer"
+);
+
+const explanation=
+document.getElementById(
+"explanation"
+);
+
+const xp=
+document.getElementById(
+"xpReward"
+);
+
+
+feedback.style.display="block";
+
+
+if(index===question.c){
+
+score++;
+
+button.classList.add("correct");
+
+feedback.classList.add(
+"correctFeedback"
+);
+
+title.textContent=
+"✅ Correct! Great job!";
+
+answerText.textContent=
+"Your answer: "+
+question.a[index];
+
+xp.style.display="block";
+
+}
+
+else{
+
+button.classList.add("wrong");
+
+feedback.classList.add(
+"wrongFeedback"
+);
+
+title.textContent=
+"❌ Not quite!";
+
+answerText.innerHTML=
+"Your answer: "+
+question.a[index]+
+"<br>✅ Correct answer: "+
+question.a[question.c];
+
+}
+
+
+explanation.textContent=
+question.e;
+
+}
+
+
+/* =========================================
+   NEXT
+========================================= */
+
+function nextQuestion(){
+
+if(
+currentQuestion>=
+selectedCount-1
+){
+
+finishExam();
+
+return;
+
+}
+
+currentQuestion++;
+
+showQuestion();
+
+}
+
+
+/* =========================================
+   PREVIOUS
+========================================= */
+
+function previousQuestion(){
+
+if(currentQuestion<=0){
+
+return;
+
+}
+
+currentQuestion--;
+
+showQuestion();
+
+}
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+function startTimer(){
+
+clearInterval(timer);
+
+updateTimer();
+
+timer=
+setInterval(
+()=>{
+
+timeLeft--;
+
+updateTimer();
+
+if(timeLeft<=0){
+
+finishExam();
+
+}
+
+},
+1000
+);
+
+}
+
+
+function updateTimer(){
+
+const minutes=
+Math.floor(
+timeLeft/60
+);
+
+const seconds=
+timeLeft%60;
+
+document.getElementById(
+"timer"
+).textContent=
+"⏱ "+
+String(minutes)
+.padStart(2,"0")+
+":"+
+String(seconds)
+.padStart(2,"0");
+
+}
+
+
+/* =========================================
+   FINISH
+========================================= */
+
+function finishExam(){
+
+clearInterval(timer);
+
+const percentage=
+Math.round(
+(score/selectedCount)*100
+);
+
+
+document.getElementById(
+"examScreen"
+).style.display=
+"none";
+
+document.getElementById(
+"resultScreen"
+).style.display=
+"block";
+
+
+document.getElementById(
+"scoreNumber"
+).textContent=
+percentage+"%";
+
+
+document.getElementById(
+"correctCount"
+).textContent=
+score;
+
+
+document.getElementById(
+"wrongCount"
+).textContent=
+selectedCount-score;
+
+
+const earnedXP=
+score*10;
+
+
+document.getElementById(
+"xpEarned"
+).textContent=
+earnedXP;
+
+
+/* MESSAGE */
+
+let message;
+
+if(percentage>=80){
+
+message=
+"Excellent! 🌟 You really know your stuff. Keep challenging yourself!";
+
+}
+
+else if(percentage>=50){
+
+message=
+"Good work! 💪 Review your mistakes and try again to improve your score.";
+
+}
+
+else{
+
+message=
+"Don't give up! 🌱 Your mistakes show you what you should study next.";
+
+}
+
+document.getElementById(
+"resultMessage"
+).textContent=
+message;
+
+
+/* SAVE XP */
+
+const oldXP=
+Number(
+localStorage.getItem(
+"ethioXP"
+)||0
+);
+
+localStorage.setItem(
+"ethioXP",
+oldXP+earnedXP
+);
+
+
+/* SAVE QUESTIONS */
+
+const oldQuestions=
+Number(
+localStorage.getItem(
+"ethioQuestions"
+)||0
+);
+
+localStorage.setItem(
+"ethioQuestions",
+oldQuestions+
+selectedCount
+);
+
+
+/* BUILD MISTAKE REVIEW */
+
+buildMistakeReview();
+
+}
+
+
+/* =========================================
+   REVIEW MISTAKES
+========================================= */
+
+function buildMistakeReview(){
+
+const container=
+document.getElementById(
+"mistakesContainer"
+);
+
+container.innerHTML="";
+
+let mistakes=0;
+
+
+questions.forEach(
+(question,index)=>{
+
+const given=
+answersGiven[index];
+
+
+if(
+given!==undefined &&
+given!==question.c
+){
+
+mistakes++;
+
+
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+"mistakeCard";
+
+
+card.innerHTML=`
+
+<div class="mistakeNumber">
+Question ${index+1}
+</div>
+
+<div class="mistakeQuestion">
+${question.q}
+</div>
+
+<div class="yourAnswer">
+❌ Your answer:
+${question.a[given]}
+</div>
+
+<div class="correctAnswer">
+✅ Correct answer:
+${question.a[question.c]}
+</div>
+
+<div class="mistakeExplanation">
+💡 <strong>Explanation:</strong><br>
+${question.e}
+</div>
+
+`;
+
+container.appendChild(card);
+
+}
+
+});
+
+
+const review=
+document.getElementById(
+"reviewSection"
+);
+
+
+if(mistakes>0){
+
+review.style.display="block";
+
+}
+else{
+
+review.style.display="none";
+
+}
+
+}
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+function restartExam(){
+
+document.getElementById(
+"resultScreen"
+).style.display=
+"none";
+
+document.getElementById(
+"setupScreen"
+).style.display=
+"block";
+
+}
+
+
+/* =========================================
+   HOME
+========================================= */
+
+function goHome(){
+
+window.location.href=
+"home.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

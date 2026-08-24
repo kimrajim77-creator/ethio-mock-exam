@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Streak | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: bold;
+
+    font-size: 17px;
+}
+
+.logoIcon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color: white;
+
+    font-size: 20px;
+}
+
+.headerRight {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.backButton {
+
+    height: 42px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: .25s;
+}
+
+.backButton:hover {
+
+    transform:
+        translateY(-2px);
+
+    color: var(--accent);
+
+    border-color:
+        var(--accent);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    width:
+        min(900px, 92%);
+
+    margin: auto;
+
+    padding:
+        40px 0 70px;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.pageTitle {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    animation:
+        appear .7s ease;
+}
+
+.pageTitle .fire {
+
+    font-size: 55px;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    animation:
+        fireFloat 2s infinite ease-in-out;
+}
+
+.pageTitle h1 {
+
+    margin: 0 0 10px;
+
+    font-size:
+        clamp(30px, 6vw, 45px);
+}
+
+.pageTitle p {
+
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   MAIN STREAK CARD
+===================================================== */
+
+.streakCard {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 28px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    animation:
+        appear .8s ease;
+}
+
+.streakNumber {
+
+    font-size:
+        clamp(65px, 13vw, 100px);
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    color: var(--accent);
+
+    margin: 10px 0;
+}
+
+.dayText {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.streakMessage {
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   STREAK INFO
+===================================================== */
+
+.infoGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.infoCard {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+}
+
+.infoIcon {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+.infoNumber {
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: var(--accent);
+}
+
+.infoLabel {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   MOTIVATION
+===================================================== */
+
+.motivation {
+
+    margin-top: 20px;
+
+    padding: 25px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color: white;
+
+    text-align: center;
+
+    animation:
+        appear 1s ease;
+}
+
+.motivation h2 {
+
+    margin:
+        0 0 8px;
+
+}
+
+.motivation p {
+
+    margin: 0;
+
+    opacity: .9;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.studyButton {
+
+    margin-top: 22px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    padding:
+        13px 20px;
+
+    background: white;
+
+    color: var(--accent);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.studyButton:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes fireFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            translateY(-8px)
+            scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px) {
+
+    header {
+
+        padding:
+            0 14px;
+    }
+
+    .logo {
+
+        font-size: 14px;
+    }
+
+    .logoIcon {
+
+        width: 38px;
+        height: 38px;
+    }
+
+    .backButton {
+
+        padding:
+            0 10px;
+
+        font-size: 12px;
+    }
+
+    main {
+
+        width: 94%;
+    }
+
+    .streakCard {
+
+        padding: 25px 15px;
+    }
+
+    .infoGrid {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <div class="headerRight">
+
+        <button
+            class="backButton"
+            onclick="goHome()">
+
+            ← Home
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- TITLE -->
+
+<section class="pageTitle">
+
+    <span class="fire">
+        🔥
+    </span>
+
+    <h1>
+        Your Learning Streak
+    </h1>
+
+    <p id="welcomeMessage">
+        Keep learning every day!
+    </p>
+
+</section>
+
+
+<!-- MAIN STREAK -->
+
+<section class="streakCard">
+
+    <div
+        class="streakNumber"
+        id="streakNumber">
+
+        0
+
+    </div>
+
+    <div class="dayText">
+
+        Days
+
+    </div>
+
+    <p
+        class="streakMessage"
+        id="streakMessage">
+
+        Start your learning streak today!
+
+    </p>
+
+
+    <button
+        class="studyButton"
+        onclick="startLearning()">
+
+        Continue Learning 🚀
+
+    </button>
+
+</section>
+
+
+<!-- INFO -->
+
+<section class="infoGrid">
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            🔥
+        </div>
+
+        <div
+            class="infoNumber"
+            id="currentStreak">
+
+            0
+
+        </div>
+
+        <div class="infoLabel">
+
+            Current Streak
+
+        </div>
+
+    </div>
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            ⭐
+        </div>
+
+        <div
+            class="infoNumber"
+            id="xp">
+
+            0
+
+        </div>
+
+        <div class="infoLabel">
+
+            Total XP
+
+        </div>
+
+    </div>
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            🧠
+        </div>
+
+        <div
+            class="infoNumber"
+            id="questions">
+
+            0
+
+        </div>
+
+        <div class="infoLabel">
+
+            Questions
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- MOTIVATION -->
+
+<section class="motivation">
+
+    <h2>
+        Keep the fire going! 🔥
+    </h2>
+
+    <p id="motivationText">
+
+        Every day you learn is another
+        step toward your goals.
+
+    </p>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =====================================================
+   LOAD USER DATA
+===================================================== */
+
+const name =
+    localStorage.getItem(
+        "ethioUserName"
+    ) || "Student";
+
+
+const streak =
+    parseInt(
+        localStorage.getItem(
+            "ethioStreak"
+        ) || "0"
+    );
+
+
+const xp =
+    localStorage.getItem(
+        "ethioXP"
+    ) || "0";
+
+
+const questions =
+    localStorage.getItem(
+        "ethioQuestions"
+    ) || "0";
+
+
+/* =====================================================
+   DISPLAY DATA
+===================================================== */
+
+document.getElementById(
+    "streakNumber"
+).textContent =
+    streak;
+
+
+document.getElementById(
+    "currentStreak"
+).textContent =
+    streak;
+
+
+document.getElementById(
+    "xp"
+).textContent =
+    xp;
+
+
+document.getElementById(
+    "questions"
+).textContent =
+    questions;
+
+
+document.getElementById(
+    "welcomeMessage"
+).textContent =
+    "Keep going, " +
+    name +
+    "! Every day counts.";
+
+
+/* =====================================================
+   STREAK MESSAGE
+===================================================== */
+
+if (streak === 0) {
+
+    document.getElementById(
+        "streakMessage"
+    ).textContent =
+        "Start your learning streak today!";
+
+    document.getElementById(
+        "motivationText"
+    ).textContent =
+        "Complete a learning activity today and start your streak.";
+
+}
+
+else if (streak === 1) {
+
+    document.getElementById(
+        "streakMessage"
+    ).textContent =
+        "Great start! Come back tomorrow.";
+
+}
+
+else if (streak < 7) {
+
+    document.getElementById(
+        "streakMessage"
+    ).textContent =
+        "You're building a great habit! Keep going.";
+
+}
+
+else if (streak < 30) {
+
+    document.getElementById(
+        "streakMessage"
+    ).textContent =
+        "Amazing consistency! Don't break the chain.";
+
+}
+
+else {
+
+    document.getElementById(
+        "streakMessage"
+    ).textContent =
+        "Incredible! You're on fire! 🔥";
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function startLearning() {
+
+    window.location.href =
+        "exercise.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

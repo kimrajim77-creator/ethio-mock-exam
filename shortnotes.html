@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Ethio Mock Exam | Quick Learn</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -2;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(45px);
+    opacity: .25;
+    animation: moveBlob 10s infinite alternate ease-in-out;
+}
+
+.blob1 {
+    width: 310px;
+    height: 310px;
+    background: #756cff;
+    top: -130px;
+    right: -80px;
+}
+
+.blob2 {
+    width: 280px;
+    height: 280px;
+    background: #ff72a8;
+    bottom: -120px;
+    left: -100px;
+}
+
+.blob3 {
+    width: 190px;
+    height: 190px;
+    background: #52d9ff;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes moveBlob {
+
+    from {
+        transform: translate(0,0) scale(1);
+    }
+
+    to {
+        transform: translate(45px,-35px) scale(1.15);
+    }
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 50;
+
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-weight: bold;
+
+    color: var(--text);
+}
+
+.logoIcon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color: white;
+
+    font-size: 20px;
+
+    animation:
+        floatLogo 3s infinite ease-in-out;
+}
+
+@keyframes floatLogo {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.gradeBadge,
+.xpBadge {
+
+    padding: 9px 12px;
+
+    border-radius: 12px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.homeButton {
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .2s;
+}
+
+.homeButton:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    width:
+        min(1100px, 92%);
+
+    margin:
+        auto;
+
+    padding:
+        35px 0 80px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 38px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #8d84ff,
+            #ff72a8
+        );
+
+    color: white;
+
+    animation:
+        appear .7s ease;
+
+    box-shadow:
+        0 20px 45px
+        rgba(80,70,180,.18);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero small {
+
+    letter-spacing:
+        2px;
+
+    opacity:
+        .8;
+
+    font-weight:
+        bold;
+}
+
+.hero h1 {
+
+    margin:
+        12px 0;
+
+    font-size:
+        clamp(30px,5vw,46px);
+
+    line-height:
+        1.1;
+}
+
+.hero p {
+
+    margin:
+        0;
+
+    max-width:
+        600px;
+
+    line-height:
+        1.7;
+
+    opacity:
+        .9;
+}
+
+.heroBadge {
+
+    display:
+        inline-flex;
+
+    margin-top:
+        20px;
+
+    padding:
+        9px 13px;
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+}
+
+.heroMascot {
+
+    position:
+        absolute;
+
+    right:
+        45px;
+
+    bottom:
+        20px;
+
+    font-size:
+        105px;
+
+    animation:
+        mascot 3s infinite ease-in-out;
+}
+
+@keyframes mascot {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            rotate(3deg);
+    }
+}
+
+
+/* =====================================================
+   LEARNING PANEL
+===================================================== */
+
+.learningPanel {
+
+    margin-top:
+        22px;
+
+    padding:
+        27px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        28px;
+
+    background:
+        var(--card);
+
+    box-shadow:
+        var(--shadow);
+
+    animation:
+        appear .8s ease;
+}
+
+.panelTitle h2 {
+
+    margin:
+        0;
+
+    color:
+        var(--text);
+
+    font-size:
+        21px;
+}
+
+.panelTitle p {
+
+    margin:
+        6px 0 22px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.inputGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        180px 1fr;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        25px;
+}
+
+.inputGroup label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+}
+
+.input,
+.select {
+
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        15px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    outline:
+        none;
+
+    font-size:
+        14px;
+}
+
+.input:focus,
+.select:focus {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px var(--accentSoft);
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+.subjectHeading {
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        13px;
+}
+
+.subjectGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap:
+        10px;
+
+    margin-bottom:
+        28px;
+}
+
+.subject {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        17px;
+
+    padding:
+        14px 6px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    text-align:
+        center;
+
+    transition:
+        .25s;
+}
+
+.subject:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--accent);
+}
+
+.subject.active {
+
+    background:
+        var(--accentSoft);
+
+    border-color:
+        var(--accent);
+
+    color:
+        var(--accent);
+}
+
+.subjectIcon {
+
+    display:
+        block;
+
+    font-size:
+        24px;
+
+    margin-bottom:
+        7px;
+}
+
+.subjectName {
+
+    font-size:
+        10px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =====================================================
+   UPLOAD
+===================================================== */
+
+.uploadTitle {
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        12px;
+}
+
+.uploadGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        14px;
+}
+
+.uploadCard {
+
+    min-height:
+        155px;
+
+    border:
+        2px dashed var(--border);
+
+    border-radius:
+        20px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        20px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .25s;
+
+    background:
+        var(--card);
+}
+
+.uploadCard:hover {
+
+    border-color:
+        var(--accent);
+
+    background:
+        var(--accentSoft);
+
+    transform:
+        translateY(-4px);
+}
+
+.uploadIcon {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+    border-radius:
+        17px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--accentSoft);
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        10px;
+}
+
+.uploadCard strong {
+
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+}
+
+.uploadCard span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    margin-top:
+        5px;
+}
+
+.uploadAction {
+
+    margin-top:
+        12px;
+
+    padding:
+        9px 15px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    font-size:
+        11px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+}
+
+.uploadAction:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview {
+
+    display:
+        none;
+
+    margin-top:
+        15px;
+
+    padding:
+        15px;
+
+    border-radius:
+        18px;
+
+    background:
+        var(--accentSoft);
+
+    text-align:
+        center;
+}
+
+.preview img {
+
+    display:
+        block;
+
+    max-width:
+        100%;
+
+    max-height:
+        230px;
+
+    margin:
+        auto;
+
+    border-radius:
+        13px;
+}
+
+.fileInfo {
+
+    color:
+        var(--accent);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+    margin-top:
+        10px;
+}
+
+
+/* =====================================================
+   GENERATE
+===================================================== */
+
+.generateArea {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    margin-top:
+        22px;
+}
+
+.generateButton {
+
+    flex:
+        1;
+
+    padding:
+        16px;
+
+    border:
+        none;
+
+    border-radius:
+        16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #8d84ff
+        );
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        .25s;
+}
+
+.generateButton:hover {
+
+    transform:
+        translateY(-3px);
+}
+
+.clearButton {
+
+    padding:
+        15px 18px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading {
+
+    display:
+        none;
+
+    margin-top:
+        17px;
+
+    padding:
+        16px;
+
+    border-radius:
+        15px;
+
+    background:
+        var(--accentSoft);
+
+    color:
+        var(--accent);
+
+    text-align:
+        center;
+
+    font-size:
+        12px;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result {
+
+    display:
+        none;
+
+    margin-top:
+        24px;
+
+    animation:
+        appear .5s ease;
+}
+
+.resultHeader {
+
+    padding:
+        25px;
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accentSoft),
+            var(--card)
+        );
+
+    border:
+        1px solid var(--border);
+
+    margin-bottom:
+        14px;
+}
+
+.resultHeader small {
+
+    color:
+        var(--accent);
+
+    font-weight:
+        bold;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        1px;
+}
+
+.resultHeader h2 {
+
+    color:
+        var(--text);
+
+    margin:
+        8px 0;
+
+    font-size:
+        25px;
+}
+
+.resultHeader p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    margin:
+        0;
+}
+
+.notesGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        14px;
+}
+
+.noteCard {
+
+    padding:
+        22px;
+
+    border-radius:
+        20px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        var(--shadow);
+}
+
+.noteCard.full {
+
+    grid-column:
+        1 / -1;
+}
+
+.noteCard h3 {
+
+    color:
+        var(--text);
+
+    margin:
+        0 0 12px;
+
+    font-size:
+        15px;
+}
+
+.noteCard p,
+.noteCard li {
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+.noteCard ul {
+
+    margin:
+        0;
+
+    padding-left:
+        20px;
+}
+
+.formula {
+
+    padding:
+        16px;
+
+    border-radius:
+        13px;
+
+    background:
+        var(--accentSoft);
+
+    color:
+        var(--accent);
+
+    text-align:
+        center;
+
+    font-weight:
+        bold;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes appear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px) {
+
+    .subjectGrid {
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+}
+
+@media(max-width:650px) {
+
+    header {
+
+        padding:
+            0 14px;
+    }
+
+    .xpBadge {
+
+        display:
+            none;
+    }
+
+    main {
+
+        width:
+            94%;
+    }
+
+    .hero {
+
+        padding:
+            27px;
+    }
+
+    .heroMascot {
+
+        right:
+            10px;
+
+        bottom:
+            10px;
+
+        font-size:
+            70px;
+
+        opacity:
+            .35;
+    }
+
+    .inputGrid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .subjectGrid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .uploadGrid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .notesGrid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .noteCard.full {
+
+        grid-column:
+            auto;
+    }
+
+    .generateArea {
+
+        flex-direction:
+            column;
+    }
+
+    .generateButton,
+    .clearButton {
+
+        width:
+            100%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     THEME.JS
+===================================================== -->
+
+<script src="theme.js"></script>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            📚
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <div class="headerRight">
+
+        <div
+            class="gradeBadge"
+            id="gradeBadge">
+
+            Grade 10
+
+        </div>
+
+
+        <div class="xpBadge">
+
+            ⭐
+            <span id="xp">
+                0
+            </span>
+            XP
+
+        </div>
+
+
+        <button
+            class="homeButton"
+            onclick="goHome()">
+
+            🏠
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<section class="hero">
+
+    <div class="heroContent">
+
+        <small>
+            QUICK LEARN ✨
+        </small>
+
+        <h1>
+            Learn smarter.<br>
+            Understand faster.
+        </h1>
+
+        <p>
+
+            Search any topic from your school
+            subjects or upload your own study
+            material and turn it into simple notes.
+
+        </p>
+
+        <div
+            class="heroBadge"
+            id="heroGrade">
+
+            🎓 Made for Grade 10
+
+        </div>
+
+    </div>
+
+
+    <div class="heroMascot">
+        🐼
+    </div>
+
+</section>
+
+
+<section class="learningPanel">
+
+
+    <div class="panelTitle">
+
+        <h2>
+            What do you want to learn? 🔎
+        </h2>
+
+        <p>
+            Choose your grade, subject and topic.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         GRADE + TOPIC
+    ================================================= -->
+
+    <div class="inputGrid">
+
+
+        <div class="inputGroup">
+
+            <label>
+                YOUR GRADE
+            </label>
+
+            <select
+                class="select"
+                id="gradeSelect">
+
+                <option value="7">
+                    Grade 7
+                </option>
+
+                <option value="8">
+                    Grade 8
+                </option>
+
+                <option value="9">
+                    Grade 9
+                </option>
+
+                <option value="10">
+                    Grade 10
+                </option>
+
+                <option value="11">
+                    Grade 11
+                </option>
+
+                <option value="12">
+                    Grade 12
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="inputGroup">
+
+            <label>
+                SEARCH TOPIC
+            </label>
+
+            <input
+                class="input"
+                id="topicInput"
+                type="text"
+                placeholder="Example: Photosynthesis, logarithms, Newton's laws..."
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         SUBJECTS
+    ================================================= -->
+
+    <div class="subjectHeading">
+
+        CHOOSE YOUR SUBJECT
+
+    </div>
+
+
+    <div class="subjectGrid">
+
+
+        <button
+            type="button"
+            class="subject active"
+            onclick="selectSubject('Biology',this)">
+
+            <span class="subjectIcon">
+                🧬
+            </span>
+
+            <span class="subjectName">
+                Biology
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Chemistry',this)">
+
+            <span class="subjectIcon">
+                ⚗️
+            </span>
+
+            <span class="subjectName">
+                Chemistry
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Physics',this)">
+
+            <span class="subjectIcon">
+                ⚡
+            </span>
+
+            <span class="subjectName">
+                Physics
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Mathematics',this)">
+
+            <span class="subjectIcon">
+                📐
+            </span>
+
+            <span class="subjectName">
+                Mathematics
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('English',this)">
+
+            <span class="subjectIcon">
+                🇬🇧
+            </span>
+
+            <span class="subjectName">
+                English
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Geography',this)">
+
+            <span class="subjectIcon">
+                🌍
+            </span>
+
+            <span class="subjectName">
+                Geography
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('History',this)">
+
+            <span class="subjectIcon">
+                🏛️
+            </span>
+
+            <span class="subjectName">
+                History
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Economics',this)">
+
+            <span class="subjectIcon">
+                💰
+            </span>
+
+            <span class="subjectName">
+                Economics
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Civics',this)">
+
+            <span class="subjectIcon">
+                ⚖️
+            </span>
+
+            <span class="subjectName">
+                Civics
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('ICT',this)">
+
+            <span class="subjectIcon">
+                💻
+            </span>
+
+            <span class="subjectName">
+                ICT
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="subject"
+            onclick="selectSubject('Amharic',this)">
+
+            <span class="subjectIcon">
+                🇪🇹
+            </span>
+
+            <span class="subjectName">
+                Amharic
+            </span>
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         UPLOAD
+    ================================================= -->
+
+    <div class="uploadTitle">
+
+        OR UPLOAD YOUR STUDY MATERIAL 📎
+
+    </div>
+
+
+    <div class="uploadGrid">
+
+
+        <!-- PHOTO -->
+
+        <div
+            class="uploadCard"
+            onclick="openPhotoPicker()">
+
+            <div class="uploadIcon">
+                📸
+            </div>
+
+            <strong>
+                Upload a Photo
+            </strong>
+
+            <span>
+                JPG, PNG or JPEG
+            </span>
+
+            <button
+                type="button"
+                class="uploadAction"
+                onclick="event.stopPropagation();openPhotoPicker()">
+
+                Choose Photo
+
+            </button>
+
+        </div>
+
+
+        <!-- FILE -->
+
+        <div
+            class="uploadCard"
+            onclick="openFilePicker()">
+
+            <div class="uploadIcon">
+                📄
+            </div>
+
+            <strong>
+                Upload a File
+            </strong>
+
+            <span>
+                PDF or TXT
+            </span>
+
+            <button
+                type="button"
+                class="uploadAction"
+                onclick="event.stopPropagation();openFilePicker()">
+
+                Choose File
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         FILE INPUTS
+    ================================================= -->
+
+    <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        style="display:none"
+        onchange="handlePhoto(this)"
+    >
+
+
+    <input
+        type="file"
+        id="fileInput"
+        accept=".pdf,.txt,application/pdf,text/plain"
+        style="display:none"
+        onchange="handleFile(this)"
+    >
+
+
+    <!-- =================================================
+         PREVIEW
+    ================================================= -->
+
+    <div
+        class="preview"
+        id="preview">
+
+        <img
+            id="previewImage"
+            alt="Selected study material"
+        >
+
+        <div
+            class="fileInfo"
+            id="fileInfo">
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GENERATE
+    ================================================= -->
+
+    <div class="generateArea">
+
+        <button
+            type="button"
+            class="generateButton"
+            onclick="generateNotes()">
+
+            ✨ Generate My Short Notes
+
+        </button>
+
+
+        <button
+            type="button"
+            class="clearButton"
+            onclick="clearEverything()">
+
+            Clear
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="loading"
+        id="loading">
+
+        🧠 Preparing your
+        <strong id="loadingGrade">
+            Grade 10
+        </strong>
+        study notes...
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section
+    class="result"
+    id="result">
+
+
+    <div class="resultHeader">
+
+        <small id="resultSubject">
+            BIOLOGY
+        </small>
+
+        <h2 id="resultTitle">
+            Your Topic
+        </h2>
+
+        <p id="resultGrade">
+            Grade 10 • Quick Study Notes
+        </p>
+
+    </div>
+
+
+    <div class="notesGrid">
+
+
+        <div class="noteCard">
+
+            <h3>
+                🧠 Main Idea
+            </h3>
+
+            <p id="mainIdea"></p>
+
+        </div>
+
+
+        <div class="noteCard">
+
+            <h3>
+                📌 Important Definitions
+            </h3>
+
+            <ul id="definitions"></ul>
+
+        </div>
+
+
+        <div class="noteCard">
+
+            <h3>
+                🔑 Key Points
+            </h3>
+
+            <ul id="keyPoints"></ul>
+
+        </div>
+
+
+        <div class="noteCard">
+
+            <h3>
+                📐 Formula / Equation
+            </h3>
+
+            <div
+                class="formula"
+                id="formula">
+
+            </div>
+
+        </div>
+
+
+        <div class="noteCard full">
+
+            <h3>
+                💡 Simple Example
+            </h3>
+
+            <p id="example"></p>
+
+        </div>
+
+
+        <div class="noteCard full">
+
+            <h3>
+                🎯 Exam Tips
+            </h3>
+
+            <ul id="examTips"></ul>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   STUDENT DATA
+===================================================== */
+
+const studentGrade =
+    localStorage.getItem("ethioGrade") || "10";
+
+
+const studentXP =
+    localStorage.getItem("ethioXP") || "0";
+
+
+/* =====================================================
+   DISPLAY DATA
+===================================================== */
+
+document.getElementById(
+    "gradeSelect"
+).value = studentGrade;
+
+
+document.getElementById(
+    "gradeBadge"
+).textContent =
+    "Grade " + studentGrade;
+
+
+document.getElementById(
+    "heroGrade"
+).textContent =
+    "🎓 Made for Grade " + studentGrade;
+
+
+document.getElementById(
+    "loadingGrade"
+).textContent =
+    "Grade " + studentGrade;
+
+
+document.getElementById(
+    "xp"
+).textContent =
+    studentXP;
+
+
+/* =====================================================
+   SUBJECT
+===================================================== */
+
+let selectedSubject =
+    "Biology";
+
+
+function selectSubject(
+    subject,
+    button
+) {
+
+    selectedSubject =
+        subject;
+
+
+    document
+        .querySelectorAll(".subject")
+        .forEach(function(item) {
+
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   OPEN PHOTO
+===================================================== */
+
+function openPhotoPicker() {
+
+    document
+        .getElementById("photoInput")
+        .click();
+
+}
+
+
+/* =====================================================
+   OPEN FILE
+===================================================== */
+
+function openFilePicker() {
+
+    document
+        .getElementById("fileInput")
+        .click();
+
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+function handlePhoto(input) {
+
+    const file =
+        input.files[0];
+
+
+    if (!file) {
+        return;
+    }
+
+
+    const preview =
+        document.getElementById(
+            "preview"
+        );
+
+    const image =
+        document.getElementById(
+            "previewImage"
+        );
+
+    const info =
+        document.getElementById(
+            "fileInfo"
+        );
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event) {
+
+            image.src =
+                event.target.result;
+
+            image.style.display =
+                "block";
+
+            info.textContent =
+                "📸 " +
+                file.name;
+
+            preview.style.display =
+                "block";
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* =====================================================
+   FILE
+===================================================== */
+
+function handleFile(input) {
+
+    const file =
+        input.files[0];
+
+
+    if (!file) {
+        return;
+    }
+
+
+    const preview =
+        document.getElementById(
+            "preview"
+        );
+
+    const image =
+        document.getElementById(
+            "previewImage"
+        );
+
+    const info =
+        document.getElementById(
+            "fileInfo"
+        );
+
+
+    image.style.display =
+        "none";
+
+
+    info.textContent =
+        "📄 " +
+        file.name +
+        " • " +
+        formatFileSize(file.size);
+
+
+    preview.style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   FILE SIZE
+===================================================== */
+
+function formatFileSize(bytes) {
+
+    if (bytes < 1024) {
+
+        return bytes + " B";
+
+    }
+
+
+    if (bytes < 1024 * 1024) {
+
+        return (
+            (bytes / 1024)
+            .toFixed(1) +
+            " KB"
+        );
+
+    }
+
+
+    return (
+        (bytes / (1024 * 1024))
+        .toFixed(1) +
+        " MB"
+    );
+
+}
+
+
+/* =====================================================
+   GENERATE NOTES
+===================================================== */
+
+function generateNotes() {
+
+    const topic =
+        document.getElementById(
+            "topicInput"
+        ).value.trim();
+
+
+    const photo =
+        document.getElementById(
+            "photoInput"
+        ).files[0];
+
+
+    const file =
+        document.getElementById(
+            "fileInput"
+        ).files[0];
+
+
+    if (
+        !topic &&
+        !photo &&
+        !file
+    ) {
+
+        alert(
+            "Please enter a topic or upload a photo/file first."
+        );
+
+        return;
+
+    }
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    loading.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            createDemoNotes(
+                topic ||
+                (photo
+                    ? photo.name
+                    : file.name)
+            );
+
+
+            loading.style.display =
+                "none";
+
+        },
+        1000
+    );
+
+}
+
+
+/* =====================================================
+   DEMO NOTES
+===================================================== */
+
+function createDemoNotes(topic) {
+
+
+    document.getElementById(
+        "resultSubject"
+    ).textContent =
+        selectedSubject.toUpperCase();
+
+
+    document.getElementById(
+        "resultTitle"
+    ).textContent =
+        topic;
+
+
+    document.getElementById(
+        "resultGrade"
+    ).textContent =
+        "Grade " +
+        studentGrade +
+        " • Quick Study Notes";
+
+
+    document.getElementById(
+        "mainIdea"
+    ).textContent =
+
+        topic +
+        " is an important " +
+        selectedSubject +
+        " topic. The complete AI version will explain this topic according to the student's Grade " +
+        studentGrade +
+        " level using simple language.";
+
+
+    document.getElementById(
+        "definitions"
+    ).innerHTML =
+
+        "<li>" +
+        topic +
+        " — the main concept being studied.</li>" +
+
+        "<li>Important vocabulary will be explained.</li>" +
+
+        "<li>Definitions will match Grade " +
+        studentGrade +
+        " level.</li>";
+
+
+    document.getElementById(
+        "keyPoints"
+    ).innerHTML =
+
+        "<li>Understand the main idea.</li>" +
+
+        "<li>Remember the important facts.</li>" +
+
+        "<li>Connect the topic to related concepts.</li>" +
+
+        "<li>Practice questions after studying.</li>";
+
+
+    if (
+        selectedSubject === "Mathematics" ||
+        selectedSubject === "Physics" ||
+        selectedSubject === "Chemistry"
+    ) {
+
+        document.getElementById(
+            "formula"
+        ).textContent =
+            "Relevant formulas will be shown here.";
+
+    } else {
+
+        document.getElementById(
+            "formula"
+        ).textContent =
+            "No major formula for this topic.";
+
+    }
+
+
+    document.getElementById(
+        "example"
+    ).textContent =
+
+        "A simple Grade " +
+        studentGrade +
+        " example about " +
+        topic +
+        " will be generated here by the AI.";
+
+
+    document.getElementById(
+        "examTips"
+    ).innerHTML =
+
+        "<li>Understand the concept instead of memorizing only.</li>" +
+
+        "<li>Review the important definitions.</li>" +
+
+        "<li>Practice questions related to " +
+        topic +
+        ".</li>" +
+
+        "<li>Review the topic before your mock exam.</li>";
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    setTimeout(
+        function() {
+
+            result.scrollIntoView({
+                behavior:
+                    "smooth"
+            });
+
+        },
+        100
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+function clearEverything() {
+
+    document.getElementById(
+        "topicInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "photoInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "fileInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "preview"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "previewImage"
+    ).src = "";
+
+
+    document.getElementById(
+        "fileInfo"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+/* =====================================================
+   ENTER = GENERATE
+===================================================== */
+
+document.getElementById(
+    "topicInput"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            generateNotes();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

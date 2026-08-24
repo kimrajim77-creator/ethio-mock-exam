@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Set Up Profile | Ethio Mock Exam</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#f5f5ff;
+    --card:#ffffff;
+    --text:#20213a;
+    --muted:#777b95;
+    --primary:#6657e8;
+    --secondary:#9a8cff;
+    --border:#e5e5f1;
+    --soft:#eeeeff;
+}
+
+body.dark{
+    --bg:#10111c;
+    --card:#1b1d2b;
+    --text:#ffffff;
+    --muted:#a7aac0;
+    --border:#303247;
+    --soft:#292b43;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(50px);
+    opacity:.13;
+}
+
+.blob.one{
+    width:300px;
+    height:300px;
+    background:#7567ff;
+    top:-100px;
+    right:-80px;
+    animation:moveOne 8s infinite alternate;
+}
+
+.blob.two{
+    width:250px;
+    height:250px;
+    background:#b18cff;
+    bottom:-100px;
+    left:-70px;
+    animation:moveTwo 9s infinite alternate;
+}
+
+@keyframes moveOne{
+    to{
+        transform:translate(-80px,100px) scale(1.2);
+    }
+}
+
+@keyframes moveTwo{
+    to{
+        transform:translate(80px,-70px) scale(1.15);
+    }
+}
+
+/* HEADER */
+
+.header{
+    height:70px;
+    padding:0 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+}
+
+.logo-box{
+    width:41px;
+    height:41px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+}
+
+.theme{
+    width:42px;
+    height:42px;
+
+    border:0;
+    border-radius:13px;
+
+    background:var(--soft);
+    color:var(--text);
+
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* MAIN */
+
+.main{
+    min-height:calc(100vh - 70px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:620px;
+
+    padding:32px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:30px;
+
+    box-shadow:
+    0 25px 70px
+    rgba(40,40,90,.1);
+
+    animation:appear .6s ease;
+}
+
+@keyframes appear{
+
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* INTRO */
+
+.intro{
+    text-align:center;
+}
+
+.icon{
+    width:75px;
+    height:75px;
+
+    margin:0 auto 16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+
+    background:var(--soft);
+
+    color:var(--primary);
+
+    font-size:32px;
+
+    animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.intro h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.intro p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* PROGRESS */
+
+.progress{
+    display:flex;
+    gap:7px;
+    margin:27px 0;
+}
+
+.progress span{
+    height:6px;
+    flex:1;
+
+    border-radius:20px;
+
+    background:var(--soft);
+
+    transition:.3s;
+}
+
+.progress span.active{
+    background:var(--primary);
+}
+
+/* STEPS */
+
+.step{
+    display:none;
+}
+
+.step.active{
+    display:block;
+    animation:stepIn .4s ease;
+}
+
+@keyframes stepIn{
+
+    from{
+        opacity:0;
+        transform:translateX(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+.step-title{
+    margin-bottom:18px;
+}
+
+.step-title h2{
+    font-size:21px;
+    margin-bottom:6px;
+}
+
+.step-title p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* LABEL */
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+/* INPUT */
+
+.input,
+.select{
+    width:100%;
+
+    padding:15px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:14px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    outline:none;
+
+    font-size:14px;
+
+    margin-bottom:17px;
+
+    transition:.25s;
+}
+
+.input:focus,
+.select:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(102,87,232,.09);
+}
+
+/* GRADE OPTIONS */
+
+.grade-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:10px;
+}
+
+.grade{
+    padding:16px 10px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:15px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    text-align:center;
+
+    transition:.25s;
+}
+
+.grade:hover{
+    transform:translateY(-3px);
+    border-color:var(--primary);
+}
+
+.grade.active{
+    border-color:var(--primary);
+    background:var(--soft);
+    color:var(--primary);
+}
+
+.grade strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.grade small{
+    color:var(--muted);
+}
+
+/* INTERESTS */
+
+.interests{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+}
+
+.interest{
+    padding:16px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:15px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+}
+
+.interest:hover{
+    transform:translateY(-3px);
+}
+
+.interest.active{
+    border-color:var(--primary);
+    background:var(--soft);
+}
+
+.interest strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.interest span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.button{
+    flex:1;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+.back{
+    background:var(--soft);
+    color:var(--text);
+}
+
+.next{
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    box-shadow:
+    0 9px 22px
+    rgba(102,87,232,.2);
+}
+
+.button:hover{
+    transform:translateY(-3px);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .card{
+        padding:23px;
+    }
+
+    .grade-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .intro h1{
+        font-size:24px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+
+</div>
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+    <button
+    class="theme"
+    onclick="toggleTheme()">
+
+        ☾
+
+    </button>
+
+</header>
+
+
+<main class="main">
+
+<section class="card">
+
+<div class="intro">
+
+    <div class="icon">
+        ✦
+    </div>
+
+    <h1>
+        Let's set up your study space
+    </h1>
+
+    <p>
+        A few details will help Ethio Mock Exam
+        personalize your learning experience.
+    </p>
+
+</div>
+
+
+<div class="progress">
+
+    <span id="p1" class="active"></span>
+    <span id="p2"></span>
+    <span id="p3"></span>
+
+</div>
+
+
+<!-- STEP 1 -->
+
+<div
+id="step1"
+class="step active">
+
+<div class="step-title">
+
+    <h2>
+        Tell us about your school
+    </h2>
+
+    <p>
+        This helps organize your learning experience.
+    </p>
+
+</div>
+
+
+<label>
+School name
+</label>
+
+<input
+id="school"
+class="input"
+type="text"
+placeholder="Enter your school name">
+
+
+<label>
+Grade
+</label>
+
+<div class="grade-grid">
+
+<button
+class="grade"
+onclick="selectGrade(this,'9')">
+
+<strong>
+Grade 9
+</strong>
+
+<small>
+Secondary
+</small>
+
+</button>
+
+
+<button
+class="grade active"
+onclick="selectGrade(this,'10')">
+
+<strong>
+Grade 10
+</strong>
+
+<small>
+Secondary
+</small>
+
+</button>
+
+
+<button
+class="grade"
+onclick="selectGrade(this,'11')">
+
+<strong>
+Grade 11
+</strong>
+
+<small>
+Secondary
+</small>
+
+</button>
+
+
+<button
+class="grade"
+onclick="selectGrade(this,'12')">
+
+<strong>
+Grade 12
+</strong>
+
+<small>
+Secondary
+</small>
+
+</button>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="button next"
+onclick="nextStep(2)">
+
+Continue →
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- STEP 2 -->
+
+<div
+id="step2"
+class="step">
+
+<div class="step-title">
+
+<h2>
+What do you want to improve?
+</h2>
+
+<p>
+Choose the subjects you want to practice.
+</p>
+
+</div>
+
+
+<div class="interests">
+
+<button
+class="interest"
+onclick="toggleInterest(this,'Biology')">
+
+<strong>
+Biology
+</strong>
+
+<span>
+Life and living systems
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="toggleInterest(this,'Chemistry')">
+
+<strong>
+Chemistry
+</strong>
+
+<span>
+Matter and reactions
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="toggleInterest(this,'Physics')">
+
+<strong>
+Physics
+</strong>
+
+<span>
+Energy and motion
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="toggleInterest(this,'Mathematics')">
+
+<strong>
+Mathematics
+</strong>
+
+<span>
+Numbers and problem solving
+</span>
+
+</button>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="button back"
+onclick="nextStep(1)">
+
+← Back
+
+</button>
+
+<button
+class="button next"
+onclick="nextStep(3)">
+
+Continue →
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- STEP 3 -->
+
+<div
+id="step3"
+class="step">
+
+<div class="step-title">
+
+<h2>
+How do you like to learn?
+</h2>
+
+<p>
+Choose your preferred study style.
+</p>
+
+</div>
+
+
+<div class="interests">
+
+<button
+class="interest"
+onclick="selectStyle(this,'Practice')">
+
+<strong>
+Practice
+</strong>
+
+<span>
+More questions and exercises
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="selectStyle(this,'Review')">
+
+<strong>
+Review
+</strong>
+
+<span>
+Short notes and summaries
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="selectStyle(this,'Challenge')">
+
+<strong>
+Challenge
+</strong>
+
+<span>
+Compete and test yourself
+</span>
+
+</button>
+
+
+<button
+class="interest"
+onclick="selectStyle(this,'Balanced')">
+
+<strong>
+Balanced
+</strong>
+
+<span>
+A little bit of everything
+</span>
+
+</button>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="button back"
+onclick="nextStep(2)">
+
+← Back
+
+</button>
+
+<button
+class="button next"
+onclick="finishSetup()">
+
+Finish Setup ✦
+
+</button>
+
+</div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+<script>
+
+let currentStep=1;
+
+let selectedGrade="10";
+
+let selectedSubjects=[];
+
+let selectedStyle="";
+
+
+/* THEME */
+
+function toggleTheme(){
+
+    document.body
+    .classList
+    .toggle("dark");
+
+}
+
+
+/* GRADE */
+
+function selectGrade(button,grade){
+
+    document
+    .querySelectorAll(".grade")
+    .forEach(function(item){
+
+        item.classList
+        .remove("active");
+
+    });
+
+    button.classList
+    .add("active");
+
+    selectedGrade=grade;
+
+}
+
+
+/* SUBJECTS */
+
+function toggleInterest(button,subject){
+
+    button.classList
+    .toggle("active");
+
+    if(
+    selectedSubjects.includes(subject)
+    ){
+
+        selectedSubjects=
+        selectedSubjects.filter(
+            function(item){
+                return item!==subject;
+            }
+        );
+
+    }
+
+    else{
+
+        selectedSubjects.push(subject);
+
+    }
+
+}
+
+
+/* STYLE */
+
+function selectStyle(button,style){
+
+    document
+    .querySelectorAll(".step#step3 .interest")
+    .forEach(function(item){
+
+        item.classList
+        .remove("active");
+
+    });
+
+    button.classList
+    .add("active");
+
+    selectedStyle=style;
+
+}
+
+
+/* CHANGE STEP */
+
+function nextStep(step){
+
+    document
+    .querySelectorAll(".step")
+    .forEach(function(item){
+
+        item.classList
+        .remove("active");
+
+    });
+
+    document
+    .getElementById(
+        "step"+step
+    )
+    .classList
+    .add("active");
+
+
+    document
+    .querySelectorAll(".progress span")
+    .forEach(function(item,index){
+
+        item.classList
+        .remove("active");
+
+        if(index<step){
+
+            item.classList
+            .add("active");
+
+        }
+
+    });
+
+    currentStep=step;
+
+}
+
+
+/* FINISH */
+
+function finishSetup(){
+
+    const school=
+    document
+    .getElementById("school")
+    .value
+    .trim();
+
+
+    if(school===""){
+
+        alert(
+        "Please enter your school name."
+        );
+
+        nextStep(1);
+
+        return;
+
+    }
+
+
+    if(selectedSubjects.length===0){
+
+        alert(
+        "Choose at least one subject."
+        );
+
+        nextStep(2);
+
+        return;
+
+    }
+
+
+    if(selectedStyle===""){
+
+        alert(
+        "Choose your preferred learning style."
+        );
+
+        return;
+
+    }
+
+
+    /* SAVE PROFILE */
+
+    localStorage.setItem(
+        "ethioSchool",
+        school
+    );
+
+    localStorage.setItem(
+        "ethioGrade",
+        selectedGrade
+    );
+
+    localStorage.setItem(
+        "ethioSubjects",
+        JSON.stringify(selectedSubjects)
+    );
+
+    localStorage.setItem(
+        "ethioLearningStyle",
+        selectedStyle
+    );
+
+
+    localStorage.setItem(
+        "ethioProfileComplete",
+        "true"
+    );
+
+
+    /* GO TO HOME */
+
+    window.location.href=
+    "home.html";
+
+}
+
+</script>
+
+</body>
+</html>

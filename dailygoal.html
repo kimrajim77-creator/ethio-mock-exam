@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Daily Goal | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: .25;
+}
+
+.circle1 {
+    width: 320px;
+    height: 320px;
+    background: #756cff;
+    top: -130px;
+    right: -100px;
+}
+
+.circle2 {
+    width: 300px;
+    height: 300px;
+    background: #ff72a8;
+    bottom: -150px;
+    left: -100px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    height: 70px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text);
+
+    font-weight: bold;
+}
+
+.logoIcon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color: white;
+
+    font-size: 20px;
+}
+
+.backButton {
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    padding: 9px 13px;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    transition: .2s;
+}
+
+.backButton:hover {
+
+    transform: translateX(-3px);
+
+    border-color: var(--accent);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    width: min(1000px, 94%);
+
+    margin: auto;
+
+    padding: 30px 0 60px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #8d84ff
+        );
+
+    color: white;
+
+    border-radius: 28px;
+
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    animation: appear .6s ease;
+}
+
+.heroText small {
+
+    opacity: .8;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.heroText h1 {
+
+    margin: 10px 0;
+
+    font-size: 31px;
+}
+
+.heroText p {
+
+    max-width: 500px;
+
+    line-height: 1.6;
+
+    font-size: 12px;
+
+    opacity: .9;
+}
+
+.heroAnimal {
+
+    width: 125px;
+
+    height: 125px;
+
+    border-radius: 40%;
+
+    background:
+        rgba(255,255,255,.17);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 65px;
+
+    animation: float 3s infinite ease-in-out;
+}
+
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.infoRow {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 13px;
+
+    margin-top: 16px;
+}
+
+.infoCard {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 19px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.infoIcon {
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.infoCard span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-bottom: 5px;
+}
+
+.infoCard strong {
+
+    color: var(--text);
+
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   GOAL CARD
+===================================================== */
+
+.goalCard {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 25px;
+
+    margin-top: 16px;
+
+    box-shadow: var(--shadow);
+
+    animation: appear .7s ease;
+}
+
+.cardHeader {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.cardHeader h2 {
+
+    color: var(--text);
+
+    margin: 0;
+
+    font-size: 19px;
+}
+
+.targetBadge {
+
+    padding: 8px 11px;
+
+    border-radius: 10px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progressTop {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+}
+
+.progressTop span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.progressTop strong {
+
+    color: var(--accent);
+
+    font-size: 13px;
+}
+
+.progress {
+
+    height: 14px;
+
+    border-radius: 30px;
+
+    background: var(--border);
+
+    overflow: hidden;
+}
+
+.progressFill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    border-radius: 30px;
+
+    transition:
+        width .7s ease;
+}
+
+.goalMessage {
+
+    margin-top: 13px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+.sectionTitle {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 30px 0 14px;
+}
+
+.sectionTitle h2 {
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 19px;
+}
+
+.sectionTitle span {
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.subjectGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 12px;
+}
+
+.subject {
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    border-radius: 18px;
+
+    padding: 17px;
+
+    box-shadow: var(--shadow);
+
+    transition: .2s;
+}
+
+.subject:hover {
+
+    transform: translateY(-4px);
+
+    border-color: var(--accent);
+}
+
+.subjectIcon {
+
+    font-size: 24px;
+
+    margin-bottom: 11px;
+}
+
+.subjectName {
+
+    color: var(--text);
+
+    font-weight: bold;
+
+    font-size: 11px;
+}
+
+.subjectCount {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   TASKS
+===================================================== */
+
+.tasksCard {
+
+    margin-top: 16px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 23px;
+
+    padding: 23px;
+
+    box-shadow: var(--shadow);
+}
+
+.task {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.task:last-child {
+
+    border-bottom: none;
+}
+
+.taskLeft {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.taskIcon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: var(--accentSoft);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 19px;
+}
+
+.taskName {
+
+    color: var(--text);
+
+    font-weight: bold;
+
+    font-size: 11px;
+}
+
+.taskDescription {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 4px;
+}
+
+.taskStatus {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.practiceButton {
+
+    border: none;
+
+    padding: 13px 19px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.practiceButton:hover {
+
+    transform: translateY(-3px);
+}
+
+.resetButton {
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    padding: 13px 19px;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:750px) {
+
+    .subjectGrid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    header {
+        padding: 0 14px;
+    }
+
+    main {
+        width: 94%;
+    }
+
+    .hero {
+        padding: 24px;
+    }
+
+    .heroText h1 {
+        font-size: 25px;
+    }
+
+    .heroAnimal {
+        width: 90px;
+        height: 90px;
+        font-size: 48px;
+    }
+
+    .infoRow {
+        grid-template-columns: 1fr;
+    }
+
+    .subjectGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width:400px) {
+
+    .heroAnimal {
+        display: none;
+    }
+
+    .subjectGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     THEME
+===================================================== -->
+
+<script src="theme.js"></script>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="circle circle1"></div>
+
+    <div class="circle circle2"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <button
+        class="backButton"
+        onclick="goHome()">
+
+        ← Home
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="heroText">
+
+        <small>
+            YOUR DAILY MISSION
+        </small>
+
+        <h1>
+            Today's Goal 🎯
+        </h1>
+
+        <p id="heroMessage">
+
+            Keep learning a little every day.
+            Your progress is building your future!
+
+        </p>
+
+    </div>
+
+
+    <div
+        class="heroAnimal"
+        id="heroAnimal">
+
+        🐼
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INFO
+===================================================== -->
+
+<section class="infoRow">
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            🎓
+        </div>
+
+        <span>
+            YOUR GRADE
+        </span>
+
+        <strong id="grade">
+            Grade 10
+        </strong>
+
+    </div>
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            ❓
+        </div>
+
+        <span>
+            DAILY TARGET
+        </span>
+
+        <strong>
+            <span id="target">
+                10
+            </span>
+            Questions
+        </strong>
+
+    </div>
+
+
+    <div class="infoCard">
+
+        <div class="infoIcon">
+            ⭐
+        </div>
+
+        <span>
+            XP TODAY
+        </span>
+
+        <strong id="todayXP">
+            0 XP
+        </strong>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     GOAL
+===================================================== -->
+
+<section class="goalCard">
+
+
+    <div class="cardHeader">
+
+        <h2>
+            🎯 Daily Progress
+        </h2>
+
+        <div
+            class="targetBadge"
+            id="goalBadge">
+
+            0 / 10
+
+        </div>
+
+    </div>
+
+
+    <div class="progressTop">
+
+        <span>
+            Questions completed
+        </span>
+
+        <strong id="percentage">
+            0%
+        </strong>
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+            class="progressFill"
+            id="progressFill">
+
+        </div>
+
+    </div>
+
+
+    <p
+        class="goalMessage"
+        id="goalMessage">
+
+        Complete your first question to start
+        today's progress.
+
+    </p>
+
+
+</section>
+
+
+<!-- =====================================================
+     SUBJECTS
+===================================================== -->
+
+<div class="sectionTitle">
+
+    <h2>
+        📚 Your Subjects
+    </h2>
+
+    <span id="subjectGrade">
+        Grade 10
+    </span>
+
+</div>
+
+
+<section
+    class="subjectGrid"
+    id="subjectGrid">
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            ➗
+        </div>
+
+        <div class="subjectName">
+            Mathematics
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Mathematics">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            🧬
+        </div>
+
+        <div class="subjectName">
+            Biology
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Biology">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            ⚛️
+        </div>
+
+        <div class="subjectName">
+            Physics
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Physics">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            🧪
+        </div>
+
+        <div class="subjectName">
+            Chemistry
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Chemistry">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            📖
+        </div>
+
+        <div class="subjectName">
+            English
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="English">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            🌍
+        </div>
+
+        <div class="subjectName">
+            Geography
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Geography">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            🏛️
+        </div>
+
+        <div class="subjectName">
+            History
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="History">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            ⚖️
+        </div>
+
+        <div class="subjectName">
+            Civics
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Civics">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+    <div class="subject">
+
+        <div class="subjectIcon">
+            💰
+        </div>
+
+        <div class="subjectName">
+            Economics
+        </div>
+
+        <div
+            class="subjectCount"
+            data-subject="Economics">
+
+            0 questions
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     TODAY'S TASKS
+===================================================== -->
+
+<div class="sectionTitle">
+
+    <h2>
+        ✅ Today's Tasks
+    </h2>
+
+    <span>
+        Keep going!
+    </span>
+
+</div>
+
+
+<section class="tasksCard">
+
+
+    <div class="task">
+
+        <div class="taskLeft">
+
+            <div class="taskIcon">
+                🎯
+            </div>
+
+            <div>
+
+                <div class="taskName">
+                    Complete Practice
+                </div>
+
+                <div class="taskDescription">
+                    Answer today's questions
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="taskStatus"
+            id="practiceStatus">
+
+            0 / 10
+
+        </div>
+
+    </div>
+
+
+    <div class="task">
+
+        <div class="taskLeft">
+
+            <div class="taskIcon">
+                📚
+            </div>
+
+            <div>
+
+                <div class="taskName">
+                    Review Notes
+                </div>
+
+                <div class="taskDescription">
+                    Spend a few minutes reviewing
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="taskStatus"
+            id="notesStatus">
+
+            Not started
+
+        </div>
+
+    </div>
+
+
+    <div class="task">
+
+        <div class="taskLeft">
+
+            <div class="taskIcon">
+                ⭐
+            </div>
+
+            <div>
+
+                <div class="taskName">
+                    Earn XP
+                </div>
+
+                <div class="taskDescription">
+                    Keep your learning streak alive
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="taskStatus"
+            id="xpStatus">
+
+            0 XP
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
+<div class="actions">
+
+    <button
+        class="practiceButton"
+        onclick="startPractice()">
+
+        🎯 Start Practice
+
+    </button>
+
+
+    <button
+        class="resetButton"
+        onclick="resetGoal()">
+
+        🔄 Reset Demo
+
+    </button>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   USER DATA
+===================================================== */
+
+const userName =
+    localStorage.getItem(
+        "ethioUserName"
+    )
+    ||
+    "Student";
+
+
+const grade =
+    localStorage.getItem(
+        "ethioGrade"
+    )
+    ||
+    localStorage.getItem(
+        "challengeGrade"
+    )
+    ||
+    "10";
+
+
+const animal =
+    localStorage.getItem(
+        "ethioAnimal"
+    )
+    ||
+    localStorage.getItem(
+        "challengeAnimal"
+    )
+    ||
+    "🐼";
+
+
+/* =====================================================
+   DAILY GOAL
+===================================================== */
+
+const target =
+    Number(
+        localStorage.getItem(
+            "dailyGoalTarget"
+        )
+        ||
+        10
+    );
+
+
+let completed =
+    Number(
+        localStorage.getItem(
+            "dailyGoalCompleted"
+        )
+        ||
+        0
+    );
+
+
+let todayXP =
+    Number(
+        localStorage.getItem(
+            "dailyGoalXP"
+        )
+        ||
+        0
+    );
+
+
+/* =====================================================
+   DISPLAY USER
+===================================================== */
+
+document.getElementById(
+    "grade"
+).textContent =
+    "Grade " + grade;
+
+
+document.getElementById(
+    "subjectGrade"
+).textContent =
+    "Grade " + grade;
+
+
+document.getElementById(
+    "heroAnimal"
+).textContent =
+    animal;
+
+
+document.getElementById(
+    "target"
+).textContent =
+    target;
+
+
+/* =====================================================
+   SUBJECT PROGRESS
+===================================================== */
+
+const subjects = [
+    "Mathematics",
+    "Biology",
+    "Physics",
+    "Chemistry",
+    "English",
+    "Geography",
+    "History",
+    "Civics",
+    "Economics"
+];
+
+
+subjects.forEach(
+    function(subject) {
+
+        const count =
+            Number(
+                localStorage.getItem(
+                    "subject_" +
+                    subject +
+                    "_completed"
+                )
+                ||
+                0
+            );
+
+
+        const element =
+            document.querySelector(
+                '[data-subject="' +
+                subject +
+                '"]'
+            );
+
+
+        if (element) {
+
+            element.textContent =
+                count +
+                " questions";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   UPDATE PAGE
+===================================================== */
+
+function updateGoal() {
+
+    if (completed > target) {
+
+        completed =
+            target;
+
+    }
+
+
+    const percentage =
+        Math.min(
+            100,
+            Math.round(
+                (
+                    completed /
+                    target
+                ) * 100
+            )
+        );
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+        percentage + "%";
+
+
+    document.getElementById(
+        "goalBadge"
+    ).textContent =
+        completed +
+        " / " +
+        target;
+
+
+    document.getElementById(
+        "practiceStatus"
+    ).textContent =
+        completed +
+        " / " +
+        target;
+
+
+    document.getElementById(
+        "todayXP"
+    ).textContent =
+        todayXP +
+        " XP";
+
+
+    document.getElementById(
+        "xpStatus"
+    ).textContent =
+        todayXP +
+        " XP";
+
+
+    const message =
+        document.getElementById(
+            "goalMessage"
+        );
+
+
+    const heroMessage =
+        document.getElementById(
+            "heroMessage"
+        );
+
+
+    if (
+        completed >= target
+    ) {
+
+        message.textContent =
+            "🎉 Amazing! You completed today's goal. Your future self will thank you!";
+
+
+        heroMessage.textContent =
+            "You did it! Today's learning mission is complete. 🏆";
+
+    }
+
+    else if (
+        completed > 0
+    ) {
+
+        const remaining =
+            target -
+            completed;
+
+
+        message.textContent =
+            "You're doing great! Only " +
+            remaining +
+            " more question" +
+            (
+                remaining === 1
+                    ? ""
+                    : "s"
+            ) +
+            " to complete today's goal.";
+
+
+        heroMessage.textContent =
+            "Keep going, " +
+            userName +
+            "! You're getting closer to your goal. 💪";
+
+    }
+
+    else {
+
+        message.textContent =
+            "Complete your first question to start today's progress.";
+
+
+        heroMessage.textContent =
+            "A little practice every day can make a big difference. 🌱";
+
+    }
+
+
+    localStorage.setItem(
+        "dailyGoalCompleted",
+        completed
+    );
+
+
+    localStorage.setItem(
+        "dailyGoalXP",
+        todayXP
+    );
+
+}
+
+
+updateGoal();
+
+
+/* =====================================================
+   START PRACTICE
+===================================================== */
+
+function startPractice() {
+
+    localStorage.setItem(
+        "challengeGrade",
+        grade
+    );
+
+
+    localStorage.setItem(
+        "challengeQuestions",
+        Math.max(
+            5,
+            target
+        )
+    );
+
+
+    window.location.href =
+        "exercise.html";
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetGoal() {
+
+    const confirmReset =
+        confirm(
+            "Reset today's demo progress?"
+        );
+
+
+    if (!confirmReset) {
+        return;
+    }
+
+
+    completed =
+        0;
+
+
+    todayXP =
+        0;
+
+
+    localStorage.setItem(
+        "dailyGoalCompleted",
+        0
+    );
+
+
+    localStorage.setItem(
+        "dailyGoalXP",
+        0
+    );
+
+
+    updateGoal();
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =====================================================
+   KEEP DAILY GOAL UPDATED
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function() {
+
+        completed =
+            Number(
+                localStorage.getItem(
+                    "dailyGoalCompleted"
+                )
+                ||
+                0
+            );
+
+
+        todayXP =
+            Number(
+                localStorage.getItem(
+                    "dailyGoalXP"
+                )
+                ||
+                0
+            );
+
+
+        updateGoal();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

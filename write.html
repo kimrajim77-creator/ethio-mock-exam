@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Write Notes | Ethio Mock Exam</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#f5f5ff;
+    --card:#ffffff;
+    --text:#20213a;
+    --muted:#777b95;
+    --primary:#6657e8;
+    --secondary:#9a8cff;
+    --border:#e5e5f1;
+    --soft:#eeeeff;
+}
+
+body.dark{
+    --bg:#10111c;
+    --card:#1b1d2b;
+    --text:#ffffff;
+    --muted:#a7aac0;
+    --border:#303247;
+    --soft:#292b43;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    transition:.3s;
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(45px);
+    opacity:.12;
+}
+
+.blob.one{
+    width:280px;
+    height:280px;
+    background:#7567ff;
+    top:-100px;
+    right:-70px;
+    animation:blobOne 8s infinite alternate;
+}
+
+.blob.two{
+    width:220px;
+    height:220px;
+    background:#b08cff;
+    bottom:-80px;
+    left:-60px;
+    animation:blobTwo 10s infinite alternate;
+}
+
+@keyframes blobOne{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(-80px,100px) scale(1.2);
+    }
+}
+
+@keyframes blobTwo{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(80px,-60px);
+    }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    height:70px;
+    padding:0 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+}
+
+.logo-box{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    animation:logoPulse 3s infinite;
+}
+
+@keyframes logoPulse{
+    0%,100%{
+        box-shadow:0 0 0 rgba(102,87,232,0);
+    }
+    50%{
+        box-shadow:0 0 22px rgba(102,87,232,.35);
+    }
+}
+
+.theme{
+    width:42px;
+    height:42px;
+
+    border:0;
+    border-radius:12px;
+
+    background:var(--soft);
+    color:var(--text);
+
+    font-size:18px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.theme:hover{
+    transform:rotate(15deg) scale(1.05);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:25px 18px 60px;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+
+    cursor:pointer;
+    font-size:15px;
+
+    margin-bottom:25px;
+
+    transition:.25s;
+}
+
+.back:hover{
+    color:var(--primary);
+    transform:translateX(-5px);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.heading{
+    text-align:center;
+}
+
+.heading-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+
+    background:var(--soft);
+    color:var(--primary);
+
+    font-size:35px;
+
+    animation:
+    floatIcon 3s infinite ease-in-out;
+}
+
+@keyframes floatIcon{
+
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-9px) rotate(3deg);
+    }
+
+}
+
+.heading h1{
+    font-size:30px;
+    margin-bottom:9px;
+}
+
+.heading p{
+    max-width:600px;
+    margin:auto;
+
+    color:var(--muted);
+    line-height:1.6;
+}
+
+
+/* =========================
+   EDITOR CARD
+========================= */
+
+.editor-card{
+    margin-top:30px;
+
+    padding:22px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    box-shadow:
+    0 18px 50px
+    rgba(40,40,90,.08);
+
+    animation:
+    cardAppear .6s ease;
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   SUBJECT
+========================= */
+
+.label{
+    display:block;
+
+    font-size:14px;
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+.subject{
+
+    width:100%;
+
+    padding:15px;
+
+    border:2px solid var(--border);
+
+    border-radius:15px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.subject:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(102,87,232,.1);
+
+}
+
+
+/* =========================
+   EDITOR
+========================= */
+
+.editor{
+
+    margin-top:20px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.editor:focus-within{
+
+    border-color:
+    var(--primary);
+
+    box-shadow:
+    0 0 0 5px
+    rgba(102,87,232,.08);
+
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+
+    display:flex;
+    align-items:center;
+    gap:5px;
+
+    padding:10px;
+
+    background:var(--soft);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.tool{
+
+    width:38px;
+    height:38px;
+
+    border:0;
+    border-radius:10px;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.tool:hover{
+
+    background:var(--card);
+
+    transform:
+    translateY(-2px);
+
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea{
+
+    display:block;
+
+    width:100%;
+
+    min-height:340px;
+
+    padding:20px;
+
+    border:0;
+
+    outline:none;
+
+    resize:vertical;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    font-family:Arial,sans-serif;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+textarea::placeholder{
+    color:var(--muted);
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+.editor-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:12px 16px;
+
+    background:var(--soft);
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+.continue{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 25px
+    rgba(102,87,232,.2);
+
+    transition:.3s;
+}
+
+.continue:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 15px 35px
+    rgba(102,87,232,.3);
+
+}
+
+
+/* =========================
+   CHOICE AREA
+========================= */
+
+.choices{
+
+    display:none;
+
+    margin-top:28px;
+
+    animation:
+    choicesAppear .5s ease;
+
+}
+
+@keyframes choicesAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.choices h2{
+
+    text-align:center;
+
+    margin-bottom:8px;
+
+}
+
+.choices p{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    margin-bottom:18px;
+
+}
+
+.choice-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:13px;
+
+}
+
+.choice{
+
+    padding:20px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:19px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.choice:hover{
+
+    transform:
+    translateY(-5px);
+
+    border-color:
+    var(--primary);
+
+}
+
+.choice.active{
+
+    background:var(--soft);
+
+    border-color:
+    var(--primary);
+
+}
+
+.choice strong{
+
+    display:block;
+
+    margin-bottom:7px;
+
+}
+
+.choice span{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================
+   FINAL BUTTON
+========================= */
+
+.final-button{
+
+    display:none;
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    animation:
+    buttonAppear .4s ease;
+
+}
+
+@keyframes buttonAppear{
+
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .heading h1{
+        font-size:25px;
+    }
+
+    .editor-card{
+        padding:17px;
+    }
+
+    .choice-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="background">
+
+<div class="blob one"></div>
+
+<div class="blob two"></div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="logo">
+
+<div class="logo-box">
+✦
+</div>
+
+Ethio Mock Exam
+
+</div>
+
+
+<button
+class="theme"
+onclick="toggleTheme()">
+
+☾
+
+</button>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+<button
+class="back"
+onclick="goBack()">
+
+← Back to Upload
+
+</button>
+
+
+<section class="heading">
+
+
+<div class="heading-icon">
+✎
+</div>
+
+
+<h1>
+Write Your Notes
+</h1>
+
+
+<p>
+Have notes in your head, notebook or clipboard?
+Type or paste them here and turn them into
+something useful.
+</p>
+
+
+</section>
+
+
+<section class="editor-card">
+
+
+<!-- SUBJECT -->
+
+<label class="label">
+
+What are you studying?
+
+</label>
+
+
+<input
+id="subject"
+class="subject"
+placeholder="Example: Biology — Cell Division">
+
+
+<!-- EDITOR -->
+
+<div class="editor">
+
+
+<div class="toolbar">
+
+
+<button
+class="tool"
+onclick="insertText('**','**')">
+
+B
+
+</button>
+
+
+<button
+class="tool"
+onclick="insertText('• ','')">
+
+•
+
+</button>
+
+
+<button
+class="tool"
+onclick="insertText('→ ','')">
+
+→
+
+</button>
+
+
+<button
+class="tool"
+onclick="insertText('Important: ','')">
+
+!
+
+</button>
+
+
+</div>
+
+
+<textarea
+id="notes"
+placeholder="Start writing or paste your notes here...
+
+For example:
+
+Cell division is the process by which
+a parent cell divides into daughter cells.
+
+There are two major types:
+Mitosis
+Meiosis
+
+You can write as much as you need."
+oninput="updateCount()"></textarea>
+
+
+<div class="editor-bottom">
+
+<span id="words">
+0 words
+</span>
+
+<span id="characters">
+0 characters
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- CONTINUE -->
+
+<button
+class="continue"
+onclick="showChoices()">
+
+Continue →
+
+</button>
+
+
+<!-- CHOICES -->
+
+<div
+id="choices"
+class="choices">
+
+
+<h2>
+What should we do with your notes?
+</h2>
+
+
+<p>
+Choose how you want to study this material.
+</p>
+
+
+<div class="choice-grid">
+
+
+<button
+class="choice active"
+onclick="selectChoice(this,'questions')">
+
+<strong>
+Generate Questions
+</strong>
+
+<span>
+Turn your notes into practice questions.
+</span>
+
+</button>
+
+
+<button
+class="choice"
+onclick="selectChoice(this,'shortnotes')">
+
+<strong>
+Create Short Notes
+</strong>
+
+<span>
+Make your lesson easier to review.
+</span>
+
+</button>
+
+
+<button
+class="choice"
+onclick="selectChoice(this,'summary')">
+
+<strong>
+Create Summary
+</strong>
+
+<span>
+Understand the main ideas quickly.
+</span>
+
+</button>
+
+
+<button
+class="choice"
+onclick="selectChoice(this,'important')">
+
+<strong>
+Find Important Points
+</strong>
+
+<span>
+Find the things you should remember.
+</span>
+
+</button>
+
+
+</div>
+
+
+<button
+id="finalButton"
+class="final-button"
+onclick="processNotes()">
+
+Generate Questions
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let selectedAction="questions";
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleTheme(){
+
+    document.body
+    .classList
+    .toggle("dark");
+
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+function goBack(){
+
+    window.location.href=
+    "upload.html";
+
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+function updateCount(){
+
+    const text=
+    document
+    .getElementById("notes")
+    .value;
+
+
+    const words=
+    text
+    .trim()
+    .split(/\s+/)
+    .filter(function(word){
+
+        return word.length>0;
+
+    });
+
+
+    document
+    .getElementById("words")
+    .textContent=
+    words.length+
+    (words.length===1
+    ?" word"
+    :" words");
+
+
+    document
+    .getElementById("characters")
+    .textContent=
+    text.length+
+    " characters";
+
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+function insertText(before,after){
+
+    const textarea=
+    document
+    .getElementById("notes");
+
+
+    const start=
+    textarea.selectionStart;
+
+    const end=
+    textarea.selectionEnd;
+
+
+    const selected=
+    textarea
+    .value
+    .substring(start,end);
+
+
+    textarea.value=
+    textarea.value.substring(0,start)
+    +
+    before
+    +
+    selected
+    +
+    after
+    +
+    textarea.value.substring(end);
+
+
+    textarea.focus();
+
+
+    updateCount();
+
+}
+
+
+/* =========================
+   SHOW CHOICES
+========================= */
+
+function showChoices(){
+
+    const subject=
+    document
+    .getElementById("subject")
+    .value
+    .trim();
+
+
+    const notes=
+    document
+    .getElementById("notes")
+    .value
+    .trim();
+
+
+    if(subject===""){
+
+        alert(
+        "Please enter the subject first."
+        );
+
+        document
+        .getElementById("subject")
+        .focus();
+
+        return;
+
+    }
+
+
+    if(notes===""){
+
+        alert(
+        "Please write or paste your notes first."
+        );
+
+        document
+        .getElementById("notes")
+        .focus();
+
+        return;
+
+    }
+
+
+    document
+    .getElementById("choices")
+    .style.display="block";
+
+
+    document
+    .getElementById("finalButton")
+    .style.display="block";
+
+
+    document
+    .getElementById("choices")
+    .scrollIntoView({
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================
+   SELECT ACTION
+========================= */
+
+function selectChoice(button,action){
+
+    document
+    .querySelectorAll(".choice")
+    .forEach(function(item){
+
+        item
+        .classList
+        .remove("active");
+
+    });
+
+
+    button
+    .classList
+    .add("active");
+
+
+    selectedAction=action;
+
+
+    const finalButton=
+    document
+    .getElementById("finalButton");
+
+
+    if(action==="questions"){
+
+        finalButton.textContent=
+        "Generate Questions";
+
+    }
+
+    else if(action==="shortnotes"){
+
+        finalButton.textContent=
+        "Create Short Notes";
+
+    }
+
+    else if(action==="summary"){
+
+        finalButton.textContent=
+        "Create Summary";
+
+    }
+
+    else{
+
+        finalButton.textContent=
+        "Find Important Points";
+
+    }
+
+}
+
+
+/* =========================
+   PROCESS
+========================= */
+
+function processNotes(){
+
+    const subject=
+    document
+    .getElementById("subject")
+    .value;
+
+
+    const notes=
+    document
+    .getElementById("notes")
+    .value;
+
+
+    /*
+      TEMPORARY DEMO.
+
+      Later we will send:
+      subject
+      notes
+      selectedAction
+
+      to the Node.js + Gemini backend.
+    */
+
+
+    localStorage.setItem(
+        "ethioSubject",
+        subject
+    );
+
+
+    localStorage.setItem(
+        "ethioNotes",
+        notes
+    );
+
+
+    localStorage.setItem(
+        "ethioAction",
+        selectedAction
+    );
+
+
+    alert(
+
+        "Your notes are ready!\n\n"+
+        "Subject: "+subject+
+        "\nAction: "+selectedAction+
+        "\n\n"+
+        "Next we'll connect this to the AI."
+
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

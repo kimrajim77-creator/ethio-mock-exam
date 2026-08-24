@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Log In | Ethio Mock Exam</title>
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#edf6ff;
+    --text:#29324d;
+    --muted:#6b7691;
+
+    --card:rgba(255,255,255,.9);
+
+    --input:#f5f8ff;
+
+    --primary:#6571e8;
+    --pink:#ff789f;
+
+}
+
+body.dark{
+
+    --bg:#181c32;
+    --text:#ffffff;
+    --muted:#b9bdd3;
+
+    --card:rgba(38,42,70,.94);
+
+    --input:#292e4b;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:Arial,sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    transition:.5s;
+
+    overflow:hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #cce9ff,
+        #eef8ff 55%,
+        #fff0f6
+    );
+
+    transition:.6s;
+
+}
+
+body.dark .background{
+
+    background:
+    linear-gradient(
+        180deg,
+        #242a50,
+        #181c32 60%,
+        #28203e
+    );
+
+}
+
+
+/* =====================================================
+   SUN
+===================================================== */
+
+.sun{
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    right:70px;
+    top:40px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        #fff5ad,
+        #ffd166
+    );
+
+    box-shadow:
+    0 0 60px
+    rgba(255,209,102,.5);
+
+    animation:
+    sunFloat 5s infinite ease-in-out;
+
+}
+
+body.dark .sun{
+
+    background:
+    radial-gradient(
+        circle,
+        #f5f5ff,
+        #aeb9ec
+    );
+
+}
+
+@keyframes sunFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(12px);
+    }
+
+}
+
+
+/* =====================================================
+   CLOUDS
+===================================================== */
+
+.cloud{
+
+    position:absolute;
+
+    width:160px;
+    height:50px;
+
+    background:white;
+
+    border-radius:50px;
+
+    opacity:.75;
+
+}
+
+.cloud:before,
+.cloud:after{
+
+    content:"";
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+.cloud:before{
+
+    width:70px;
+    height:70px;
+
+    left:20px;
+    bottom:12px;
+
+}
+
+.cloud:after{
+
+    width:80px;
+    height:80px;
+
+    right:20px;
+    bottom:10px;
+
+}
+
+.cloud1{
+
+    top:110px;
+
+    left:-180px;
+
+    animation:
+    cloudMove 27s linear infinite;
+
+}
+
+.cloud2{
+
+    top:250px;
+
+    right:-180px;
+
+    transform:scale(.7);
+
+    animation:
+    cloudMove2 30s linear infinite;
+
+}
+
+@keyframes cloudMove{
+
+    to{
+        transform:translateX(120vw);
+    }
+
+}
+
+@keyframes cloudMove2{
+
+    to{
+
+        transform:
+        translateX(-120vw)
+        scale(.7);
+
+    }
+
+}
+
+body.dark .cloud{
+
+    background:#505673;
+
+    opacity:.2;
+
+}
+
+body.dark .cloud:before,
+body.dark .cloud:after{
+
+    background:#505673;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    height:75px;
+
+    padding:
+    0 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    position:relative;
+
+    z-index:20;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:bold;
+
+}
+
+.logoIcon{
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6571e8,
+        #ff789f
+    );
+
+    box-shadow:
+    0 8px 25px
+    rgba(90,100,220,.3);
+
+}
+
+.theme{
+
+    width:44px;
+    height:44px;
+
+    border:0;
+
+    border-radius:14px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+    min-height:
+    calc(100vh - 75px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.loginBox{
+
+    width:100%;
+
+    max-width:900px;
+
+    display:grid;
+
+    grid-template-columns:
+    .9fr 1.1fr;
+
+    gap:50px;
+
+    align-items:center;
+
+}
+
+
+/* =====================================================
+   LEFT SIDE
+===================================================== */
+
+.welcome{
+
+    animation:
+    leftEnter .8s ease;
+
+}
+
+@keyframes leftEnter{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateX(-35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateX(0);
+
+    }
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:
+    8px 14px;
+
+    border-radius:20px;
+
+    background:var(--card);
+
+    color:var(--primary);
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+h1{
+
+    font-size:
+    clamp(38px,5vw,55px);
+
+    line-height:1.05;
+
+    margin-bottom:15px;
+
+}
+
+.highlight{
+
+    color:var(--primary);
+
+}
+
+.description{
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+    max-width:400px;
+
+}
+
+
+/* =====================================================
+   FOX
+===================================================== */
+
+.mascot{
+
+    position:relative;
+
+    width:170px;
+    height:210px;
+
+    margin:
+    30px auto 0;
+
+    animation:
+    foxFloat 3s infinite ease-in-out;
+
+}
+
+@keyframes foxFloat{
+
+    0%,100%{
+
+        transform:
+        translateY(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-10px);
+
+    }
+
+}
+
+
+/* EARS */
+
+.ear{
+
+    position:absolute;
+
+    width:55px;
+    height:65px;
+
+    top:0;
+
+    background:#ff9a58;
+
+    clip-path:
+    polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+}
+
+.leftEar{
+
+    left:15px;
+
+    transform:rotate(-12deg);
+
+}
+
+.rightEar{
+
+    right:15px;
+
+    transform:rotate(12deg);
+
+}
+
+.innerEar{
+
+    position:absolute;
+
+    width:28px;
+    height:38px;
+
+    top:13px;
+
+    background:#ffcfad;
+
+    clip-path:
+    polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+}
+
+.innerLeft{
+
+    left:28px;
+
+}
+
+.innerRight{
+
+    right:28px;
+
+}
+
+
+/* HEAD */
+
+.head{
+
+    position:absolute;
+
+    width:125px;
+    height:105px;
+
+    left:22px;
+    top:38px;
+
+    background:#ff9a58;
+
+    border-radius:
+    48% 48% 45% 45%;
+
+}
+
+.face{
+
+    position:absolute;
+
+    width:85px;
+    height:60px;
+
+    left:20px;
+    bottom:4px;
+
+    background:#fff2e8;
+
+    border-radius:50%;
+
+}
+
+
+/* EYES */
+
+.eye{
+
+    position:absolute;
+
+    width:16px;
+    height:20px;
+
+    top:38px;
+
+    background:#29324d;
+
+    border-radius:50%;
+
+}
+
+.eye:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:5px;
+    height:6px;
+
+    left:3px;
+    top:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+.eye1{
+
+    left:28px;
+
+}
+
+.eye2{
+
+    right:28px;
+
+}
+
+
+/* NOSE */
+
+.nose{
+
+    position:absolute;
+
+    width:12px;
+    height:9px;
+
+    left:56px;
+    bottom:28px;
+
+    background:#493238;
+
+    border-radius:50%;
+
+}
+
+
+/* SMILE */
+
+.smile{
+
+    position:absolute;
+
+    width:25px;
+    height:12px;
+
+    left:50px;
+    bottom:13px;
+
+    border-bottom:
+    3px solid #493238;
+
+    border-radius:50%;
+
+}
+
+
+/* BODY */
+
+.body{
+
+    position:absolute;
+
+    width:95px;
+    height:85px;
+
+    left:37px;
+    top:125px;
+
+    background:#ff9a58;
+
+    border-radius:
+    45px 45px 35px 35px;
+
+}
+
+.belly{
+
+    position:absolute;
+
+    width:55px;
+    height:55px;
+
+    left:20px;
+    top:18px;
+
+    background:#fff2e8;
+
+    border-radius:50%;
+
+}
+
+
+/* ARMS */
+
+.arm{
+
+    position:absolute;
+
+    width:24px;
+    height:55px;
+
+    top:137px;
+
+    background:#ff9a58;
+
+    border-radius:20px;
+
+    z-index:5;
+
+}
+
+.arm1{
+
+    left:20px;
+
+    transform:rotate(25deg);
+
+}
+
+.arm2{
+
+    right:17px;
+
+    transform:rotate(-35deg);
+
+    animation:
+    wave 1.2s infinite ease-in-out;
+
+}
+
+@keyframes wave{
+
+    0%,100%{
+
+        transform:
+        rotate(-35deg);
+
+    }
+
+    50%{
+
+        transform:
+        rotate(-65deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
+
+.formCard{
+
+    background:var(--card);
+
+    padding:35px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 25px 60px
+    rgba(50,60,100,.13);
+
+    backdrop-filter:blur(15px);
+
+    animation:
+    cardEnter .8s ease;
+
+}
+
+@keyframes cardEnter{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(30px)
+        scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+}
+
+.formCard h2{
+
+    font-size:26px;
+
+    margin-bottom:7px;
+
+}
+
+.formCard > p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:24px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.field{
+
+    margin-bottom:18px;
+
+}
+
+label{
+
+    display:block;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:13px;
+
+    background:var(--input);
+
+    color:var(--text);
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+input:focus{
+
+    box-shadow:
+    0 0 0 3px
+    rgba(101,113,232,.18);
+
+    transform:
+    translateY(-2px);
+
+}
+
+
+/* PASSWORD */
+
+.passwordBox{
+
+    position:relative;
+
+}
+
+.passwordBox input{
+
+    padding-right:48px;
+
+}
+
+.showPassword{
+
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:
+    translateY(-50%);
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.loginButton{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6571e8,
+        #7f89ff
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 12px 25px
+    rgba(95,105,230,.25);
+
+    transition:.3s;
+
+}
+
+.loginButton:hover{
+
+    transform:
+    translateY(-4px);
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error{
+
+    display:none;
+
+    color:#e65d7f;
+
+    font-size:12px;
+
+    background:
+    rgba(230,93,127,.08);
+
+    padding:11px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =====================================================
+   SIGNUP LINK
+===================================================== */
+
+.signupText{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+.signupText button{
+
+    border:none;
+
+    background:none;
+
+    color:var(--primary);
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.back{
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:11px;
+
+    border:none;
+
+    background:transparent;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:760px){
+
+    body{
+
+        overflow:auto;
+
+    }
+
+    main{
+
+        padding:
+        30px 18px 50px;
+
+    }
+
+    .loginBox{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+    .welcome{
+
+        text-align:center;
+
+    }
+
+    .description{
+
+        margin:auto;
+
+    }
+
+    .mascot{
+
+        transform:scale(.65);
+
+        margin:
+        -10px auto -50px;
+
+    }
+
+    .formCard{
+
+        padding:25px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="sun"></div>
+
+    <div class="cloud cloud1"></div>
+
+    <div class="cloud cloud2"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <button
+        class="theme"
+        id="themeButton"
+        onclick="toggleTheme()">
+
+        🌙
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+<div class="loginBox">
+
+
+<!-- =====================================================
+     LEFT
+===================================================== -->
+
+<section class="welcome">
+
+    <div class="badge">
+        👋 Welcome back
+    </div>
+
+
+    <h1>
+
+        Ready to
+        <span class="highlight">
+            learn?
+        </span>
+
+    </h1>
+
+
+    <p class="description">
+
+        Log in to continue your learning
+        adventure, practice questions,
+        earn XP and challenge your friends.
+
+    </p>
+
+
+    <!-- FOX -->
+
+    <div class="mascot">
+
+        <div class="ear leftEar"></div>
+
+        <div class="ear rightEar"></div>
+
+        <div class="innerEar innerLeft"></div>
+
+        <div class="innerEar innerRight"></div>
+
+
+        <div class="head">
+
+            <div class="face"></div>
+
+            <div class="eye eye1"></div>
+
+            <div class="eye eye2"></div>
+
+            <div class="nose"></div>
+
+            <div class="smile"></div>
+
+        </div>
+
+
+        <div class="body">
+
+            <div class="belly"></div>
+
+        </div>
+
+
+        <div class="arm arm1"></div>
+
+        <div class="arm arm2"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN FORM
+===================================================== -->
+
+<section class="formCard">
+
+    <h2>
+        Welcome back! 👋
+    </h2>
+
+    <p>
+        Enter your account details to continue.
+    </p>
+
+
+    <div
+        class="error"
+        id="error">
+
+        Incorrect email or password.
+
+    </div>
+
+
+    <form id="loginForm">
+
+
+        <!-- EMAIL -->
+
+        <div class="field">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="example@gmail.com"
+                required>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="field">
+
+            <label>
+                Password
+            </label>
+
+            <div class="passwordBox">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Your password"
+                    required>
+
+                <button
+                    type="button"
+                    class="showPassword"
+                    onclick="togglePassword()">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <button
+            type="submit"
+            class="loginButton">
+
+            Log In →
+
+        </button>
+
+
+    </form>
+
+
+    <!-- SIGNUP -->
+
+    <div class="signupText">
+
+        Don't have an account?
+
+        <button
+            onclick="goSignup()">
+
+            Create one
+
+        </button>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <button
+        class="back"
+        onclick="goBack()">
+
+        ← Back
+
+    </button>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleTheme(){
+
+    document.body
+        .classList
+        .toggle("dark");
+
+
+    const button =
+        document.getElementById(
+            "themeButton"
+        );
+
+
+    if(
+        document.body
+            .classList
+            .contains("dark")
+    ){
+
+        button.innerHTML="☀️";
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+
+    }else{
+
+        button.innerHTML="🌙";
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* LOAD THEME */
+
+if(
+    localStorage.getItem("theme")
+    ===
+    "dark"
+){
+
+    document.body
+        .classList
+        .add("dark");
+
+
+    document.getElementById(
+        "themeButton"
+    ).innerHTML="☀️";
+
+}
+
+
+/* =====================================================
+   SHOW PASSWORD
+===================================================== */
+
+function togglePassword(){
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+
+    const button =
+        document.querySelector(
+            ".showPassword"
+        );
+
+
+    if(
+        password.type === "password"
+    ){
+
+        password.type="text";
+
+        button.innerHTML="🙈";
+
+    }else{
+
+        password.type="password";
+
+        button.innerHTML="👁️";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+
+        const savedEmail =
+            localStorage.getItem(
+                "ethioEmail"
+            );
+
+
+        const savedPassword =
+            localStorage.getItem(
+                "ethioPassword"
+            );
+
+
+        const error =
+            document.getElementById(
+                "error"
+            );
+
+
+        /* =================================================
+           CHECK ACCOUNT
+        ================================================= */
+
+        if(
+            !savedEmail ||
+            !savedPassword
+        ){
+
+            error.textContent =
+                "No account found. Please create an account first.";
+
+            error.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           CHECK LOGIN DETAILS
+        ================================================= */
+
+        if(
+            email.toLowerCase()
+            !==
+            savedEmail.toLowerCase()
+            ||
+            password !== savedPassword
+        ){
+
+            error.textContent =
+                "Incorrect email or password. Please try again.";
+
+            error.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           LOGIN SUCCESS
+        ================================================= */
+
+        error.style.display =
+            "none";
+
+
+        localStorage.setItem(
+            "ethioLoggedIn",
+            "true"
+        );
+
+
+        /* GO DIRECTLY TO HOME */
+
+        window.location.href =
+            "home.html";
+
+    }
+);
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goSignup(){
+
+    window.location.href =
+        "signup.html";
+
+}
+
+
+function goBack(){
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

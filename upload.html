@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Upload | Ethio Mock Exam</title>
+
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+
+    --bg:#f5f5ff;
+
+    --card:#ffffff;
+
+    --text:#20213a;
+
+    --muted:#777b95;
+
+    --primary:#6657e8;
+
+    --secondary:#9a8cff;
+
+    --border:#e7e7f2;
+
+    --soft:#eeeeff;
+
+}
+
+body.dark{
+
+    --bg:#10111c;
+
+    --card:#1b1d2b;
+
+    --text:#ffffff;
+
+    --muted:#a7aac0;
+
+    --border:#303247;
+
+    --soft:#292b43;
+
+}
+
+body{
+
+    font-family:
+    Arial,
+    sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    transition:
+    background .3s,
+    color .3s;
+
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(50px);
+
+    opacity:.12;
+
+}
+
+.circle.one{
+
+    width:280px;
+
+    height:280px;
+
+    background:#7567ff;
+
+    top:-100px;
+
+    left:-80px;
+
+    animation:
+    moveOne 8s
+    infinite alternate;
+
+}
+
+.circle.two{
+
+    width:250px;
+
+    height:250px;
+
+    background:#b18cff;
+
+    bottom:-100px;
+
+    right:-70px;
+
+    animation:
+    moveTwo 9s
+    infinite alternate;
+
+}
+
+@keyframes moveOne{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(100px,80px);
+    }
+
+}
+
+@keyframes moveTwo{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-80px,-70px);
+    }
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    height:70px;
+
+    padding:
+    0 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:var(--card);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:bold;
+
+    font-size:17px;
+
+}
+
+.logo-box{
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    font-size:21px;
+
+    box-shadow:
+    0 7px 20px
+    rgba(102,87,232,.25);
+
+}
+
+.theme{
+
+    width:42px;
+
+    height:42px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:var(--soft);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.2s;
+
+}
+
+.theme:hover{
+
+    transform:
+    rotate(15deg)
+    scale(1.05);
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:
+    25px 18px 60px;
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back{
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+
+    transition:.2s;
+
+}
+
+.back:hover{
+
+    color:var(--primary);
+
+    transform:
+    translateX(-4px);
+
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.title{
+
+    text-align:center;
+
+}
+
+.title-icon{
+
+    width:75px;
+
+    height:75px;
+
+    margin:
+    0 auto 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:24px;
+
+    background:var(--soft);
+
+    color:var(--primary);
+
+    font-size:34px;
+
+    animation:
+    floating 3s
+    infinite
+    ease-in-out;
+
+}
+
+@keyframes floating{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+
+}
+
+.title h1{
+
+    font-size:30px;
+
+    margin-bottom:9px;
+
+}
+
+.title p{
+
+    max-width:600px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.main-card{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    background:var(--card);
+
+    border:
+    1px solid var(--border);
+
+    border-radius:28px;
+
+    box-shadow:
+    0 18px 50px
+    rgba(40,40,90,.08);
+
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+
+    margin-bottom:30px;
+
+}
+
+.section-title{
+
+    margin-bottom:14px;
+
+}
+
+.section-title h3{
+
+    font-size:17px;
+
+}
+
+.section-title p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================
+   MATERIAL CARDS
+========================= */
+
+.material-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:14px;
+
+}
+
+.material{
+
+    position:relative;
+
+    padding:22px 15px;
+
+    min-height:170px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:21px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    text-align:left;
+
+    overflow:hidden;
+
+    transition:
+    transform .3s,
+    border .3s,
+    box-shadow .3s;
+
+}
+
+.material::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    opacity:.05;
+
+    right:-35px;
+
+    bottom:-35px;
+
+    transition:.4s;
+
+}
+
+.material:hover{
+
+    transform:
+    translateY(-7px);
+
+    border-color:
+    var(--primary);
+
+    box-shadow:
+    0 15px 30px
+    rgba(70,60,150,.12);
+
+}
+
+.material:hover::after{
+
+    transform:
+    scale(1.7);
+
+}
+
+.material-icon{
+
+    width:53px;
+
+    height:53px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:var(--soft);
+
+    color:var(--primary);
+
+    font-size:25px;
+
+    margin-bottom:17px;
+
+}
+
+.material h3{
+
+    font-size:16px;
+
+    margin-bottom:7px;
+
+}
+
+.material p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.5;
+
+}
+
+.arrow{
+
+    position:absolute;
+
+    right:16px;
+
+    bottom:15px;
+
+    color:var(--primary);
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+   FILE INPUT
+========================= */
+
+.hidden{
+
+    display:none;
+
+}
+
+
+/* =========================
+   SELECTED FILE
+========================= */
+
+.selected-file{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    background:var(--soft);
+
+    border-radius:16px;
+
+    animation:
+    appear .35s ease;
+
+}
+
+@keyframes appear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(8px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+.selected-file strong{
+
+    display:block;
+
+    word-break:break-word;
+
+}
+
+.selected-file span{
+
+    display:block;
+
+    color:var(--muted);
+
+    margin-top:5px;
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.option-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+.option{
+
+    padding:18px;
+
+    text-align:left;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border:
+    2px solid var(--border);
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.option:hover{
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    var(--primary);
+
+}
+
+.option.active{
+
+    background:var(--soft);
+
+    border-color:
+    var(--primary);
+
+}
+
+.option strong{
+
+    display:block;
+
+    margin-bottom:6px;
+
+}
+
+.option span{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.4;
+
+}
+
+
+/* =========================
+   SUBJECT
+========================= */
+
+.subject select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border:
+    2px solid var(--border);
+
+    border-radius:15px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+.subject select:focus{
+
+    border-color:
+    var(--primary);
+
+}
+
+
+/* =========================
+   ACTION BUTTON
+========================= */
+
+.action-button{
+
+    width:100%;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+    0 10px 25px
+    rgba(102,87,232,.2);
+
+}
+
+.action-button:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 15px 30px
+    rgba(102,87,232,.3);
+
+}
+
+.action-button:active{
+
+    transform:
+    scale(.98);
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:#fff0f0;
+
+    color:#b84040;
+
+    text-align:center;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .material-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .option-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .title h1{
+
+        font-size:25px;
+
+    }
+
+    .main-card{
+
+        padding:18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="background">
+
+<div class="circle one"></div>
+
+<div class="circle two"></div>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="logo">
+
+<div class="logo-box">
+✦
+</div>
+
+Ethio Mock Exam
+
+</div>
+
+
+<button
+class="theme"
+onclick="toggleTheme()">
+
+☾
+
+</button>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+<button
+class="back"
+onclick="goHome()">
+
+← Back to Home
+
+</button>
+
+
+<!-- TITLE -->
+
+<section class="title">
+
+<div class="title-icon">
+✎
+</div>
+
+<h1>
+Let's Start Learning
+</h1>
+
+<p>
+Bring your study material here and turn it
+into questions, summaries or useful notes.
+</p>
+
+</section>
+
+
+<!-- CARD -->
+
+<section class="main-card">
+
+
+<!-- MATERIAL -->
+
+<div class="section">
+
+
+<div class="section-title">
+
+<h3>
+1. Add your study material
+</h3>
+
+<p>
+Choose how you want to give us your notes.
+</p>
+
+</div>
+
+
+<div class="material-grid">
+
+
+<!-- PDF -->
+
+<button
+class="material"
+onclick="choosePDF()">
+
+<div class="material-icon">
+▣
+</div>
+
+<h3>
+Upload PDF
+</h3>
+
+<p>
+Upload a textbook,
+lesson or PDF notes.
+</p>
+
+<span class="arrow">
+→
+</span>
+
+</button>
+
+
+<!-- IMAGE -->
+
+<button
+class="material"
+onclick="chooseImage()">
+
+<div class="material-icon">
+▧
+</div>
+
+<h3>
+Upload Image
+</h3>
+
+<p>
+Use a photo or screenshot
+of your notes.
+</p>
+
+<span class="arrow">
+→
+</span>
+
+</button>
+
+
+<!-- TYPE -->
+
+<button
+class="material"
+onclick="writeNotes()">
+
+<div class="material-icon">
+✎
+</div>
+
+<h3>
+Type Your Notes
+</h3>
+
+<p>
+Write or paste your notes
+directly into Ethio Mock Exam.
+</p>
+
+<span class="arrow">
+→
+</span>
+
+</button>
+
+
+</div>
+
+
+<!-- INPUTS -->
+
+<input
+id="pdfInput"
+class="hidden"
+type="file"
+accept=".pdf,application/pdf"
+onchange="fileSelected(this)">
+
+
+<input
+id="imageInput"
+class="hidden"
+type="file"
+accept="image/*"
+onchange="fileSelected(this)">
+
+
+<div
+id="selectedFile"
+class="selected-file">
+
+<strong
+id="fileName">
+</strong>
+
+<span
+id="fileDetails">
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- WHAT TO CREATE -->
+
+<div class="section">
+
+
+<div class="section-title">
+
+<h3>
+2. What do you want from it?
+</h3>
+
+<p>
+Choose what Ethio Mock Exam should prepare.
+</p>
+
+</div>
+
+
+<div class="option-grid">
+
+
+<button
+class="option active"
+onclick="chooseOption(this,'questions')">
+
+<strong>
+Generate Questions
+</strong>
+
+<span>
+Practice questions based on your material.
+</span>
+
+</button>
+
+
+<button
+class="option"
+onclick="chooseOption(this,'notes')">
+
+<strong>
+Create Short Notes
+</strong>
+
+<span>
+Make your lesson easier to review.
+</span>
+
+</button>
+
+
+<button
+class="option"
+onclick="chooseOption(this,'summary')">
+
+<strong>
+Create Summary
+</strong>
+
+<span>
+Understand the main ideas quickly.
+</span>
+
+</button>
+
+
+<button
+class="option"
+onclick="chooseOption(this,'important')">
+
+<strong>
+Find Important Points
+</strong>
+
+<span>
+Find the key information to remember.
+</span>
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- SUBJECT -->
+
+<div class="section subject">
+
+
+<div class="section-title">
+
+<h3>
+3. Choose your subject
+</h3>
+
+</div>
+
+
+<select id="subject">
+
+<option>
+Biology
+</option>
+
+<option>
+Chemistry
+</option>
+
+<option>
+Physics
+</option>
+
+<option>
+Mathematics
+</option>
+
+<option>
+English
+</option>
+
+</select>
+
+</div>
+
+
+<!-- ACTION -->
+
+<button
+id="actionButton"
+class="action-button"
+onclick="start()">
+
+Generate Questions
+
+</button>
+
+
+<div
+id="message"
+class="message">
+
+Please choose or type your study material first.
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let selectedAction="questions";
+
+let selectedFile=null;
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleTheme(){
+
+    document.body
+    .classList
+    .toggle("dark");
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome(){
+
+    window.location.href="../index.html";
+
+}
+
+
+/* =========================
+   PDF
+========================= */
+
+function choosePDF(){
+
+    document
+    .getElementById("pdfInput")
+    .click();
+
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+function chooseImage(){
+
+    document
+    .getElementById("imageInput")
+    .click();
+
+}
+
+
+/* =========================
+   WRITE NOTES
+========================= */
+
+function writeNotes(){
+
+    window.location.href="write.html";
+
+}
+
+
+/* =========================
+   FILE SELECTED
+========================= */
+
+function fileSelected(input){
+
+    if(!input.files.length){
+
+        return;
+
+    }
+
+
+    selectedFile=
+    input.files[0];
+
+
+    document
+    .getElementById("fileName")
+    .textContent=
+    selectedFile.name;
+
+
+    let size=
+    (selectedFile.size/1024/1024)
+    .toFixed(2);
+
+
+    document
+    .getElementById("fileDetails")
+    .textContent=
+    size+
+    " MB • Ready to use";
+
+
+    document
+    .getElementById("selectedFile")
+    .style.display="block";
+
+
+    document
+    .getElementById("message")
+    .style.display="none";
+
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+function chooseOption(button,type){
+
+    document
+    .querySelectorAll(".option")
+    .forEach(function(item){
+
+        item.classList
+        .remove("active");
+
+    });
+
+
+    button
+    .classList
+    .add("active");
+
+
+    selectedAction=type;
+
+
+    updateButton();
+
+}
+
+
+/* =========================
+   BUTTON TEXT
+========================= */
+
+function updateButton(){
+
+    let button=
+    document
+    .getElementById("actionButton");
+
+
+    if(selectedAction==="questions"){
+
+        button.textContent=
+        "Generate Questions";
+
+    }
+
+    else if(selectedAction==="notes"){
+
+        button.textContent=
+        "Create Short Notes";
+
+    }
+
+    else if(selectedAction==="summary"){
+
+        button.textContent=
+        "Create Summary";
+
+    }
+
+    else{
+
+        button.textContent=
+        "Find Important Points";
+
+    }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+function start(){
+
+    if(!selectedFile){
+
+        document
+        .getElementById("message")
+        .style.display="block";
+
+        return;
+
+    }
+
+
+    let subject=
+    document
+    .getElementById("subject")
+    .value;
+
+
+    /*
+       TEMPORARY DEMO
+
+       Later this button will send
+       the file to our Node.js backend.
+    */
+
+
+    alert(
+
+        "Your "+
+        subject+
+        " material is ready!\n\n"+
+        "Selected: "+
+        selectedAction+
+        "\n\n"+
+        "The AI connection will be added next."
+
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

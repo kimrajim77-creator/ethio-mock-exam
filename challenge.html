@@ -1,0 +1,2645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Challenge Room | Ethio Mock Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .25;
+    animation: moveBlob 9s infinite alternate ease-in-out;
+}
+
+.blob1 {
+    width: 330px;
+    height: 330px;
+    background: #756cff;
+    top: -130px;
+    right: -100px;
+}
+
+.blob2 {
+    width: 300px;
+    height: 300px;
+    background: #ff72a8;
+    bottom: -140px;
+    left: -100px;
+}
+
+.blob3 {
+    width: 210px;
+    height: 210px;
+    background: #4ddcff;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes moveBlob {
+
+    from {
+        transform: translate(0,0) scale(1);
+    }
+
+    to {
+        transform: translate(35px,-25px) scale(1.1);
+    }
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    height: 70px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: var(--card);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text);
+
+    font-weight: bold;
+}
+
+.logoIcon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168e8,
+            #ff72a8
+        );
+
+    color: white;
+
+    font-size: 20px;
+}
+
+.challengeInfo {
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+}
+
+.badge {
+
+    padding: 8px 11px;
+
+    border-radius: 10px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    width: min(1050px,94%);
+
+    margin: auto;
+
+    padding: 25px 0 60px;
+}
+
+
+/* =====================================================
+   PLAYERS BAR
+===================================================== */
+
+.playersBar {
+
+    display: grid;
+
+    grid-template-columns: 1fr 100px 1fr;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.miniPlayer {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-shadow: var(--shadow);
+}
+
+.miniAnimal {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 14px;
+
+    background: var(--accentSoft);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+.miniName {
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.score {
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+.vs {
+
+    text-align: center;
+
+    color: var(--accent);
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+.timerBox {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 12px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 18px;
+}
+
+.timerLabel {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+}
+
+.timer {
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+.timer.warning {
+
+    color: #ff5c7c;
+
+    animation: timerPulse .7s infinite alternate;
+}
+
+@keyframes timerPulse {
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progressArea {
+
+    margin-bottom: 20px;
+}
+
+.progressText {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-bottom: 7px;
+}
+
+.progress {
+
+    height: 8px;
+
+    border-radius: 20px;
+
+    background: var(--border);
+
+    overflow: hidden;
+}
+
+.progressFill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    transition: width .35s ease;
+}
+
+
+/* =====================================================
+   QUESTION CARD
+===================================================== */
+
+.questionCard {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 28px;
+
+    box-shadow: var(--shadow);
+
+    animation: appear .5s ease;
+}
+
+.questionNumber {
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.question {
+
+    color: var(--text);
+
+    font-size: 21px;
+
+    line-height: 1.45;
+
+    margin: 0 0 23px;
+}
+
+
+/* =====================================================
+   ANSWERS
+===================================================== */
+
+.answers {
+
+    display: grid;
+
+    gap: 11px;
+}
+
+.answer {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: .2s;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.answer:hover {
+
+    transform: translateX(4px);
+
+    border-color: var(--accent);
+}
+
+.answerLetter {
+
+    width: 29px;
+
+    height: 29px;
+
+    border-radius: 9px;
+
+    background: var(--accentSoft);
+
+    color: var(--accent);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.answer.correct {
+
+    border-color: #35c879;
+
+    background: rgba(53,200,121,.12);
+}
+
+.answer.correct .answerLetter {
+
+    background: #35c879;
+
+    color: white;
+}
+
+.answer.wrong {
+
+    border-color: #ff5c7c;
+
+    background: rgba(255,92,124,.12);
+}
+
+.answer.wrong .answerLetter {
+
+    background: #ff5c7c;
+
+    color: white;
+}
+
+.answer.disabled {
+
+    cursor: default;
+
+    transform: none;
+}
+
+
+/* =====================================================
+   EXPLANATION
+===================================================== */
+
+.explanation {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 17px;
+
+    border-radius: 16px;
+
+    background: var(--accentSoft);
+
+    border: 1px solid var(--border);
+
+    animation: appear .35s ease;
+}
+
+.explanation.show {
+
+    display: block;
+}
+
+.explanationTitle {
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.explanationText {
+
+    color: var(--text);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
+.nextButton {
+
+    display: none;
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            #ff72a8
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.nextButton.show {
+
+    display: block;
+}
+
+.nextButton:hover {
+
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   CHAT / CONTROLS
+===================================================== */
+
+.bottomControls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.controlButton {
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 12px;
+
+    padding: 10px 13px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    transition: .2s;
+}
+
+.controlButton:hover {
+
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+.chatPanel {
+
+    display: none;
+
+    margin-top: 10px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+.chatPanel.open {
+
+    display: block;
+
+    animation: appear .25s ease;
+}
+
+.chatMessages {
+
+    height: 100px;
+
+    padding: 10px;
+
+    overflow-y: auto;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.chatInputArea {
+
+    display: flex;
+
+    gap: 5px;
+
+    padding: 7px;
+
+    border-top: 1px solid var(--border);
+}
+
+.chatInput {
+
+    flex: 1;
+
+    min-width: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    padding: 8px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    outline: none;
+}
+
+.sendButton {
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: var(--accent);
+
+    color: white;
+
+    padding: 0 12px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   RESULT SCREEN
+===================================================== */
+
+.resultScreen {
+
+    display: none;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 28px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    animation: appear .6s ease;
+}
+
+.resultScreen.show {
+
+    display: block;
+}
+
+.resultAnimal {
+
+    font-size: 75px;
+
+    animation: resultFloat 2s infinite ease-in-out;
+}
+
+@keyframes resultFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.resultTitle {
+
+    color: var(--text);
+
+    font-size: 27px;
+
+    margin: 10px 0;
+}
+
+.resultMessage {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.resultStats {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 10px;
+
+    margin: 25px 0;
+}
+
+.resultStat {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: var(--accentSoft);
+}
+
+.resultStat strong {
+
+    display: block;
+
+    color: var(--accent);
+
+    font-size: 20px;
+}
+
+.resultStat span {
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+.homeButton {
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 14px 25px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.animations-off *,
+body.animations-off *::before,
+body.animations-off *::after {
+
+    animation: none !important;
+
+    transition: none !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px) {
+
+    header {
+        padding: 0 14px;
+    }
+
+    .challengeInfo {
+        display: none;
+    }
+
+    main {
+        width: 94%;
+    }
+
+    .playersBar {
+        grid-template-columns: 1fr 45px 1fr;
+        gap: 7px;
+    }
+
+    .miniPlayer {
+        padding: 8px;
+    }
+
+    .miniAnimal {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .questionCard {
+        padding: 20px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    .resultStats {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     THEME
+===================================================== -->
+
+<script src="theme.js"></script>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logoIcon">
+            ✦
+        </div>
+
+        Ethio Mock Exam
+
+    </div>
+
+
+    <div class="challengeInfo">
+
+        <div
+            class="badge"
+            id="gradeBadge">
+
+            Grade 10
+
+        </div>
+
+        <div
+            class="badge"
+            id="subjectBadge">
+
+            Biology
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     GAME AREA
+===================================================== -->
+
+<div id="gameArea">
+
+
+    <!-- PLAYERS -->
+
+    <div class="playersBar">
+
+
+        <div class="miniPlayer">
+
+            <div
+                class="miniAnimal"
+                id="myAnimal">
+
+                🐼
+
+            </div>
+
+            <div>
+
+                <div
+                    class="miniName"
+                    id="myName">
+
+                    Student
+
+                </div>
+
+                <div class="score">
+
+                    ⭐
+                    <span id="myScore">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="vs">
+            VS
+        </div>
+
+
+        <div class="miniPlayer">
+
+            <div
+                class="miniAnimal"
+                id="friendAnimal">
+
+                🦊
+
+            </div>
+
+            <div>
+
+                <div
+                    class="miniName"
+                    id="friendName">
+
+                    Friend
+
+                </div>
+
+                <div class="score">
+
+                    ⭐
+                    <span id="friendScore">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- TIMER -->
+
+    <div class="timerBox">
+
+        <div class="timerLabel">
+            TIME LEFT
+        </div>
+
+        <div
+            class="timer"
+            id="timer">
+
+            30
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progressArea">
+
+        <div class="progressText">
+
+            <span id="questionCounter">
+                Question 1 of 10
+            </span>
+
+            <span id="percent">
+                0%
+            </span>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                class="progressFill"
+                id="progressFill">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <section
+        class="questionCard"
+        id="questionCard">
+
+
+        <div
+            class="questionNumber"
+            id="questionNumber">
+
+            QUESTION 1
+
+        </div>
+
+
+        <h1
+            class="question"
+            id="question">
+
+            Loading question...
+
+        </h1>
+
+
+        <div
+            class="answers"
+            id="answers">
+
+        </div>
+
+
+        <!-- EXPLANATION -->
+
+        <div
+            class="explanation"
+            id="explanation">
+
+            <div class="explanationTitle">
+
+                💡 Why?
+
+            </div>
+
+            <div
+                class="explanationText"
+                id="explanationText">
+
+            </div>
+
+        </div>
+
+
+        <!-- NEXT -->
+
+        <button
+            type="button"
+            class="nextButton"
+            id="nextButton"
+            onclick="nextQuestion()">
+
+            Next Question →
+
+        </button>
+
+
+    </section>
+
+
+    <!-- CONTROLS -->
+
+    <div class="bottomControls">
+
+        <button
+            class="controlButton"
+            onclick="toggleChat()">
+
+            💬 Chat
+
+        </button>
+
+
+        <button
+            class="controlButton"
+            onclick="toggleVoice()"
+            id="voiceButton">
+
+            🎙️ Voice
+
+        </button>
+
+
+        <button
+            class="controlButton"
+            onclick="toggleVideo()"
+            id="videoButton">
+
+            📹 Video
+
+        </button>
+
+
+        <button
+            class="controlButton"
+            onclick="leaveGame()">
+
+            🚪 Leave
+
+        </button>
+
+    </div>
+
+
+    <!-- CHAT -->
+
+    <div
+        class="chatPanel"
+        id="chatPanel">
+
+        <div
+            class="chatMessages"
+            id="chatMessages">
+
+            👋 Good luck!
+
+        </div>
+
+
+        <div class="chatInputArea">
+
+            <input
+                id="chatInput"
+                class="chatInput"
+                placeholder="Write a message..."
+            >
+
+            <button
+                class="sendButton"
+                onclick="sendMessage()">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section
+    class="resultScreen"
+    id="resultScreen">
+
+
+    <div
+        class="resultAnimal"
+        id="resultAnimal">
+
+        🐼
+
+    </div>
+
+
+    <h1
+        class="resultTitle"
+        id="resultTitle">
+
+        Challenge Complete!
+
+    </h1>
+
+
+    <p
+        class="resultMessage"
+        id="resultMessage">
+
+        Great job! Keep learning and improving.
+
+    </p>
+
+
+    <div class="resultStats">
+
+
+        <div class="resultStat">
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+            <span>
+                Your Score
+            </span>
+
+        </div>
+
+
+        <div class="resultStat">
+
+            <strong id="correctCount">
+                0
+            </strong>
+
+            <span>
+                Correct
+            </span>
+
+        </div>
+
+
+        <div class="resultStat">
+
+            <strong id="xpEarned">
+                +0
+            </strong>
+
+            <span>
+                XP Earned
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        class="homeButton"
+        onclick="goHome()">
+
+        🏠 Back Home
+
+    </button>
+
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   SETTINGS FROM WAITING ROOM
+===================================================== */
+
+const grade =
+    localStorage.getItem(
+        "challengeGrade"
+    )
+    ||
+    "10";
+
+
+const subject =
+    localStorage.getItem(
+        "challengeSubject"
+    )
+    ||
+    "Biology";
+
+
+const totalQuestions =
+    Number(
+        localStorage.getItem(
+            "challengeQuestions"
+        )
+        ||
+        10
+    );
+
+
+const myAnimal =
+    localStorage.getItem(
+        "challengeAnimal"
+    )
+    ||
+    localStorage.getItem(
+        "ethioAnimal"
+    )
+    ||
+    "🐼";
+
+
+const friendAnimal =
+    localStorage.getItem(
+        "demoFriendAnimal"
+    )
+    ||
+    "🦊";
+
+
+const userName =
+    localStorage.getItem(
+        "ethioUserName"
+    )
+    ||
+    "Student";
+
+
+const friendName =
+    localStorage.getItem(
+        "demoFriendName"
+    )
+    ||
+    "Friend";
+
+
+/* =====================================================
+   DISPLAY SETTINGS
+===================================================== */
+
+document.getElementById(
+    "gradeBadge"
+).textContent =
+    "Grade " + grade;
+
+
+document.getElementById(
+    "subjectBadge"
+).textContent =
+    subject;
+
+
+document.getElementById(
+    "myAnimal"
+).textContent =
+    myAnimal;
+
+
+document.getElementById(
+    "friendAnimal"
+).textContent =
+    friendAnimal;
+
+
+document.getElementById(
+    "myName"
+).textContent =
+    userName;
+
+
+document.getElementById(
+    "friendName"
+).textContent =
+    friendName;
+
+
+/* =====================================================
+   QUESTION BANK
+===================================================== */
+
+const questionBank = {
+
+    Mathematics: [
+
+        {
+            q: "What is the value of 5 × 6?",
+            a: [
+                "11",
+                "30",
+                "25",
+                "56"
+            ],
+            correct: 1,
+            explanation:
+                "5 × 6 means adding 5 six times, which gives 30."
+        },
+
+        {
+            q: "What is 12²?",
+            a: [
+                "24",
+                "124",
+                "144",
+                "132"
+            ],
+            correct: 2,
+            explanation:
+                "12² means 12 × 12, which equals 144."
+        },
+
+        {
+            q: "What is the solution of x + 7 = 12?",
+            a: [
+                "3",
+                "5",
+                "7",
+                "19"
+            ],
+            correct: 1,
+            explanation:
+                "Subtract 7 from both sides: x = 12 − 7 = 5."
+        }
+
+    ],
+
+
+    Biology: [
+
+        {
+            q: "Which organelle is known as the powerhouse of the cell?",
+            a: [
+                "Nucleus",
+                "Ribosome",
+                "Mitochondrion",
+                "Cell wall"
+            ],
+            correct: 2,
+            explanation:
+                "Mitochondria produce much of the usable energy needed by cells."
+        },
+
+        {
+            q: "What process do green plants use to make food?",
+            a: [
+                "Respiration",
+                "Photosynthesis",
+                "Digestion",
+                "Fermentation"
+            ],
+            correct: 1,
+            explanation:
+                "Photosynthesis allows green plants to make glucose using light energy, carbon dioxide and water."
+        },
+
+        {
+            q: "Which gas do plants take in during photosynthesis?",
+            a: [
+                "Oxygen",
+                "Nitrogen",
+                "Carbon dioxide",
+                "Hydrogen"
+            ],
+            correct: 2,
+            explanation:
+                "Plants absorb carbon dioxide from the air and use it during photosynthesis."
+        }
+
+    ],
+
+
+    Physics: [
+
+        {
+            q: "What is the SI unit of force?",
+            a: [
+                "Joule",
+                "Newton",
+                "Watt",
+                "Pascal"
+            ],
+            correct: 1,
+            explanation:
+                "Force is measured in newtons (N)."
+        },
+
+        {
+            q: "Which quantity is measured in metres per second?",
+            a: [
+                "Mass",
+                "Speed",
+                "Force",
+                "Energy"
+            ],
+            correct: 1,
+            explanation:
+                "Speed is commonly measured in metres per second (m/s)."
+        },
+
+        {
+            q: "What happens to an object when the net force acting on it is zero?",
+            a: [
+                "It must accelerate",
+                "Its motion does not change",
+                "It disappears",
+                "Its mass becomes zero"
+            ],
+            correct: 1,
+            explanation:
+                "When the net force is zero, there is no acceleration, so the object's state of motion remains unchanged."
+        }
+
+    ],
+
+
+    Chemistry: [
+
+        {
+            q: "What is the chemical symbol for oxygen?",
+            a: [
+                "Ox",
+                "O",
+                "Og",
+                "C"
+            ],
+            correct: 1,
+            explanation:
+                "The chemical symbol for oxygen is O."
+        },
+
+        {
+            q: "A substance with a pH below 7 is generally what?",
+            a: [
+                "Acidic",
+                "Neutral",
+                "Basic",
+                "Metallic"
+            ],
+            correct: 0,
+            explanation:
+                "Solutions with a pH below 7 are acidic."
+        },
+
+        {
+            q: "What is H₂O commonly called?",
+            a: [
+                "Hydrogen",
+                "Oxygen",
+                "Water",
+                "Salt"
+            ],
+            correct: 2,
+            explanation:
+                "H₂O contains two hydrogen atoms and one oxygen atom and is commonly called water."
+        }
+
+    ],
+
+
+    English: [
+
+        {
+            q: "Which word is a noun?",
+            a: [
+                "Quickly",
+                "Beautiful",
+                "Teacher",
+                "Run"
+            ],
+            correct: 2,
+            explanation:
+                "Teacher is a noun because it names a person."
+        },
+
+        {
+            q: "What is the opposite of 'ancient'?",
+            a: [
+                "Old",
+                "Modern",
+                "Historic",
+                "Past"
+            ],
+            correct: 1,
+            explanation:
+                "Modern means relating to the present or recent times, making it the opposite of ancient."
+        },
+
+        {
+            q: "Which sentence is written in the past tense?",
+            a: [
+                "She walks home.",
+                "She is walking home.",
+                "She walked home.",
+                "She will walk home."
+            ],
+            correct: 2,
+            explanation:
+                "'Walked' is the past-tense form of 'walk'."
+        }
+
+    ],
+
+
+    Geography: [
+
+        {
+            q: "Which imaginary line divides Earth into the Northern and Southern Hemispheres?",
+            a: [
+                "Prime Meridian",
+                "Equator",
+                "Tropic of Cancer",
+                "Arctic Circle"
+            ],
+            correct: 1,
+            explanation:
+                "The Equator is at 0° latitude and divides Earth into the Northern and Southern Hemispheres."
+        },
+
+        {
+            q: "Which layer surrounds the Earth's core?",
+            a: [
+                "Crust",
+                "Mantle",
+                "Atmosphere",
+                "Ocean"
+            ],
+            correct: 1,
+            explanation:
+                "The mantle lies between Earth's crust and its core."
+        }
+
+    ],
+
+
+    History: [
+
+        {
+            q: "History mainly studies what?",
+            a: [
+                "Future events",
+                "Past events",
+                "Only mathematics",
+                "Weather"
+            ],
+            correct: 1,
+            explanation:
+                "History is the study of past events, people and societies."
+        }
+
+    ],
+
+
+    Civics: [
+
+        {
+            q: "What is a constitution?",
+            a: [
+                "A type of food",
+                "A set of fundamental rules and principles for governing",
+                "A weather report",
+                "A mathematical equation"
+            ],
+            correct: 1,
+            explanation:
+                "A constitution establishes fundamental rules, principles and institutions of government."
+        }
+
+    ],
+
+
+    Economics: [
+
+        {
+            q: "What does economics study?",
+            a: [
+                "How resources are produced, distributed and used",
+                "Only animals",
+                "Only planets",
+                "Only languages"
+            ],
+            correct: 0,
+            explanation:
+                "Economics studies how people and societies use limited resources to satisfy needs and wants."
+        }
+
+    ]
+
+};
+
+
+/* =====================================================
+   GET QUESTIONS
+===================================================== */
+
+let questions =
+    questionBank[subject]
+    ||
+    questionBank.Biology;
+
+
+/*
+   Repeat the available questions when
+   the requested number is larger than
+   the small demo bank.
+
+   The backend will later supply
+   real grade-specific questions.
+*/
+
+let gameQuestions = [];
+
+for (
+    let i = 0;
+    i < totalQuestions;
+    i++
+) {
+
+    gameQuestions.push(
+        questions[
+            i % questions.length
+        ]
+    );
+
+}
+
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let currentQuestion =
+    0;
+
+
+let myScore =
+    0;
+
+
+let friendScore =
+    0;
+
+
+let correctAnswers =
+    0;
+
+
+let timeLeft =
+    30;
+
+
+let timerInterval =
+    null;
+
+
+let answered =
+    false;
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion() {
+
+    answered =
+        false;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timeLeft =
+        30;
+
+
+    document.getElementById(
+        "timer"
+    ).textContent =
+        timeLeft;
+
+
+    document.getElementById(
+        "timer"
+    ).classList.remove(
+        "warning"
+    );
+
+
+    const q =
+        gameQuestions[
+            currentQuestion
+        ];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        "QUESTION " +
+        (currentQuestion + 1);
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        q.q;
+
+
+    document.getElementById(
+        "questionCounter"
+    ).textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        totalQuestions;
+
+
+    const percent =
+        Math.round(
+            (
+                currentQuestion /
+                totalQuestions
+            ) * 100
+        );
+
+
+    document.getElementById(
+        "percent"
+    ).textContent =
+        percent + "%";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    const answers =
+        document.getElementById(
+            "answers"
+        );
+
+
+    answers.innerHTML =
+        "";
+
+
+    q.a.forEach(
+        function(answer,index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "answer";
+
+
+            button.innerHTML =
+
+                '<span class="answerLetter">' +
+                String.fromCharCode(
+                    65 + index
+                ) +
+                '</span>' +
+
+                '<span>' +
+                answer +
+                '</span>';
+
+
+            button.onclick =
+                function() {
+
+                    chooseAnswer(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "explanation"
+    ).classList.remove(
+        "show"
+    );
+
+
+    document.getElementById(
+        "nextButton"
+    ).classList.remove(
+        "show"
+    );
+
+
+    startTimer();
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer() {
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                timeLeft--;
+
+
+                document.getElementById(
+                    "timer"
+                ).textContent =
+                    timeLeft;
+
+
+                if (
+                    timeLeft <= 10
+                ) {
+
+                    document.getElementById(
+                        "timer"
+                    ).classList.add(
+                        "warning"
+                    );
+
+                }
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    timeOut();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+/* =====================================================
+   TIME OUT
+===================================================== */
+
+function timeOut() {
+
+    if (answered) {
+        return;
+    }
+
+
+    answered =
+        true;
+
+
+    const q =
+        gameQuestions[
+            currentQuestion
+        ];
+
+
+    const answerButtons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    answerButtons.forEach(
+        function(button,index) {
+
+            button.classList.add(
+                "disabled"
+            );
+
+
+            if (
+                index === q.correct
+            ) {
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "explanationText"
+    ).textContent =
+
+        "Time is up. The correct answer is " +
+        q.a[q.correct] +
+        ". " +
+        q.explanation;
+
+
+    document.getElementById(
+        "explanation"
+    ).classList.add(
+        "show"
+    );
+
+
+    document.getElementById(
+        "nextButton"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+function chooseAnswer(
+    selected,
+    clickedButton
+) {
+
+    if (answered) {
+        return;
+    }
+
+
+    answered =
+        true;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    const q =
+        gameQuestions[
+            currentQuestion
+        ];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    buttons.forEach(
+        function(button,index) {
+
+            button.classList.add(
+                "disabled"
+            );
+
+
+            if (
+                index === q.correct
+            ) {
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+        }
+    );
+
+
+    if (
+        selected === q.correct
+    ) {
+
+        clickedButton.classList.add(
+            "correct"
+        );
+
+
+        myScore += 10;
+
+        correctAnswers++;
+
+
+        document.getElementById(
+            "myScore"
+        ).textContent =
+            myScore;
+
+
+        document.getElementById(
+            "explanationText"
+        ).textContent =
+
+            "🎉 Correct! " +
+            q.explanation;
+
+    } else {
+
+        clickedButton.classList.add(
+            "wrong"
+        );
+
+
+        document.getElementById(
+            "explanationText"
+        ).textContent =
+
+            "Not quite. The correct answer is " +
+            q.a[q.correct] +
+            ". " +
+            q.explanation;
+
+    }
+
+
+    document.getElementById(
+        "explanation"
+    ).classList.add(
+        "show"
+    );
+
+
+    document.getElementById(
+        "nextButton"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        gameQuestions.length
+    ) {
+
+        finishGame();
+
+        return;
+    }
+
+
+    loadQuestion();
+
+}
+
+
+/* =====================================================
+   FINISH GAME
+===================================================== */
+
+function finishGame() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    document.getElementById(
+        "gameArea"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "resultScreen"
+    ).classList.add(
+        "show"
+    );
+
+
+    const xp =
+        correctAnswers * 10;
+
+
+    const oldXP =
+        Number(
+            localStorage.getItem(
+                "ethioXP"
+            )
+            ||
+            0
+        );
+
+
+    localStorage.setItem(
+        "ethioXP",
+        oldXP + xp
+    );
+
+
+    document.getElementById(
+        "resultAnimal"
+    ).textContent =
+        myAnimal;
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        myScore;
+
+
+    document.getElementById(
+        "correctCount"
+    ).textContent =
+        correctAnswers;
+
+
+    document.getElementById(
+        "xpEarned"
+    ).textContent =
+        "+" + xp;
+
+
+    const percentage =
+        Math.round(
+            (
+                correctAnswers /
+                totalQuestions
+            ) * 100
+        );
+
+
+    if (
+        percentage >= 80
+    ) {
+
+        document.getElementById(
+            "resultTitle"
+        ).textContent =
+            "Amazing! 🏆";
+
+        document.getElementById(
+            "resultMessage"
+        ).textContent =
+            "Your animal champion is proud of you! Keep going.";
+
+    } else if (
+        percentage >= 50
+    ) {
+
+        document.getElementById(
+            "resultTitle"
+        ).textContent =
+            "Good Job! ⭐";
+
+        document.getElementById(
+            "resultMessage"
+        ).textContent =
+            "You're improving. Review the explanations and try again.";
+
+    } else {
+
+        document.getElementById(
+            "resultTitle"
+        ).textContent =
+            "Keep Practicing! 💪";
+
+        document.getElementById(
+            "resultMessage"
+        ).textContent =
+            "Every mistake is a chance to learn something new.";
+
+    }
+
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+function toggleChat() {
+
+    document.getElementById(
+        "chatPanel"
+    ).classList.toggle(
+        "open"
+    );
+
+}
+
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+        return;
+    }
+
+
+    const messages =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.style.marginBottom =
+        "7px";
+
+
+    item.textContent =
+        "🧑 You: " +
+        message;
+
+
+    messages.appendChild(
+        item
+    );
+
+
+    input.value =
+        "";
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+document.getElementById(
+    "chatInput"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+let voiceOn =
+    false;
+
+
+function toggleVoice() {
+
+    voiceOn =
+        !voiceOn;
+
+
+    const button =
+        document.getElementById(
+            "voiceButton"
+        );
+
+
+    if (voiceOn) {
+
+        button.textContent =
+            "🔊 Voice ON";
+
+    } else {
+
+        button.textContent =
+            "🎙️ Voice";
+
+    }
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+let videoOn =
+    false;
+
+
+function toggleVideo() {
+
+    videoOn =
+        !videoOn;
+
+
+    const button =
+        document.getElementById(
+            "videoButton"
+        );
+
+
+    if (videoOn) {
+
+        button.textContent =
+            "📹 Video ON";
+
+    } else {
+
+        button.textContent =
+            "📹 Video";
+
+    }
+
+}
+
+
+/* =====================================================
+   LEAVE
+===================================================== */
+
+function leaveGame() {
+
+    const leave =
+        confirm(
+            "Are you sure you want to leave the challenge?"
+        );
+
+
+    if (leave) {
+
+        window.location.href =
+            "friends.html";
+
+    }
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadQuestion();
+
+</script>
+
+
+</body>
+
+</html>
