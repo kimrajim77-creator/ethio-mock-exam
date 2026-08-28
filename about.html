@@ -1,1052 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>About Us | Ethio Mock Exam</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-    --bg:#edf6ff;
-    --text:#29324d;
-    --muted:#6b7691;
-    --card:rgba(255,255,255,.9);
-    --border:rgba(100,110,150,.12);
-    --primary:#6571e8;
-    --pink:#ff789f;
-    --soft:#eef0ff;
-}
-
-body.dark{
-    --bg:#181c32;
-    --text:#ffffff;
-    --muted:#b9bdd3;
-    --card:rgba(38,42,70,.94);
-    --border:rgba(255,255,255,.08);
-    --soft:#292e4b;
-}
-
-body{
-    min-height:100vh;
-    font-family:Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    transition:.4s;
-}
-
-/* BACKGROUND */
-
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        180deg,
-        #cce9ff,
-        #eef8ff 55%,
-        #fff0f6
-    );
-}
-
-body.dark .background{
-    background:
-    linear-gradient(
-        180deg,
-        #242a50,
-        #181c32 60%,
-        #28203e
-    );
-}
-
-.orb{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(60px);
-    opacity:.25;
-}
-
-.orb1{
-    width:300px;
-    height:300px;
-    background:#6571e8;
-    top:-100px;
-    left:-100px;
-}
-
-.orb2{
-    width:280px;
-    height:280px;
-    background:#ff789f;
-    right:-100px;
-    bottom:-100px;
-}
-
-/* HEADER */
-
-header{
-    height:72px;
-    padding:0 25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    background:var(--card);
-    border-bottom:1px solid var(--border);
-
-    backdrop-filter:blur(15px);
-
-    position:sticky;
-    top:0;
-    z-index:20;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:bold;
-}
-
-.logoIcon{
-    width:43px;
-    height:43px;
-
-    border-radius:14px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:white;
-    font-size:21px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6571e8,
-        #ff789f
-    );
-}
-
-.headerButtons{
-    display:flex;
-    gap:10px;
-}
-
-.headerButton{
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-
-    padding:10px 14px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-    font-weight:bold;
-
-    transition:.3s;
-}
-
-.headerButton:hover{
-    transform:translateY(-2px);
-}
-
-/* MAIN */
-
-.container{
-    width:min(1000px,92%);
-    margin:auto;
-    padding:40px 0 70px;
-}
-
-/* HERO */
-
-.hero{
-    background:
-    linear-gradient(
-        135deg,
-        var(--primary),
-        #8d78f5,
-        var(--pink)
-    );
-
-    color:white;
-
-    border-radius:30px;
-
-    padding:40px;
-
-    position:relative;
-    overflow:hidden;
-
-    text-align:center;
-
-    animation:appear .7s ease;
-}
-
-.heroCircle{
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.1);
-
-    right:-50px;
-    top:-70px;
-}
-
-.heroCircle2{
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.1);
-
-    left:-40px;
-    bottom:-50px;
-}
-
-.heroContent{
-    position:relative;
-    z-index:2;
-}
-
-.heroIcon{
-    font-size:55px;
-    margin-bottom:10px;
-
-    animation:float 3s infinite ease-in-out;
-}
-
-.hero h1{
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    max-width:650px;
-    margin:auto;
-
-    line-height:1.7;
-
-    font-size:14px;
-
-    opacity:.9;
-}
-
-/* SECTION */
-
-.sectionTitle{
-    text-align:center;
-    margin:35px 0 20px;
-}
-
-.sectionTitle h2{
-    font-size:25px;
-}
-
-.sectionTitle p{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:7px;
-}
-
-/* MISSION */
-
-.mission{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.missionCard{
-    background:var(--card);
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:25px 18px;
-
-    text-align:center;
-
-    box-shadow:
-    0 15px 35px rgba(50,60,100,.08);
-
-    transition:.3s;
-
-    animation:cardAppear .7s both;
-}
-
-.missionCard:hover{
-    transform:translateY(-7px);
-}
-
-.missionIcon{
-    width:60px;
-    height:60px;
-
-    margin:0 auto 15px;
-
-    border-radius:18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:28px;
-
-    background:var(--soft);
-}
-
-.missionCard h3{
-    margin-bottom:8px;
-    font-size:16px;
-}
-
-.missionCard p{
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.6;
-}
-
-/* FEATURES */
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.featureCard{
-    background:var(--card);
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:22px;
-
-    display:flex;
-    gap:15px;
-
-    align-items:flex-start;
-
-    box-shadow:
-    0 15px 35px rgba(50,60,100,.07);
-
-    transition:.3s;
-}
-
-.featureCard:hover{
-    transform:translateY(-4px);
-}
-
-.featureIcon{
-    width:48px;
-    height:48px;
-
-    min-width:48px;
-
-    border-radius:15px;
-
-    background:var(--soft);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:22px;
-}
-
-.featureCard h3{
-    font-size:15px;
-    margin-bottom:6px;
-}
-
-.featureCard p{
-    color:var(--muted);
-    font-size:11px;
-    line-height:1.6;
-}
-
-/* STORY */
-
-.story{
-    margin-top:15px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:25px;
-
-    padding:28px;
-
-    box-shadow:
-    0 15px 35px rgba(50,60,100,.07);
-
-    text-align:center;
-}
-
-.story p{
-    color:var(--muted);
-    line-height:1.8;
-    font-size:13px;
-}
-
-/* VALUES */
-
-.values{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    margin-top:18px;
-}
-
-.value{
-    padding:11px 16px;
-
-    border-radius:20px;
-
-    background:var(--soft);
-
-    color:var(--primary);
-
-    font-size:12px;
-
-    font-weight:bold;
-}
-
-/* CTA */
-
-.cta{
-    margin-top:30px;
-
-    padding:30px;
-
-    border-radius:25px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    text-align:center;
-}
-
-.cta h2{
-    margin-bottom:8px;
-}
-
-.cta p{
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:18px;
-}
-
-.homeButton{
-    border:0;
-
-    padding:14px 24px;
-
-    border-radius:14px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #6571e8,
-        #7f89ff
-    );
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:
-    0 10px 25px rgba(95,105,230,.25);
-}
-
-.homeButton:hover{
-    transform:translateY(-4px);
-}
-
-/* FOOTER */
-
-footer{
-    text-align:center;
-    color:var(--muted);
-    font-size:11px;
-    padding:25px;
-}
-
-/* ANIMATIONS */
-
-@keyframes appear{
-    from{
-        opacity:0;
-        transform:translateY(20px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Ethio Mock Exam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
     }
-}
-
-@keyframes cardAppear{
-    from{
-        opacity:0;
-        transform:translateY(20px);
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
     }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
     }
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0);
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
     }
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
 
-    50%{
-        transform:translateY(-8px);
-    }
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-    header{
-        padding:0 12px;
-    }
-
-    .logo{
-        font-size:13px;
-    }
-
-    .headerButton{
-        padding:9px 10px;
-        font-size:11px;
-    }
-
-    .container{
-        width:94%;
-        padding-top:25px;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-    .hero{
-        padding:30px 20px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    .hero h1{
-        font-size:30px;
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .back-btn {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover, .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
     }
 
-    .mission{
-        grid-template-columns:1fr;
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
     }
 
-    .features{
-        grid-template-columns:1fr;
+    .hero {
+      background: linear-gradient(135deg, var(--primary), #7b8cff, var(--pink));
+      border-radius: 28px;
+      padding: 40px;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      font-size: 10rem;
+      right: -20px;
+      bottom: -40px;
+      opacity: 0.08;
+      color: white;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      opacity: 0.9;
+      line-height: 1.7;
     }
 
-}
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .mission-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 24px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+    .mission-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+    }
+    .mission-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+    .mission-card h3 {
+      margin-bottom: 8px;
+    }
+    .mission-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
 
-</style>
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 30px 0;
+    }
+    .feature-item {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 20px;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+    .feature-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+    .feature-item .icon {
+      font-size: 1.8rem;
+      min-width: 50px;
+    }
+    .feature-item h4 {
+      margin-bottom: 6px;
+    }
+    .feature-item p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .story {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin: 30px 0;
+    }
+    .story p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .values {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .value-tag {
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: rgba(74, 91, 217, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .cta-section {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 24px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-top: 30px;
+    }
+    .cta-section h2 {
+      margin-bottom: 10px;
+    }
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      border: none;
+      border-radius: 14px;
+      padding: 14px 32px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(74, 91, 217, 0.25);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 30px 0 10px;
+    }
+
+    @media (max-width: 700px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      header { padding: 0 16px; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-</div>
-
-<header>
-
-    <div class="logo">
-
-        <div class="logoIcon">
-            ✦
-        </div>
-
-        Ethio Mock Exam
-
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="back-btn" onclick="window.location.href='home.html'"><i class="fas fa-home"></i></button>
     </div>
+  </header>
 
-    <div class="headerButtons">
-
-        <button
-            class="headerButton"
-            onclick="toggleTheme()"
-            id="themeButton">
-
-            🌙
-
-        </button>
-
-        <button
-            class="headerButton"
-            onclick="goHome()">
-
-            🏠 Home
-
-        </button>
-
-    </div>
-
-</header>
-
-
-<main class="container">
-
-
-    <!-- HERO -->
-
+  <div class="container">
     <section class="hero">
-
-        <div class="heroCircle"></div>
-        <div class="heroCircle2"></div>
-
-        <div class="heroContent">
-
-            <div class="heroIcon">
-                🦊
-            </div>
-
-            <h1>
-                About Ethio Mock Exam
-            </h1>
-
-            <p>
-                A fun and interactive learning space
-                designed to help students learn,
-                practice, challenge themselves,
-                and grow with confidence.
-            </p>
-
-        </div>
-
+      <h1>About Ethio Mock Exam</h1>
+      <p>A fun and interactive learning space designed to help students learn, practice, challenge themselves, and grow with confidence.</p>
     </section>
 
+    <h2 style="text-align:center; margin-bottom:10px;">🎯 What We Believe</h2>
+    <p style="text-align:center; color:var(--muted); margin-bottom:25px;">Learning should be useful, interactive and fun.</p>
 
-    <!-- MISSION -->
-
-    <div class="sectionTitle">
-
-        <h2>
-            🎯 What We Believe
-        </h2>
-
-        <p>
-            Learning should be useful, interactive and fun.
-        </p>
-
+    <div class="mission-grid">
+      <div class="mission-card">
+        <div class="mission-icon">📚</div>
+        <h3>Learn</h3>
+        <p>Discover short notes and learning materials organized around your grade and subjects.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon">🧠</div>
+        <h3>Practice</h3>
+        <p>Turn what you learn into practice questions and test your understanding.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon">🚀</div>
+        <h3>Grow</h3>
+        <p>Build your knowledge, earn XP, maintain streaks and become a stronger learner.</p>
+      </div>
     </div>
 
+    <h2 style="text-align:center; margin:30px 0 10px;">✨ What You Can Do</h2>
+    <p style="text-align:center; color:var(--muted); margin-bottom:25px;">Everything is designed around your learning journey.</p>
 
-    <section class="mission">
-
-        <div class="missionCard">
-
-            <div class="missionIcon">
-                📚
-            </div>
-
-            <h3>
-                Learn
-            </h3>
-
-            <p>
-                Discover short notes and learning
-                materials organized around your
-                grade and subjects.
-            </p>
-
-        </div>
-
-
-        <div class="missionCard">
-
-            <div class="missionIcon">
-                🧠
-            </div>
-
-            <h3>
-                Practice
-            </h3>
-
-            <p>
-                Turn what you learn into practice
-                questions and test your understanding.
-            </p>
-
-        </div>
-
-
-        <div class="missionCard">
-
-            <div class="missionIcon">
-                🚀
-            </div>
-
-            <h3>
-                Grow
-            </h3>
-
-            <p>
-                Build your knowledge, earn XP,
-                maintain streaks and become a
-                stronger learner.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FEATURES -->
-
-    <div class="sectionTitle">
-
-        <h2>
-            ✨ What You Can Do
-        </h2>
-
-        <p>
-            Everything is designed around your learning journey.
-        </p>
-
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="icon">📝</div>
+        <div><h4>Smart Practice</h4><p>Practice questions based on your learning materials and school subjects.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📖</div>
+        <div><h4>Short Notes</h4><p>Find useful study notes and explore topics according to your grade.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🎯</div>
+        <div><h4>Daily Goals</h4><p>Set small learning goals and keep making progress every day.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🔥</div>
+        <div><h4>Streaks & XP</h4><p>Stay motivated by building streaks and earning experience points.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🦊</div>
+        <div><h4>Cute Study Friends</h4><p>Your learning journey can have a fun animal companion.</p></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🤝</div>
+        <div><h4>Study Together</h4><p>Invite friends to challenges and study sessions.</p></div>
+      </div>
     </div>
 
-
-    <section class="features">
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                📝
-            </div>
-
-            <div>
-
-                <h3>
-                    Smart Practice
-                </h3>
-
-                <p>
-                    Practice questions based on
-                    your learning materials and
-                    school subjects.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                📖
-            </div>
-
-            <div>
-
-                <h3>
-                    Short Notes
-                </h3>
-
-                <p>
-                    Find useful study notes and
-                    explore topics according to
-                    your grade.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                🎯
-            </div>
-
-            <div>
-
-                <h3>
-                    Daily Goals
-                </h3>
-
-                <p>
-                    Set small learning goals and
-                    keep making progress every day.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                🔥
-            </div>
-
-            <div>
-
-                <h3>
-                    Streaks & XP
-                </h3>
-
-                <p>
-                    Stay motivated by building
-                    streaks and earning experience
-                    points.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                🦊
-            </div>
-
-            <div>
-
-                <h3>
-                    Cute Study Friends
-                </h3>
-
-                <p>
-                    Your learning journey can have
-                    a fun animal companion to make
-                    the experience more enjoyable.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="featureCard">
-
-            <div class="featureIcon">
-                🤝
-            </div>
-
-            <div>
-
-                <h3>
-                    Study Together
-                </h3>
-
-                <p>
-                    Invite friends to challenges
-                    and study sessions when the
-                    multiplayer features are connected.
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- STORY -->
-
-    <div class="sectionTitle">
-
-        <h2>
-            💡 Why We Created It
-        </h2>
-
+    <div class="story">
+      <h2>💡 Why We Created It</h2>
+      <p>Studying can sometimes feel repetitive. Ethio Mock Exam was designed to make learning more engaging by combining studying with practice, goals, progress tracking and friendly competition.</p>
+      <p style="margin-top:15px;">Instead of simply reading and forgetting, students can learn, practice what they know, see their progress and keep improving step by step.</p>
+      <div class="values">
+        <span class="value-tag">🌟 Confidence</span>
+        <span class="value-tag">🧠 Knowledge</span>
+        <span class="value-tag">🎯 Progress</span>
+        <span class="value-tag">🤝 Friendship</span>
+        <span class="value-tag">🚀 Growth</span>
+      </div>
     </div>
 
+    <div class="cta-section">
+      <h2>Ready to keep learning? 🦊</h2>
+      <p>Go back to your dashboard and continue your study adventure.</p>
+      <button class="cta-btn" onclick="window.location.href='home.html'">🏠 Back to Home</button>
+    </div>
 
-    <section class="story">
+    <footer>© 2026 Ethio Mock Exam • Learn • Practice • Grow</footer>
+  </div>
 
-        <p>
-            Studying can sometimes feel repetitive.
-            Ethio Mock Exam was designed to make
-            learning more engaging by combining
-            studying with practice, goals,
-            progress tracking and friendly
-            competition.
-        </p>
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
 
-        <br>
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
+        }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeIcon();
+      }
 
-        <p>
-            Instead of simply reading and forgetting,
-            students can learn, practice what they
-            know, see their progress and keep
-            improving step by step.
-        </p>
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
 
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
 
-        <div class="values">
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
 
-            <div class="value">
-                🌟 Confidence
-            </div>
-
-            <div class="value">
-                🧠 Knowledge
-            </div>
-
-            <div class="value">
-                🎯 Progress
-            </div>
-
-            <div class="value">
-                🤝 Friendship
-            </div>
-
-            <div class="value">
-                🚀 Growth
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <h2>
-            Ready to keep learning? 🦊
-        </h2>
-
-        <p>
-            Go back to your dashboard and
-            continue your study adventure.
-        </p>
-
-        <button
-            class="homeButton"
-            onclick="goHome()">
-
-            🏠 Back to Home
-
-        </button>
-
-    </section>
-
-
-</main>
-
-
-<footer>
-
-    © 2026 Ethio Mock Exam • Learn • Practice • Grow
-
-</footer>
-
-
-<script>
-
-/* =====================================
-   THEME
-===================================== */
-
-function toggleTheme(){
-
-    document.body.classList.toggle("dark");
-
-    const button =
-        document.getElementById("themeButton");
-
-    if(
-        document.body.classList.contains("dark")
-    ){
-
-        button.textContent="☀️";
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-
-    }else{
-
-        button.textContent="🌙";
-
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
-
-    }
-
-}
-
-
-/* LOAD THEME */
-
-if(
-    localStorage.getItem("theme")
-    === "dark"
-){
-
-    document.body.classList.add("dark");
-
-    document.getElementById(
-        "themeButton"
-    ).textContent="☀️";
-
-}
-
-
-/* =====================================
-   HOME
-===================================== */
-
-function goHome(){
-
-    window.location.href="home.html";
-
-}
-
-</script>
-
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+    })();
+  </script>
 </body>
 </html>
