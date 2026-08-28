@@ -1,1685 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Join Ethio Mock Exam</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-/* =====================================================
-   BASIC
-===================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-}
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(50px);
-    opacity: .25;
-    animation: moveBlob 9s infinite alternate ease-in-out;
-}
-
-.blob1 {
-    width: 330px;
-    height: 330px;
-    background: #756cff;
-    top: -150px;
-    right: -100px;
-}
-
-.blob2 {
-    width: 300px;
-    height: 300px;
-    background: #ff72a8;
-    bottom: -150px;
-    left: -120px;
-}
-
-.blob3 {
-    width: 190px;
-    height: 190px;
-    background: #4ddcff;
-    top: 45%;
-    left: 45%;
-}
-
-@keyframes moveBlob {
-
-    from {
-        transform: translate(0,0) scale(1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join | Ethio Mock Exam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to {
-        transform: translate(35px,-25px) scale(1.12);
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
     }
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-header {
-    height: 70px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 25px;
-
-    background: var(--card);
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: var(--text);
-    font-weight: bold;
-}
-
-.logoIcon {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7168e8,
-            #ff72a8
-        );
-
-    color: white;
-
-    font-size: 20px;
-
-    animation:
-        floatLogo 3s infinite ease-in-out;
-}
-
-@keyframes floatLogo {
-
-    0%,100% {
-        transform: translateY(0);
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
     }
-
-    50% {
-        transform: translateY(-6px);
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
     }
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-main {
-
-    width:
-        min(720px,92%);
-
-    margin:
-        auto;
-
-    padding:
-        40px 0 70px;
-}
-
-
-/* =====================================================
-   JOIN CARD
-===================================================== */
-
-.joinCard {
-
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        30px;
-
-    padding:
-        35px;
-
-    box-shadow:
-        var(--shadow);
-
-    text-align:
-        center;
-
-    animation:
-        appear .7s ease;
-}
-
-@keyframes appear {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(25px)
-            scale(.98);
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
     }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-/* =====================================================
-   MASCOT
-===================================================== */
-
-.mascot {
-
-    width:
-        105px;
-
-    height:
-        105px;
-
-    margin:
-        0 auto 20px;
-
-    border-radius:
-        30px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--accentSoft);
-
-    font-size:
-        55px;
-
-    animation:
-        mascotFloat 3s infinite ease-in-out;
-}
-
-@keyframes mascotFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50% {
-        transform:
-            translateY(-8px)
-            rotate(2deg);
-    }
-}
-
-
-/* =====================================================
-   INVITER
-===================================================== */
-
-.inviter {
-
-    display:
-        inline-flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-
-    padding:
-        10px 15px;
-
-    border-radius:
-        14px;
-
-    background:
-        var(--accentSoft);
-
-    color:
-        var(--accent);
-
-    font-weight:
-        bold;
-
-    font-size:
-        13px;
-
-    margin-bottom:
-        20px;
-}
-
-.inviterAvatar {
-
-    width:
-        32px;
-
-    height:
-        32px;
-
-    border-radius:
-        10px;
-
-    background:
-        var(--accent);
-
-    color:
-        white;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-}
-
-
-/* =====================================================
-   TEXT
-===================================================== */
-
-.joinCard h1 {
-
-    color:
-        var(--text);
-
-    font-size:
-        30px;
-
-    margin:
-        10px 0;
-}
-
-.joinDescription {
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-
-    line-height:
-        1.7;
-
-    max-width:
-        520px;
-
-    margin:
-        0 auto 25px;
-}
-
-
-/* =====================================================
-   MODE
-===================================================== */
-
-.chooseTitle {
-
-    color:
-        var(--text);
-
-    font-size:
-        17px;
-
-    font-weight:
-        bold;
-
-    margin:
-        10px 0 15px;
-}
-
-.modeOptions {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:
-        14px;
-}
-
-.mode {
-
-    border:
-        2px solid var(--border);
-
-    border-radius:
-        22px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--text);
-
-    padding:
-        23px 18px;
-
-    cursor:
-        pointer;
-
-    transition:
-        .25s;
-
-    text-align:
-        left;
-}
-
-.mode:hover {
-
-    transform:
-        translateY(-5px);
-
-    border-color:
-        var(--accent);
-}
-
-.mode.selected {
-
-    border-color:
-        var(--accent);
-
-    background:
-        var(--accentSoft);
-
-    transform:
-        translateY(-3px);
-}
-
-.modeIcon {
-
-    width:
-        53px;
-
-    height:
-        53px;
-
-    border-radius:
-        16px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--accentSoft);
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        14px;
-}
-
-.mode.selected .modeIcon {
-
-    background:
-        var(--accent);
-}
-
-.mode h3 {
-
-    margin:
-        0 0 7px;
-
-    font-size:
-        15px;
-}
-
-.mode p {
-
-    margin:
-        0;
-
-    color:
-        var(--muted);
-
-    font-size:
-        11px;
-
-    line-height:
-        1.6;
-}
-
-
-/* =====================================================
-   COMMUNICATION CONTROLS
-===================================================== */
-
-.communicationTitle {
-
-    margin:
-        27px 0 13px;
-
-    color:
-        var(--text);
-
-    font-size:
-        15px;
-
-    font-weight:
-        bold;
-}
-
-.communication {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:
-        10px;
-}
-
-.communicationButton {
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        17px;
-
-    padding:
-        15px 8px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--text);
-
-    cursor:
-        pointer;
-
-    transition:
-        .25s;
-
-    font-weight:
-        bold;
-
-    font-size:
-        11px;
-}
-
-.communicationButton:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        var(--accent);
-}
-
-.communicationButton.active {
-
-    background:
-        var(--accent);
-
-    color:
-        white;
-
-    border-color:
-        var(--accent);
-}
-
-.communicationIcon {
-
-    display:
-        block;
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        6px;
-}
-
-
-/* =====================================================
-   CHAT PANEL
-===================================================== */
-
-.chatPanel {
-
-    display:
-        none;
-
-    margin-top:
-        13px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        18px;
-
-    background:
-        var(--card);
-
-    overflow:
-        hidden;
-
-    text-align:
-        left;
-}
-
-.chatPanel.open {
-
-    display:
-        block;
-
-    animation:
-        appear .25s ease;
-}
-
-.chatHeader {
-
-    padding:
-        12px 15px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    color:
-        var(--text);
-
-    font-weight:
-        bold;
-
-    font-size:
-        12px;
-}
-
-.chatMessages {
-
-    height:
-        100px;
-
-    padding:
-        12px;
-
-    overflow-y:
-        auto;
-
-    color:
-        var(--muted);
-
-    font-size:
-        11px;
-}
-
-.chatInputArea {
-
-    display:
-        flex;
-
-    gap:
-        7px;
-
-    padding:
-        10px;
-
-    border-top:
-        1px solid var(--border);
-}
-
-.chatInput {
-
-    flex:
-        1;
-
-    min-width:
-        0;
-
-    padding:
-        10px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        10px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--text);
-
-    outline:
-        none;
-}
-
-.sendChat {
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    padding:
-        0 13px;
-
-    background:
-        var(--accent);
-
-    color:
-        white;
-
-    cursor:
-        pointer;
-}
-
-
-/* =====================================================
-   INFO TAGS
-===================================================== */
-
-.features {
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    gap:
-        8px;
-
-    flex-wrap:
-        wrap;
-
-    margin:
-        20px 0;
-}
-
-.feature {
-
-    padding:
-        9px 12px;
-
-    border-radius:
-        12px;
-
-    background:
-        var(--accentSoft);
-
-    color:
-        var(--accent);
-
-    font-size:
-        10px;
-
-    font-weight:
-        bold;
-}
-
-
-/* =====================================================
-   CONTINUE
-===================================================== */
-
-.continueButton {
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    border-radius:
-        15px;
-
-    padding:
-        15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            #8d84ff
-        );
-
-    color:
-        white;
-
-    font-size:
-        14px;
-
-    font-weight:
-        bold;
-
-    cursor:
-        pointer;
-
-    transition:
-        .25s;
-}
-
-.continueButton:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 10px 25px
-        rgba(113,104,232,.25);
-}
-
-
-/* =====================================================
-   ROOM CODE
-===================================================== */
-
-.roomInfo {
-
-    margin-top:
-        17px;
-
-    padding:
-        13px;
-
-    border-radius:
-        14px;
-
-    background:
-        var(--accentSoft);
-
-    color:
-        var(--muted);
-
-    font-size:
-        10px;
-}
-
-.roomCode {
-
-    color:
-        var(--accent);
-
-    font-weight:
-        bold;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:600px) {
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
 
     header {
-        padding:
-            0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-    main {
-        width:
-            94%;
-
-        padding-top:
-            25px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    .joinCard {
-        padding:
-            25px 17px;
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
     }
 
-    .joinCard h1 {
-        font-size:
-            26px;
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
     }
 
-    .modeOptions {
-        grid-template-columns:
-            1fr;
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
 
-    .communication {
-        grid-template-columns:
-            repeat(3,1fr);
+    .mascot {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      display: block;
     }
 
-    .communicationButton {
-        padding:
-            12px 5px;
+    .inviter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 14px;
+      background: var(--accentSoft);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
     }
-}
+    .inviter .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
 
+    .card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .card .description {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 25px;
+    }
 
-/* =====================================================
-   ANIMATION SETTING
-===================================================== */
+    .mode-title {
+      font-weight: 600;
+      margin: 20px 0 14px;
+    }
 
-body.animations-off *,
-body.animations-off *::before,
-body.animations-off *::after {
+    .mode-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .mode-btn {
+      border: 2px solid rgba(128, 140, 180, 0.12);
+      border-radius: 20px;
+      padding: 22px 18px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      text-align: left;
+    }
+    .mode-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .mode-btn.selected {
+      border-color: var(--accent);
+      background: var(--accentSoft);
+    }
+    .mode-btn .icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .mode-btn h3 {
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+    .mode-btn p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin: 0;
+      line-height: 1.5;
+    }
 
-    animation:
-        none !important;
+    .comm-title {
+      font-weight: 600;
+      margin: 22px 0 12px;
+      font-size: 0.95rem;
+    }
 
-    transition:
-        none !important;
-}
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .comm-btn {
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 14px;
+      padding: 14px 8px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .comm-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .comm-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .comm-btn .icon {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
 
-</style>
+    .chat-panel {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--card);
+    }
+    .chat-panel.open { display: block; }
+    .chat-panel .header {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(128, 140, 180, 0.08);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .chat-panel .messages {
+      height: 90px;
+      padding: 12px;
+      overflow-y: auto;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .chat-panel .input-area {
+      display: flex;
+      gap: 6px;
+      padding: 10px;
+      border-top: 1px solid rgba(128, 140, 180, 0.08);
+    }
+    .chat-panel .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+    }
+    .chat-panel .input-area button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0;
+    }
+    .features span {
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: var(--accentSoft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .continue-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      margin-top: 15px;
+    }
+    .continue-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(74, 91, 217, 0.25);
+    }
+
+    .room-info {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      background: var(--accentSoft);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .room-info .code {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .mode-grid { grid-template-columns: 1fr; }
+      .comm-grid { grid-template-columns: repeat(3, 1fr); }
+      header { padding: 0 16px; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+    }
+  </style>
 </head>
-
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
-
-<!-- =====================================================
-     THEME.JS
-===================================================== -->
-
-<script src="theme.js"></script>
-
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="background">
-
-    <div class="blob blob1"></div>
-
-    <div class="blob blob2"></div>
-
-    <div class="blob blob3"></div>
-
-</div>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-    <div class="logo">
-
-        <div class="logoIcon">
-            ✦
-        </div>
-
-        Ethio Mock Exam
-
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
     </div>
+  </header>
 
-</header>
+  <div class="container">
+    <div class="card">
+      <span class="mascot">🐼</span>
+      <div class="inviter">
+        <span class="avatar" id="inviterAvatar">S</span>
+        <span><span id="inviterName">Your friend</span> invited you</span>
+      </div>
 
+      <h1>Ready to study? 🚀</h1>
+      <p class="description">Choose how you want to learn together. Compete against your friend or study together and help each other.</p>
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main>
-
-<section class="joinCard">
-
-
-    <div class="mascot">
-        🐼
-    </div>
-
-
-    <div class="inviter">
-
-        <div
-            class="inviterAvatar"
-            id="inviterAvatar">
-
-            S
-
-        </div>
-
-        <span>
-
-            <span id="inviterName">
-                Your friend
-            </span>
-
-            invited you
-
-        </span>
-
-    </div>
-
-
-    <h1>
-        Ready to study? 🚀
-    </h1>
-
-
-    <p class="joinDescription">
-
-        Choose how you want to learn
-        together. Compete against your
-        friend or study together and help
-        each other.
-
-    </p>
-
-
-    <!-- =================================================
-         MODE
-    ================================================= -->
-
-    <div class="chooseTitle">
-
-        Choose your mode
-
-    </div>
-
-
-    <div class="modeOptions">
-
-
-        <button
-            type="button"
-            class="mode selected"
-            id="competeMode"
-            onclick="selectMode('compete')">
-
-            <div class="modeIcon">
-                🎯
-            </div>
-
-            <h3>
-                Play & Compete
-            </h3>
-
-            <p>
-
-                Answer the same questions
-                and compete for the highest score.
-
-            </p>
-
+      <div class="mode-title">Choose your mode</div>
+      <div class="mode-grid">
+        <button class="mode-btn selected" id="competeMode" onclick="selectMode('compete')">
+          <span class="icon">🎯</span>
+          <h3>Play & Compete</h3>
+          <p>Answer the same questions and compete for the highest score.</p>
         </button>
-
-
-        <button
-            type="button"
-            class="mode"
-            id="studyMode"
-            onclick="selectMode('study')">
-
-            <div class="modeIcon">
-                📚
-            </div>
-
-            <h3>
-                Study Together
-            </h3>
-
-            <p>
-
-                Learn together and discuss
-                difficult questions.
-
-            </p>
-
+        <button class="mode-btn" id="studyMode" onclick="selectMode('study')">
+          <span class="icon">📚</span>
+          <h3>Study Together</h3>
+          <p>Learn together and discuss difficult questions.</p>
         </button>
+      </div>
 
-
-    </div>
-
-
-    <!-- =================================================
-         COMMUNICATION
-    ================================================= -->
-
-    <div class="communicationTitle">
-
-        Talk while you learn 💬
-
-    </div>
-
-
-    <div class="communication">
-
-
-        <button
-            type="button"
-            class="communicationButton"
-            id="voiceButton"
-            onclick="toggleVoice()">
-
-            <span
-                class="communicationIcon"
-                id="voiceIcon">
-
-                🎙️
-
-            </span>
-
-            <span id="voiceText">
-                Voice
-            </span>
-
+      <div class="comm-title">Talk while you learn 💬</div>
+      <div class="comm-grid">
+        <button class="comm-btn" id="voiceBtn" onclick="toggleVoice()">
+          <span class="icon" id="voiceIcon">🎙️</span>
+          <span id="voiceText">Voice</span>
         </button>
-
-
-        <button
-            type="button"
-            class="communicationButton"
-            id="videoButton"
-            onclick="toggleVideo()">
-
-            <span
-                class="communicationIcon"
-                id="videoIcon">
-
-                📹
-
-            </span>
-
-            <span id="videoText">
-                Video
-            </span>
-
+        <button class="comm-btn" id="videoBtn" onclick="toggleVideo()">
+          <span class="icon" id="videoIcon">📹</span>
+          <span id="videoText">Video</span>
         </button>
-
-
-        <button
-            type="button"
-            class="communicationButton"
-            id="chatButton"
-            onclick="toggleChat()">
-
-            <span
-                class="communicationIcon">
-
-                💬
-
-            </span>
-
-            Chat
-
+        <button class="comm-btn" onclick="toggleChat()">
+          <span class="icon">💬</span> Chat
         </button>
+      </div>
 
+      <div class="chat-panel" id="chatPanel">
+        <div class="header">💬 Study Room Chat</div>
+        <div class="messages" id="chatMessages"><div>👋 Say hello to your friend!</div></div>
+        <div class="input-area">
+          <input id="chatInput" placeholder="Type a message...">
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
 
+      <div class="features">
+        <span>🎙️ Voice</span>
+        <span>📹 Video</span>
+        <span>💬 Chat</span>
+        <span>🏆 XP</span>
+      </div>
+
+      <button class="continue-btn" onclick="continueJoin()">Continue 🚀</button>
+
+      <div class="room-info">
+        Invitation code: <span class="code" id="roomCode">Loading...</span>
+      </div>
     </div>
-
-
-    <!-- =================================================
-         CHAT
-    ================================================= -->
-
-    <div
-        class="chatPanel"
-        id="chatPanel">
-
-        <div class="chatHeader">
-
-            💬 Study Room Chat
-
-        </div>
-
-
-        <div
-            class="chatMessages"
-            id="chatMessages">
-
-            <div>
-                👋 Say hello to your friend!
-            </div>
-
-        </div>
-
-
-        <div class="chatInputArea">
-
-            <input
-                class="chatInput"
-                id="chatInput"
-                placeholder="Type a message..."
-            >
-
-
-            <button
-                type="button"
-                class="sendChat"
-                onclick="sendMessage()">
-
-                Send
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         FEATURES
-    ================================================= -->
-
-    <div class="features">
-
-        <div class="feature">
-            🎙️ Voice
-        </div>
-
-        <div class="feature">
-            📹 Video
-        </div>
-
-        <div class="feature">
-            💬 Chat
-        </div>
-
-        <div class="feature">
-            🏆 XP
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         CONTINUE
-    ================================================= -->
-
-    <button
-        type="button"
-        class="continueButton"
-        onclick="continueJoin()">
-
-        Continue 🚀
-
-    </button>
-
-
-    <div class="roomInfo">
-
-        Invitation code:
-
-        <span
-            class="roomCode"
-            id="roomCode">
-
-            Loading...
-
-        </span>
-
-    </div>
-
-
-</section>
-
-</main>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-
-/* =====================================================
-   INVITE CODE
-===================================================== */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const inviteCode =
-    params.get("code")
-    ||
-    localStorage.getItem(
-        "ethioInviteCode"
-    )
-    ||
-    "DEMO";
-
-
-document.getElementById(
-    "roomCode"
-).textContent =
-    inviteCode;
-
-
-/* =====================================================
-   INVITER
-===================================================== */
-
-const inviter =
-    localStorage.getItem(
-        "ethioUserName"
-    )
-    ||
-    "Your friend";
-
-
-document.getElementById(
-    "inviterName"
-).textContent =
-    inviter;
-
-
-document.getElementById(
-    "inviterAvatar"
-).textContent =
-    inviter
-        .charAt(0)
-        .toUpperCase();
-
-
-/* =====================================================
-   MODE
-===================================================== */
-
-let selectedMode =
-    "compete";
-
-
-function selectMode(mode) {
-
-    selectedMode =
-        mode;
-
-
-    document.getElementById(
-        "competeMode"
-    ).classList.remove(
-        "selected"
-    );
-
-
-    document.getElementById(
-        "studyMode"
-    ).classList.remove(
-        "selected"
-    );
-
-
-    if (
-        mode === "compete"
-    ) {
-
-        document.getElementById(
-            "competeMode"
-        ).classList.add(
-            "selected"
-        );
-
-    } else {
-
-        document.getElementById(
-            "studyMode"
-        ).classList.add(
-            "selected"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   VOICE
-===================================================== */
-
-let voiceEnabled =
-    false;
-
-
-function toggleVoice() {
-
-    voiceEnabled =
-        !voiceEnabled;
-
-
-    const button =
-        document.getElementById(
-            "voiceButton"
-        );
-
-
-    const text =
-        document.getElementById(
-            "voiceText"
-        );
-
-
-    const icon =
-        document.getElementById(
-            "voiceIcon"
-        );
-
-
-    if (
-        voiceEnabled
-    ) {
-
-        button.classList.add(
-            "active"
-        );
-
-        text.textContent =
-            "Voice ON";
-
-        icon.textContent =
-            "🎙️";
-
-    } else {
-
-        button.classList.remove(
-            "active"
-        );
-
-        text.textContent =
-            "Voice";
-
-        icon.textContent =
-            "🔇";
-
-    }
-
-}
-
-
-/* =====================================================
-   VIDEO
-===================================================== */
-
-let videoEnabled =
-    false;
-
-
-function toggleVideo() {
-
-    videoEnabled =
-        !videoEnabled;
-
-
-    const button =
-        document.getElementById(
-            "videoButton"
-        );
-
-
-    const text =
-        document.getElementById(
-            "videoText"
-        );
-
-
-    const icon =
-        document.getElementById(
-            "videoIcon"
-        );
-
-
-    if (
-        videoEnabled
-    ) {
-
-        button.classList.add(
-            "active"
-        );
-
-        text.textContent =
-            "Video ON";
-
-        icon.textContent =
-            "📹";
-
-    } else {
-
-        button.classList.remove(
-            "active"
-        );
-
-        text.textContent =
-            "Video";
-
-        icon.textContent =
-            "📵";
-
-    }
-
-}
-
-
-/* =====================================================
-   CHAT
-===================================================== */
-
-function toggleChat() {
-
-    const panel =
-        document.getElementById(
-            "chatPanel"
-        );
-
-
-    panel.classList.toggle(
-        "open"
-    );
-
-}
-
-
-/* =====================================================
-   SEND CHAT MESSAGE
-===================================================== */
-
-function sendMessage() {
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
-
-
-    const message =
-        input.value.trim();
-
-
-    if (!message) {
-        return;
-    }
-
-
-    const messages =
-        document.getElementById(
-            "chatMessages"
-        );
-
-
-    const item =
-        document.createElement(
-            "div"
-        );
-
-
-    item.style.marginBottom =
-        "8px";
-
-
-    item.innerHTML =
-        "🧑 You: " +
-        escapeHTML(message);
-
-
-    messages.appendChild(
-        item
-    );
-
-
-    input.value =
-        "";
-
-
-    messages.scrollTop =
-        messages.scrollHeight;
-
-}
-
-
-/* =====================================================
-   ENTER TO SEND
-===================================================== */
-
-document.getElementById(
-    "chatInput"
-).addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            sendMessage();
-
+  </div>
+
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
         }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeIcon();
+      }
 
-    }
-);
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
 
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
 
-/* =====================================================
-   SAFE TEXT
-===================================================== */
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
 
-function escapeHTML(text) {
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
 
-    const div =
-        document.createElement(
-            "div"
-        );
+      const params = new URLSearchParams(window.location.search);
+      const inviteCode = params.get('code') || localStorage.getItem('ethioInviteCode') || 'DEMO';
+      document.getElementById('roomCode').textContent = inviteCode;
 
-    div.textContent =
-        text;
+      const inviter = localStorage.getItem('ethioUserName') || 'Your friend';
+      document.getElementById('inviterName').textContent = inviter;
+      document.getElementById('inviterAvatar').textContent = inviter.charAt(0).toUpperCase();
 
-    return div.innerHTML;
+      let selectedMode = 'compete';
+      window.selectMode = function(mode) {
+        selectedMode = mode;
+        document.getElementById('competeMode').classList.toggle('selected', mode === 'compete');
+        document.getElementById('studyMode').classList.toggle('selected', mode === 'study');
+      };
 
-}
+      let voiceEnabled = false;
+      window.toggleVoice = function() {
+        voiceEnabled = !voiceEnabled;
+        const btn = document.getElementById('voiceBtn');
+        const text = document.getElementById('voiceText');
+        const icon = document.getElementById('voiceIcon');
+        btn.classList.toggle('active', voiceEnabled);
+        text.textContent = voiceEnabled ? 'Voice ON' : 'Voice';
+        icon.textContent = voiceEnabled ? '🎙️' : '🔇';
+      };
 
+      let videoEnabled = false;
+      window.toggleVideo = function() {
+        videoEnabled = !videoEnabled;
+        const btn = document.getElementById('videoBtn');
+        const text = document.getElementById('videoText');
+        const icon = document.getElementById('videoIcon');
+        btn.classList.toggle('active', videoEnabled);
+        text.textContent = videoEnabled ? 'Video ON' : 'Video';
+        icon.textContent = videoEnabled ? '📹' : '📵';
+      };
 
-/* =====================================================
-   CONTINUE
-===================================================== */
+      window.toggleChat = function() {
+        document.getElementById('chatPanel').classList.toggle('open');
+      };
 
-function continueJoin() {
+      window.sendMessage = function() {
+        const input = document.getElementById('chatInput');
+        const msg = input.value.trim();
+        if (!msg) return;
+        const messages = document.getElementById('chatMessages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '6px';
+        div.textContent = '🧑 You: ' + msg;
+        messages.appendChild(div);
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+      };
 
-    localStorage.setItem(
-        "friendRoomCode",
-        inviteCode
-    );
+      document.getElementById('chatInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') sendMessage();
+      });
 
+      window.continueJoin = function() {
+        localStorage.setItem('friendRoomCode', inviteCode);
+        localStorage.setItem('friendMode', selectedMode);
+        localStorage.setItem('voiceEnabled', voiceEnabled);
+        localStorage.setItem('videoEnabled', videoEnabled);
+        window.location.href = 'waitingroom.html?code=' + encodeURIComponent(inviteCode);
+      };
 
-    localStorage.setItem(
-        "friendMode",
-        selectedMode
-    );
-
-
-    localStorage.setItem(
-        "voiceEnabled",
-        voiceEnabled
-    );
-
-
-    localStorage.setItem(
-        "videoEnabled",
-        videoEnabled
-    );
-
-
-    window.location.href =
-        "waitingroom.html"
-        +
-        "?code="
-        +
-        encodeURIComponent(
-            inviteCode
-        );
-
-}
-
-</script>
-
-
+      function escapeHTML(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    })();
+  </script>
 </body>
-
 </html>
