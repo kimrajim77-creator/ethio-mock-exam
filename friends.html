@@ -1,907 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Invite Friends | Ethio Mock Exam</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-}
-
-/* BACKGROUND */
-
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(55px);
-    opacity: .25;
-    animation: blobMove 9s infinite alternate ease-in-out;
-}
-
-.blob1 {
-    width: 330px;
-    height: 330px;
-    background: #756cff;
-    top: -140px;
-    right: -100px;
-}
-
-.blob2 {
-    width: 300px;
-    height: 300px;
-    background: #ff72a8;
-    bottom: -140px;
-    left: -110px;
-}
-
-.blob3 {
-    width: 200px;
-    height: 200px;
-    background: #4ddcff;
-    top: 42%;
-    left: 45%;
-}
-
-@keyframes blobMove {
-
-    from {
-        transform: translate(0,0) scale(1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invite Friends | Ethio Mock Exam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to {
-        transform: translate(35px,-25px) scale(1.12);
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
     }
-
-}
-
-/* HEADER */
-
-header {
-    height: 70px;
-    padding: 0 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: var(--text);
-    font-weight: bold;
-}
-
-.logoIcon {
-    width: 42px;
-    height: 42px;
-
-    border-radius: 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(
-        135deg,
-        #7168e8,
-        #ff72a8
-    );
-
-    color: white;
-    font-size: 20px;
-
-    animation: logoFloat 3s infinite ease-in-out;
-}
-
-@keyframes logoFloat {
-
-    0%,100% {
-        transform: translateY(0);
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
     }
-
-    50% {
-        transform: translateY(-6px);
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
     }
-
-}
-
-/* MAIN */
-
-main {
-    width: min(800px,94%);
-    margin: auto;
-    padding: 35px 0 70px;
-}
-
-/* CARD */
-
-.card {
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: 30px;
-
-    padding: 30px;
-
-    box-shadow: var(--shadow);
-
-    text-align: center;
-
-    animation: appear .7s ease;
-}
-
-@keyframes appear {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(25px)
-            scale(.98);
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
     }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-}
-
-/* MASCOT */
-
-.mascot {
-    width: 110px;
-    height: 110px;
-
-    margin: auto;
-
-    border-radius: 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--accentSoft);
-
-    font-size: 60px;
-
-    animation: mascotFloat 3s infinite ease-in-out;
-}
-
-@keyframes mascotFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-
-    50% {
-        transform:
-            translateY(-8px)
-            rotate(2deg);
-    }
-
-}
-
-/* TITLE */
-
-h1 {
-    color: var(--text);
-    font-size: 30px;
-    margin: 20px 0 8px;
-}
-
-.description {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    line-height: 1.7;
-
-    max-width: 550px;
-
-    margin: auto;
-}
-
-/* ROOM */
-
-.roomBox {
-    margin-top: 25px;
-
-    padding: 18px;
-
-    border-radius: 18px;
-
-    background: var(--accentSoft);
-}
-
-.roomLabel {
-    color: var(--muted);
-    font-size: 11px;
-}
-
-.roomCode {
-    color: var(--accent);
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    margin-top: 6px;
-}
-
-/* LINK */
-
-.linkBox {
-    display: flex;
-
-    gap: 8px;
-
-    margin-top: 15px;
-}
-
-.linkInput {
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 12px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    background: var(--card);
-
-    color: var(--text);
-
-    outline: none;
-
-    font-size: 11px;
-}
-
-.copyButton {
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 0 16px;
-
-    background: var(--accent);
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.copyButton:hover {
-    transform: translateY(-2px);
-}
-
-/* SHARE */
-
-.shareTitle {
-    color: var(--text);
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    margin: 30px 0 15px;
-}
-
-.shareGrid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5,1fr);
-
-    gap: 10px;
-}
-
-.shareButton {
-    border: 1px solid var(--border);
-
-    border-radius: 17px;
-
-    padding: 14px 7px;
-
-    background: var(--card);
-
-    color: var(--text);
-
-    cursor: pointer;
-
-    transition: .25s;
-
-    font-size: 10px;
-
-    font-weight: bold;
-}
-
-.shareButton:hover {
-    transform: translateY(-5px);
-
-    border-color: var(--accent);
-}
-
-.shareIcon {
-    display: block;
-
-    font-size: 27px;
-
-    margin-bottom: 6px;
-}
-
-.telegram:hover {
-    background: #229ED9;
-    color: white;
-}
-
-.whatsapp:hover {
-    background: #25D366;
-    color: white;
-}
-
-.instagram:hover {
-    background: #E1306C;
-    color: white;
-}
-
-.facebook:hover {
-    background: #1877F2;
-    color: white;
-}
-
-/* STATUS */
-
-.status {
-    min-height: 25px;
-
-    margin-top: 17px;
-
-    color: var(--muted);
-
-    font-size: 11px;
-}
-
-/* CONTINUE */
-
-.continueButton {
-    width: 100%;
-
-    margin-top: 15px;
-
-    padding: 15px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    background: linear-gradient(
-        135deg,
-        var(--accent),
-        #ff72a8
-    );
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.continueButton:hover {
-    transform: translateY(-3px);
-}
-
-/* MOBILE */
-
-@media(max-width:650px) {
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
 
     header {
-        padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-    main {
-        padding-top: 25px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .back-btn {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover, .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
     }
 
     .card {
-        padding: 23px 15px;
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
 
-    h1 {
-        font-size: 25px;
+    .mascot {
+      font-size: 4.5rem;
+      margin-bottom: 16px;
+      display: block;
     }
 
-    .shareGrid {
-        grid-template-columns:
-            repeat(2,1fr);
+    .card h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .card .description {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 550px;
+      margin: 0 auto 25px;
     }
 
-    .shareButton:last-child {
-        grid-column: span 2;
+    .room-box {
+      background: var(--accentSoft);
+      border-radius: 18px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .room-box .label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .room-box .code {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 3px;
+      margin-top: 6px;
     }
 
-    .linkBox {
-        flex-direction: column;
+    .link-box {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .link-box input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid rgba(128, 140, 180, 0.2);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .link-box button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .link-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(74, 91, 217, 0.2);
     }
 
-    .copyButton {
-        padding: 12px;
+    .share-title {
+      font-weight: 600;
+      margin: 25px 0 15px;
+      font-size: 1.1rem;
     }
 
-}
+    .share-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .share-btn {
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 16px;
+      padding: 16px 8px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .share-btn:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .share-btn .icon {
+      display: block;
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
 
-</style>
+    .telegram:hover { background: #229ED9; color: white; border-color: #229ED9; }
+    .whatsapp:hover { background: #25D366; color: white; border-color: #25D366; }
+    .instagram:hover { background: #E1306C; color: white; border-color: #E1306C; }
+    .facebook:hover { background: #1877F2; color: white; border-color: #1877F2; }
 
+    .status {
+      min-height: 30px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin: 15px 0;
+    }
+
+    .continue-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      margin-top: 15px;
+    }
+    .continue-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(74, 91, 217, 0.25);
+    }
+
+    @media (max-width: 600px) {
+      .share-grid { grid-template-columns: repeat(2, 1fr); }
+      .share-btn:last-child { grid-column: span 2; }
+      .link-box { flex-direction: column; }
+      header { padding: 0 16px; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
-<script src="theme.js"></script>
-
-<div class="background">
-
-    <div class="blob blob1"></div>
-
-    <div class="blob blob2"></div>
-
-    <div class="blob blob3"></div>
-
-</div>
-
-<header>
-
-    <div class="logo">
-
-        <div class="logoIcon">
-            ✦
-        </div>
-
-        Ethio Mock Exam
-
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="back-btn" onclick="window.location.href='home.html'"><i class="fas fa-home"></i></button>
     </div>
+  </header>
 
-</header>
+  <div class="container">
+    <div class="card">
+      <span class="mascot">🐼</span>
+      <h1>Invite Your Friend 🚀</h1>
+      <p class="description">Create a study room and invite your friend to study together or compete in an exciting mock exam challenge.</p>
 
-<main>
+      <div class="room-box">
+        <div class="label">YOUR INVITATION CODE</div>
+        <div class="code" id="roomCode">Loading...</div>
+      </div>
 
-<section class="card">
+      <div class="link-box">
+        <input type="text" id="inviteLink" readonly>
+        <button onclick="copyLink()">📋 Copy</button>
+      </div>
 
-    <div class="mascot">
-        🐼
+      <div class="share-title">Share invitation with</div>
+      <div class="share-grid">
+        <button class="share-btn telegram" onclick="shareTelegram()"><span class="icon">✈️</span>Telegram</button>
+        <button class="share-btn whatsapp" onclick="shareWhatsApp()"><span class="icon">💬</span>WhatsApp</button>
+        <button class="share-btn instagram" onclick="shareInstagram()"><span class="icon">📸</span>Instagram</button>
+        <button class="share-btn facebook" onclick="shareFacebook()"><span class="icon">f</span>Facebook</button>
+        <button class="share-btn" onclick="copyLink()"><span class="icon">🔗</span>Copy Link</button>
+      </div>
+
+      <div class="status" id="status"></div>
+      <button class="continue-btn" onclick="goToWaitingRoom()">🚀 Continue to Room</button>
     </div>
-
-    <h1>
-        Invite Your Friend 🚀
-    </h1>
-
-    <p class="description">
-
-        Create a study room and invite
-        your friend to study together
-        or compete in an exciting
-        mock exam challenge.
-
-    </p>
-
-    <div class="roomBox">
-
-        <div class="roomLabel">
-            YOUR INVITATION CODE
-        </div>
-
-        <div
-            class="roomCode"
-            id="roomCode">
-
-            Loading...
-
-        </div>
-
-    </div>
-
-    <div class="linkBox">
-
-        <input
-            class="linkInput"
-            id="inviteLink"
-            readonly
-        >
-
-        <button
-            type="button"
-            class="copyButton"
-            onclick="copyLink()">
-
-            📋 Copy
-
-        </button>
-
-    </div>
-
-    <div class="shareTitle">
-
-        Share invitation with
-
-    </div>
-
-    <div class="shareGrid">
-
-        <button
-            type="button"
-            class="shareButton telegram"
-            onclick="shareTelegram()">
-
-            <span class="shareIcon">
-                ✈️
-            </span>
-
-            Telegram
-
-        </button>
-
-        <button
-            type="button"
-            class="shareButton whatsapp"
-            onclick="shareWhatsApp()">
-
-            <span class="shareIcon">
-                💬
-            </span>
-
-            WhatsApp
-
-        </button>
-
-        <button
-            type="button"
-            class="shareButton instagram"
-            onclick="shareInstagram()">
-
-            <span class="shareIcon">
-                📸
-            </span>
-
-            Instagram
-
-        </button>
-
-        <button
-            type="button"
-            class="shareButton facebook"
-            onclick="shareFacebook()">
-
-            <span class="shareIcon">
-                f
-            </span>
-
-            Facebook
-
-        </button>
-
-        <button
-            type="button"
-            class="shareButton"
-            onclick="copyLink()">
-
-            <span class="shareIcon">
-                🔗
-            </span>
-
-            Copy Link
-
-        </button>
-
-    </div>
-
-    <div
-        class="status"
-        id="status">
-    </div>
-
-    <button
-        type="button"
-        class="continueButton"
-        onclick="goToWaitingRoom()">
-
-        🚀 Continue to Room
-
-    </button>
-
-</section>
-
-</main>
-
-<script>
-
-/* ==========================================
-   GITHUB PAGES WEBSITE
-========================================== */
-
-const WEBSITE_URL =
-"https://kimrajim77-creator.github.io/ethio-mock-exam";
-
-
-/* ==========================================
-   GET CODE FROM URL
-========================================== */
-
-const params =
-new URLSearchParams(
-    window.location.search
-);
-
-let roomCode =
-params.get("code");
-
-
-/* ==========================================
-   GET SAVED CODE
-========================================== */
-
-if (!roomCode) {
-
-    roomCode =
-    localStorage.getItem(
-        "ethioRoomCode"
-    );
-
-}
-
-
-/* ==========================================
-   CREATE CODE
-========================================== */
-
-if (!roomCode) {
-
-    roomCode =
-        "ETH-" +
-        Math.random()
-        .toString(36)
-        .substring(2,8)
-        .toUpperCase();
-
-}
-
-
-/* ==========================================
-   SAVE CODE
-========================================== */
-
-localStorage.setItem(
-    "ethioRoomCode",
-    roomCode
-);
-
-
-/* ==========================================
-   SHOW CODE
-========================================== */
-
-document.getElementById(
-    "roomCode"
-).textContent =
-roomCode;
-
-
-/* ==========================================
-   CREATE CORRECT INVITATION LINK
-========================================== */
-
-const inviteLink =
-    WEBSITE_URL +
-    "/join.html?code=" +
-    encodeURIComponent(roomCode);
-
-
-/* ==========================================
-   SHOW INVITATION LINK
-========================================== */
-
-document.getElementById(
-    "inviteLink"
-).value =
-inviteLink;
-
-
-/* ==========================================
-   MESSAGE
-========================================== */
-
-const message =
-"🚀 Join me on Ethio Mock Exam!\n\n" +
-"📚 Let's study together or compete!\n\n" +
-inviteLink;
-
-
-/* ==========================================
-   STATUS
-========================================== */
-
-function showStatus(text) {
-
-    document.getElementById(
-        "status"
-    ).textContent =
-    text;
-
-}
-
-
-/* ==========================================
-   COPY
-========================================== */
-
-async function copyLink() {
-
-    try {
-
-        await navigator.clipboard.writeText(
-            inviteLink
-        );
-
-        showStatus(
-            "✅ Invitation link copied!"
-        );
-
-    }
-
-    catch(error) {
-
-        const input =
-            document.getElementById(
-                "inviteLink"
-            );
-
-        input.select();
-
-        document.execCommand(
-            "copy"
-        );
-
-        showStatus(
-            "✅ Invitation link copied!"
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   TELEGRAM
-========================================== */
-
-function shareTelegram() {
-
-    const url =
-        "https://t.me/share/url?url=" +
-        encodeURIComponent(inviteLink) +
-        "&text=" +
-        encodeURIComponent(
-            "🚀 Join me on Ethio Mock Exam!\n\n" +
-            "📚 Let's study together or compete!"
-        );
-
-    window.location.href = url;
-
-}
-
-
-/* ==========================================
-   WHATSAPP
-========================================== */
-
-function shareWhatsApp() {
-
-    const url =
-        "https://wa.me/?text=" +
-        encodeURIComponent(message);
-
-    window.location.href = url;
-
-}
-
-
-/* ==========================================
-   FACEBOOK
-========================================== */
-
-function shareFacebook() {
-
-    const url =
-        "https://www.facebook.com/sharer/sharer.php?u=" +
-        encodeURIComponent(inviteLink);
-
-    window.location.href = url;
-
-}
-
-
-/* ==========================================
-   INSTAGRAM
-========================================== */
-
-function shareInstagram() {
-
-    copyLink();
-
-    setTimeout(
-        function() {
-
-            window.location.href =
-            "https://www.instagram.com/";
-
-        },
-        700
-    );
-
-}
-
-
-/* ==========================================
-   WAITING ROOM
-========================================== */
-
-function goToWaitingRoom() {
-
-    localStorage.setItem(
-        "friendRoomCode",
-        roomCode
-    );
-
-    window.location.href =
-        WEBSITE_URL +
-        "/waitingroom.html?code=" +
-        encodeURIComponent(roomCode);
-
-}
-
-</script>
-
+  </div>
+
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
+        }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeIcon();
+      }
+
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
+
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+
+      const WEBSITE_URL = 'https://kimrajim77-creator.github.io/ethio-mock-exam';
+      const params = new URLSearchParams(window.location.search);
+      let roomCode = params.get('code') || localStorage.getItem('ethioRoomCode') || 'ETH-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      localStorage.setItem('ethioRoomCode', roomCode);
+
+      document.getElementById('roomCode').textContent = roomCode;
+      const inviteLink = WEBSITE_URL + '/join.html?code=' + encodeURIComponent(roomCode);
+      document.getElementById('inviteLink').value = inviteLink;
+
+      const message = '🚀 Join me on Ethio Mock Exam!\n\n📚 Let\'s study together or compete!\n\n' + inviteLink;
+
+      function showStatus(text) {
+        document.getElementById('status').textContent = text;
+      }
+
+      window.copyLink = async function() {
+        try {
+          await navigator.clipboard.writeText(inviteLink);
+          showStatus('✅ Invitation link copied!');
+        } catch(e) {
+          document.getElementById('inviteLink').select();
+          document.execCommand('copy');
+          showStatus('✅ Invitation link copied!');
+        }
+      };
+
+      window.shareTelegram = function() {
+        window.location.href = 'https://t.me/share/url?url=' + encodeURIComponent(inviteLink) + '&text=' + encodeURIComponent('🚀 Join me on Ethio Mock Exam!\n\n📚 Let\'s study together or compete!');
+      };
+
+      window.shareWhatsApp = function() {
+        window.location.href = 'https://wa.me/?text=' + encodeURIComponent(message);
+      };
+
+      window.shareFacebook = function() {
+        window.location.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(inviteLink);
+      };
+
+      window.shareInstagram = function() {
+        copyLink();
+        setTimeout(() => { window.location.href = 'https://www.instagram.com/'; }, 700);
+      };
+
+      window.goToWaitingRoom = function() {
+        localStorage.setItem('friendRoomCode', roomCode);
+        window.location.href = WEBSITE_URL + '/waitingroom.html?code=' + encodeURIComponent(roomCode);
+      };
+    })();
+  </script>
 </body>
-
 </html>
