@@ -1,1093 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Settings | Ethio Mock Exam</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    min-height:100vh;
-}
-
-/* BACKGROUND */
-
-.settingsBackground{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:-1;
-}
-
-.glow{
-    position:absolute;
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    filter:blur(70px);
-    opacity:.25;
-}
-
-.glow1{
-    background:#756cff;
-    top:-100px;
-    right:-80px;
-}
-
-.glow2{
-    background:#ff72a8;
-    bottom:-100px;
-    left:-80px;
-}
-
-
-/* HEADER */
-
-.topbar{
-    height:70px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 25px;
-
-    background:var(--card);
-
-    border-bottom:1px solid var(--border);
-}
-
-.back{
-    border:1px solid var(--border);
-
-    background:var(--card);
-    color:var(--text);
-
-    padding:10px 14px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-}
-
-.title{
-    margin:auto;
-    text-align:center;
-}
-
-.title h1{
-    font-size:19px;
-}
-
-.title p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
-
-.spacer{
-    width:70px;
-}
-
-
-/* MAIN */
-
-.container{
-    width:min(800px,92%);
-    margin:auto;
-
-    padding:35px 0 70px;
-}
-
-
-/* INTRO */
-
-.intro{
-    text-align:center;
-    margin-bottom:28px;
-
-    animation:appear .6s ease;
-}
-
-.introIcon{
-    width:70px;
-    height:70px;
-
-    margin:auto;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:23px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7168e8,
-            #ff72a8
-        );
-
-    color:white;
-
-    font-size:30px;
-
-    animation:float 3s infinite ease-in-out;
-}
-
-.intro h2{
-    margin-top:16px;
-    font-size:28px;
-}
-
-.intro p{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:7px;
-}
-
-
-/* SETTINGS CARD */
-
-.settingCard{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:23px;
-
-    overflow:hidden;
-
-    box-shadow:var(--shadow);
-
-    margin-bottom:18px;
-
-    animation:appear .7s ease;
-
-}
-
-.cardTitle{
-    padding:20px 22px;
-
-    border-bottom:1px solid var(--border);
-}
-
-.cardTitle h3{
-    font-size:16px;
-}
-
-.cardTitle p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:5px;
-}
-
-
-/* SETTING ROW */
-
-.settingRow{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:19px 22px;
-
-    border-bottom:1px solid var(--border);
-
-}
-
-.settingRow:last-child{
-    border-bottom:0;
-}
-
-.settingInfo{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.settingIcon{
-
-    width:44px;
-    height:44px;
-
-    border-radius:14px;
-
-    background:var(--accentSoft);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:20px;
-
-}
-
-.settingName{
-    font-weight:bold;
-    font-size:13px;
-}
-
-.settingDescription{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
-
-
-/* THEME OPTIONS */
-
-.themeOptions{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-}
-
-.themeButton{
-
-    border:1px solid var(--border);
-
-    background:var(--card);
-
-    color:var(--text);
-
-    padding:9px 11px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-}
-
-.themeButton.active{
-
-    background:var(--accent);
-
-    color:white;
-
-    border-color:var(--accent);
-
-}
-
-
-/* TOGGLE */
-
-.switch{
-
-    width:48px;
-    height:27px;
-
-    position:relative;
-
-    display:inline-block;
-}
-
-.switch input{
-    display:none;
-}
-
-.slider{
-
-    position:absolute;
-
-    inset:0;
-
-    background:var(--border);
-
-    border-radius:30px;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.slider:before{
-
-    content:"";
-
-    position:absolute;
-
-    width:21px;
-    height:21px;
-
-    left:3px;
-    top:3px;
-
-    background:white;
-
-    border-radius:50%;
-
-    transition:.3s;
-
-}
-
-.switch input:checked + .slider{
-
-    background:var(--accent);
-
-}
-
-.switch input:checked + .slider:before{
-
-    transform:translateX(21px);
-
-}
-
-
-/* PROFILE BUTTON */
-
-.profileButton{
-
-    width:100%;
-
-    border:0;
-
-    background:none;
-
-    color:var(--text);
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0;
-
-}
-
-.arrow{
-    color:var(--muted);
-    font-size:18px;
-}
-
-
-/* LOGOUT */
-
-.logout{
-
-    width:100%;
-
-    padding:15px;
-
-    border:1px solid #e05b6e;
-
-    border-radius:15px;
-
-    background:transparent;
-
-    color:#e05b6e;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.logout:hover{
-
-    background:#e05b6e;
-
-    color:white;
-
-}
-
-
-/* VERSION */
-
-.version{
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    margin-top:25px;
-
-}
-
-
-/* ANIMATIONS */
-
-@keyframes appear{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Ethio Mock Exam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+    }
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
+    }
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
+    }
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-}
-
-@keyframes float{
-
-    0%,100%{
-        transform:translateY(0);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    50%{
-        transform:translateY(-8px);
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .back-btn {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover, .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
     }
 
-}
-
-
-/* ANIMATION OFF */
-
-:root.noAnimations *,
-:root.noAnimations *::before,
-:root.noAnimations *::after{
-
-    animation:none !important;
-
-    transition:none !important;
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-    .topbar{
-        padding:0 12px;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
     }
 
-    .container{
-        width:94%;
+    .settings-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
     }
 
-    .spacer{
-        display:none;
+    .settings-card h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .settings-card .subtitle {
+      color: var(--muted);
+      margin-bottom: 30px;
     }
 
-    .settingRow{
-        gap:15px;
+    .setting-group {
+      border-bottom: 1px solid rgba(128, 140, 180, 0.08);
+      padding: 18px 0;
+    }
+    .setting-group:last-child {
+      border-bottom: none;
     }
 
-    .themeOptions{
-        justify-content:flex-end;
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+    }
+    .setting-row .label {
+      font-weight: 500;
+    }
+    .setting-row .desc {
+      color: var(--muted);
+      font-size: 0.8rem;
     }
 
-}
+    .theme-options {
+      display: flex;
+      gap: 8px;
+    }
+    .theme-options button {
+      background: var(--bg);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text);
+      transition: 0.2s;
+    }
+    .theme-options button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
 
-</style>
+    .toggle-switch {
+      width: 48px;
+      height: 26px;
+      background: rgba(128, 140, 180, 0.25);
+      border-radius: 40px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s;
+      flex-shrink: 0;
+    }
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .toggle-switch.active::after {
+      left: 25px;
+    }
 
+    .profile-link, .about-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .profile-link:hover, .about-link:hover {
+      color: var(--primary);
+    }
+    .profile-link i, .about-link i {
+      width: 28px;
+      color: var(--primary);
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 0 16px; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+      .settings-card { padding: 20px; }
+    }
+  </style>
 </head>
-
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
-<script src="theme.js"></script>
-
-
-<div class="settingsBackground">
-
-    <div class="glow glow1"></div>
-    <div class="glow glow2"></div>
-
-</div>
-
-
-<!-- HEADER -->
-
-<header class="topbar">
-
-    <button
-        class="back"
-        onclick="goHome()">
-
-        ← Back
-
-    </button>
-
-    <div class="title">
-
-        <h1>
-            Settings
-        </h1>
-
-        <p>
-            Customize your Ethio Mock Exam
-        </p>
-
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="back-btn" onclick="window.location.href='home.html'"><i class="fas fa-arrow-left"></i></button>
     </div>
+  </header>
 
-    <div class="spacer"></div>
+  <div class="container">
+    <div class="settings-card">
+      <h1>⚙️ Settings</h1>
+      <p class="subtitle">Customize your Ethio Mock Exam experience</p>
 
-</header>
-
-
-<main class="container">
-
-
-<!-- INTRO -->
-
-<section class="intro">
-
-    <div class="introIcon">
-        ⚙️
-    </div>
-
-    <h2>
-        Make it yours
-    </h2>
-
-    <p>
-        Choose how you want Ethio Mock Exam to feel.
-    </p>
-
-</section>
-
-
-<!-- APPEARANCE -->
-
-<section class="settingCard">
-
-    <div class="cardTitle">
-
-        <h3>
-            🎨 Appearance
-        </h3>
-
-        <p>
-            Change the look of the app.
-        </p>
-
-    </div>
-
-
-    <div class="settingRow">
-
-        <div class="settingInfo">
-
-            <div class="settingIcon">
-                🌗
-            </div>
-
-            <div>
-
-                <div class="settingName">
-                    Theme
-                </div>
-
-                <div class="settingDescription">
-                    Choose light, dark, or device theme.
-                </div>
-
-            </div>
-
+      <div class="setting-group">
+        <div class="setting-row">
+          <div>
+            <div class="label">🌗 Theme</div>
+            <div class="desc">Choose light, dark, or system default</div>
+          </div>
+          <div class="theme-options">
+            <button data-theme="light">Light</button>
+            <button data-theme="dark">Dark</button>
+            <button data-theme="system">System</button>
+          </div>
         </div>
+      </div>
 
-
-        <div class="themeOptions">
-
-            <button
-                class="themeButton"
-                data-theme="light"
-                onclick="setTheme('light')">
-
-                ☀️ Light
-
-            </button>
-
-            <button
-                class="themeButton"
-                data-theme="dark"
-                onclick="setTheme('dark')">
-
-                🌙 Dark
-
-            </button>
-
-            <button
-                class="themeButton"
-                data-theme="system"
-                onclick="setTheme('system')">
-
-                📱 System
-
-            </button>
-
+      <div class="setting-group">
+        <div class="setting-row">
+          <div>
+            <div class="label">✨ Animations</div>
+            <div class="desc">Enable smooth transitions and effects</div>
+          </div>
+          <div class="toggle-switch active" id="animToggle"></div>
         </div>
-
-    </div>
-
-
-    <div class="settingRow">
-
-        <div class="settingInfo">
-
-            <div class="settingIcon">
-                ✨
-            </div>
-
-            <div>
-
-                <div class="settingName">
-                    Animations
-                </div>
-
-                <div class="settingDescription">
-                    Enable mascots, movements and transitions.
-                </div>
-
-            </div>
-
+        <div class="setting-row">
+          <div>
+            <div class="label">🔔 Notifications</div>
+            <div class="desc">Get reminders about your study goals</div>
+          </div>
+          <div class="toggle-switch" id="notifToggle"></div>
         </div>
-
-
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="animationToggle"
-                onchange="toggleAnimations()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</section>
-
-
-<!-- APP SETTINGS -->
-
-<section class="settingCard">
-
-    <div class="cardTitle">
-
-        <h3>
-            🔔 App Settings
-        </h3>
-
-        <p>
-            Control how the app behaves.
-        </p>
-
-    </div>
-
-
-    <div class="settingRow">
-
-        <div class="settingInfo">
-
-            <div class="settingIcon">
-                🔔
-            </div>
-
-            <div>
-
-                <div class="settingName">
-                    Notifications
-                </div>
-
-                <div class="settingDescription">
-                    Get reminders about your study goals.
-                </div>
-
-            </div>
-
+        <div class="setting-row">
+          <div>
+            <div class="label">🔊 Sound Effects</div>
+            <div class="desc">Play sounds for actions and rewards</div>
+          </div>
+          <div class="toggle-switch" id="soundToggle"></div>
         </div>
+      </div>
 
+      <div class="setting-group">
+        <a href="profile.html" class="profile-link">
+          <i class="fas fa-user-circle"></i>
+          <span>My Profile</span>
+          <span style="margin-left:auto;color:var(--muted);">→</span>
+        </a>
+        <a href="about.html" class="about-link">
+          <i class="fas fa-info-circle"></i>
+          <span>About Us</span>
+          <span style="margin-left:auto;color:var(--muted);">→</span>
+        </a>
+      </div>
 
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="notificationToggle"
-                onchange="toggleNotifications()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-
-    <div class="settingRow">
-
-        <div class="settingInfo">
-
-            <div class="settingIcon">
-                🔊
-            </div>
-
-            <div>
-
-                <div class="settingName">
-                    Sound Effects
-                </div>
-
-                <div class="settingDescription">
-                    Play sounds for actions and rewards.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="soundToggle"
-                onchange="toggleSound()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</section>
-
-
-<!-- ACCOUNT -->
-
-<section class="settingCard">
-
-    <div class="cardTitle">
-
-        <h3>
-            👤 Account
-        </h3>
-
-        <p>
-            Manage your account.
-        </p>
-
-    </div>
-
-
-    <div class="settingRow">
-
-        <button
-            class="profileButton"
-            onclick="goProfile()">
-
-            <div class="settingInfo">
-
-                <div class="settingIcon">
-                    👤
-                </div>
-
-                <div>
-
-                    <div class="settingName">
-                        My Profile
-                    </div>
-
-                    <div class="settingDescription">
-                        View and edit your profile.
-                    </div>
-
-                </div>
-
-            </div>
-
-            <span class="arrow">
-                →
-            </span>
-
+      <div class="setting-group" style="text-align:center;padding-top:20px;">
+        <button onclick="logout()" style="background:none;border:1px solid #e05b6e;border-radius:12px;padding:12px 24px;color:#e05b6e;font-weight:600;cursor:pointer;transition:0.2s;">
+          🚪 Log Out
         </button>
-
+        <div style="margin-top:15px;color:var(--muted);font-size:0.75rem;">Ethio Mock Exam • Version 1.0</div>
+      </div>
     </div>
+  </div>
 
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
 
-</section>
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
+        }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeButtons(theme);
+        updateThemeIcon();
+      }
 
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
 
-<!-- LOGOUT -->
-
-<button
-    class="logout"
-    onclick="logout()">
-
-    🚪 Log Out
-
-</button>
-
-
-<div class="version">
-
-    Ethio Mock Exam • Version 1.0
-
-</div>
-
-
-</main>
-
-
-<script>
-
-/* =====================================
-   THEME
-===================================== */
-
-function setTheme(theme){
-
-    localStorage.setItem(
-        "ethioTheme",
-        theme
-    );
-
-    if(
-        typeof applyTheme ===
-        "function"
-    ){
-
-        applyTheme();
-
-    }
-
-    updateThemeButtons();
-
-}
-
-
-/* =====================================
-   THEME BUTTONS
-===================================== */
-
-function updateThemeButtons(){
-
-    const current =
-        localStorage.getItem(
-            "ethioTheme"
-        ) || "light";
-
-
-    document
-        .querySelectorAll(".themeButton")
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.theme === current
-            );
-
+      function updateThemeButtons(activeTheme) {
+        document.querySelectorAll('.theme-options button').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.theme === activeTheme);
         });
-
-}
-
-
-/* =====================================
-   ANIMATIONS
-===================================== */
-
-function toggleAnimations(){
-
-    const enabled =
-        document.getElementById(
-            "animationToggle"
-        ).checked;
-
-
-    localStorage.setItem(
-        "ethioAnimations",
-        enabled
-    );
-
-
-    document.documentElement
-        .classList.toggle(
-            "noAnimations",
-            !enabled
-        );
-
-}
-
-
-/* =====================================
-   NOTIFICATIONS
-===================================== */
-
-function toggleNotifications(){
-
-    const enabled =
-        document.getElementById(
-            "notificationToggle"
-        ).checked;
-
-
-    localStorage.setItem(
-        "ethioNotifications",
-        enabled
-    );
-
-}
-
-
-/* =====================================
-   SOUND
-===================================== */
-
-function toggleSound(){
-
-    const enabled =
-        document.getElementById(
-            "soundToggle"
-        ).checked;
-
-
-    localStorage.setItem(
-        "ethioSound",
-        enabled
-    );
-
-}
-
-
-/* =====================================
-   LOAD SETTINGS
-===================================== */
-
-function loadSettings(){
-
-    const animations =
-        localStorage.getItem(
-            "ethioAnimations"
-        );
-
-
-    const notifications =
-        localStorage.getItem(
-            "ethioNotifications"
-        );
-
-
-    const sound =
-        localStorage.getItem(
-            "ethioSound"
-        );
-
-
-    document.getElementById(
-        "animationToggle"
-    ).checked =
-        animations !== "false";
-
-
-    document.getElementById(
-        "notificationToggle"
-    ).checked =
-        notifications === "true";
-
-
-    document.getElementById(
-        "soundToggle"
-    ).checked =
-        sound === "true";
-
-
-    document.documentElement
-        .classList.toggle(
-            "noAnimations",
-            animations === "false"
-        );
-
-
-    updateThemeButtons();
-
-}
-
-
-/* =====================================
-   NAVIGATION
-===================================== */
-
-function goHome(){
-
-    window.location.href =
-        "home.html";
-
-}
-
-
-function goProfile(){
-
-    window.location.href =
-        "profile.html";
-
-}
-
-
-/* =====================================
-   LOG OUT
-===================================== */
-
-function logout(){
-
-    const confirmLogout =
-        confirm(
-            "Are you sure you want to log out?"
-        );
-
-
-    if(!confirmLogout){
-
-        return;
-
-    }
-
-
-    /*
-       Remove login/session information.
-       Theme and app preferences stay saved.
-    */
-
-    localStorage.removeItem(
-        "ethioLoggedIn"
-    );
-
-    localStorage.removeItem(
-        "ethioUserName"
-    );
-
-
-    window.location.href =
-        "login.html";
-
-}
-
-
-/* =====================================
-   START
-===================================== */
-
-loadSettings();
-
-</script>
-
+      }
+
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+
+      document.querySelectorAll('.theme-options button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const theme = e.target.dataset.theme;
+          setTheme(theme);
+        });
+      });
+
+      function initToggle(selector, storageKey, defaultState = true) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const saved = localStorage.getItem(storageKey);
+        const isActive = saved !== null ? saved === 'true' : defaultState;
+        el.classList.toggle('active', isActive);
+        el.addEventListener('click', () => {
+          const now = el.classList.toggle('active');
+          localStorage.setItem(storageKey, String(now));
+        });
+      }
+      initToggle('#animToggle', 'ethioAnimations', true);
+      initToggle('#notifToggle', 'ethioNotifications', false);
+      initToggle('#soundToggle', 'ethioSound', false);
+
+      window.logout = function() {
+        if (confirm('Are you sure you want to log out?')) {
+          localStorage.removeItem('ethioLoggedIn');
+          localStorage.removeItem('ethioUserName');
+          window.location.href = 'index.html';
+        }
+      };
+    })();
+  </script>
 </body>
-
 </html>
