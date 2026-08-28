@@ -1,3004 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Practice Arena | Ethio Mock Exam</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-/* =========================================
-   GENERAL
-========================================= */
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-
-/* =========================================
-   BACKGROUND
-========================================= */
-
-.examBackground{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    overflow:hidden;
-    pointer-events:none;
-}
-
-.examOrb{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(70px);
-    opacity:.22;
-}
-
-.orb1{
-    width:350px;
-    height:350px;
-    background:#7168e8;
-    top:-150px;
-    right:-100px;
-}
-
-.orb2{
-    width:300px;
-    height:300px;
-    background:#ff72a8;
-    bottom:-130px;
-    left:-100px;
-}
-
-
-/* =========================================
-   HEADER
-========================================= */
-
-.examHeader{
-
-    height:70px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 24px;
-
-    background:var(--card);
-
-    border-bottom:1px solid var(--border);
-
-    position:sticky;
-
-    top:0;
-
-    z-index:20;
-
-}
-
-.backButton{
-
-    border:1px solid var(--border);
-
-    background:var(--card);
-
-    color:var(--text);
-
-    padding:10px 14px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-}
-
-.examTitle{
-    text-align:center;
-}
-
-.examTitle h1{
-    font-size:18px;
-}
-
-.examTitle p{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
-
-.headerIcon{
-
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:13px;
-
-    background:var(--accentSoft);
-
-    font-size:19px;
-
-}
-
-
-/* =========================================
-   MAIN
-========================================= */
-
-.examContainer{
-
-    width:min(900px,93%);
-
-    margin:auto;
-
-    padding:35px 0 70px;
-
-}
-
-
-/* =========================================
-   INTRO
-========================================= */
-
-.setupIntro{
-
-    text-align:center;
-
-    margin-bottom:27px;
-
-    animation:appear .7s ease;
-
-}
-
-.mascot{
-
-    width:85px;
-    height:85px;
-
-    margin:auto;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    border-radius:29px;
-
-    background:var(--accentSoft);
-
-    font-size:44px;
-
-    animation:float 3s infinite ease-in-out;
-
-}
-
-.setupIntro h2{
-
-    font-size:29px;
-
-    margin-top:16px;
-
-}
-
-.setupIntro p{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    margin-top:7px;
-
-}
-
-
-/* =========================================
-   SETUP CARD
-========================================= */
-
-.setupCard{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:27px;
-
-    padding:27px;
-
-    box-shadow:var(--shadow);
-
-    animation:appear .8s ease;
-
-}
-
-.optionGroup{
-
-    margin-bottom:28px;
-
-}
-
-.optionHeader{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:13px;
-
-}
-
-.optionHeader h3{
-
-    font-size:14px;
-
-}
-
-.optionHeader span{
-
-    color:var(--muted);
-
-    font-size:10px;
-
-}
-
-
-/* =========================================
-   SUBJECTS
-========================================= */
-
-.subjectGrid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-}
-
-.subjectButton{
-
-    border:1px solid var(--border);
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    border-radius:15px;
-
-    padding:15px 10px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    text-align:left;
-
-}
-
-.subjectButton:hover{
-
-    transform:translateY(-3px);
-
-    border-color:var(--accent);
-
-}
-
-.subjectIcon{
-
-    font-size:23px;
-
-    margin-bottom:8px;
-
-}
-
-.subjectName{
-
-    font-size:11px;
-
-    font-weight:bold;
-
-}
-
-.subjectButton.selected{
-
-    background:var(--accentSoft);
-
-    border:2px solid var(--accent);
-
-    color:var(--accent);
-
-}
-
-
-/* =========================================
-   OPTIONS
-========================================= */
-
-.optionButtons{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:9px;
-
-}
-
-.optionButton{
-
-    border:1px solid var(--border);
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    padding:11px 15px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-}
-
-.optionButton.selected{
-
-    background:var(--accent);
-
-    color:white;
-
-    border-color:var(--accent);
-
-}
-
-
-/* =========================================
-   QUESTION COUNT
-========================================= */
-
-.countGrid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(8,1fr);
-
-    gap:8px;
-
-}
-
-.countButton{
-
-    border:1px solid var(--border);
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    padding:12px 5px;
-
-    border-radius:11px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-}
-
-.countButton.selected{
-
-    background:var(--accent);
-
-    color:white;
-
-    border-color:var(--accent);
-
-}
-
-
-/* =========================================
-   SUMMARY
-========================================= */
-
-.examSummary{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-    margin-top:25px;
-
-    padding:15px;
-
-    border-radius:17px;
-
-    background:var(--accentSoft);
-
-}
-
-.summaryItem{
-
-    text-align:center;
-
-}
-
-.summaryValue{
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    color:var(--accent);
-
-}
-
-.summaryLabel{
-
-    font-size:9px;
-
-    color:var(--muted);
-
-    margin-top:4px;
-
-}
-
-
-/* =========================================
-   START BUTTON
-========================================= */
-
-.startButton{
-
-    width:100%;
-
-    border:0;
-
-    margin-top:22px;
-
-    padding:16px;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            #ff72a8
-        );
-
-    color:white;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 12px 28px
-        rgba(113,104,232,.25);
-
-    transition:.25s;
-
-}
-
-.startButton:hover{
-
-    transform:translateY(-3px);
-
-}
-
-
-/* =========================================
-   EXAM SCREEN
-========================================= */
-
-.examScreen{
-
-    display:none;
-
-    animation:appear .5s ease;
-
-}
-
-.examTop{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:13px;
-
-}
-
-.questionCounter{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-.timer{
-
-    padding:9px 13px;
-
-    border-radius:11px;
-
-    background:var(--accentSoft);
-
-    color:var(--accent);
-
-    font-size:12px;
-
-    font-weight:bold;
-
-}
-
-.progress{
-
-    height:8px;
-
-    background:var(--border);
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-bottom:20px;
-
-}
-
-.progressFill{
-
-    height:100%;
-
-    width:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            #ff72a8
-        );
-
-    transition:.4s;
-
-}
-
-
-/* =========================================
-   QUESTION CARD
-========================================= */
-
-.questionCard{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:27px;
-
-    padding:28px;
-
-    box-shadow:var(--shadow);
-
-}
-
-.questionTag{
-
-    display:inline-block;
-
-    padding:7px 11px;
-
-    border-radius:9px;
-
-    background:var(--accentSoft);
-
-    color:var(--accent);
-
-    font-size:10px;
-
-    font-weight:bold;
-
-}
-
-.questionText{
-
-    font-size:21px;
-
-    line-height:1.5;
-
-    margin:20px 0 24px;
-
-}
-
-
-/* =========================================
-   ANSWERS
-========================================= */
-
-.answers{
-
-    display:grid;
-
-    gap:11px;
-
-}
-
-.answer{
-
-    width:100%;
-
-    text-align:left;
-
-    padding:15px;
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    cursor:pointer;
-
-    font-size:12px;
-
-    transition:.2s;
-
-}
-
-.answer:hover{
-
-    transform:translateX(4px);
-
-    border-color:var(--accent);
-
-}
-
-.answer:disabled{
-
-    cursor:default;
-
-}
-
-.answer.correct{
-
-    background:
-        rgba(53,166,111,.12);
-
-    border-color:#35a66f;
-
-}
-
-.answer.wrong{
-
-    background:
-        rgba(224,91,110,.12);
-
-    border-color:#e05b6e;
-
-}
-
-
-/* =========================================
-   FEEDBACK BOX
-========================================= */
-
-.feedbackBox{
-
-    display:none;
-
-    margin-top:20px;
-
-    padding:18px;
-
-    border-radius:18px;
-
-    border:1px solid var(--border);
-
-    animation:feedbackAppear .4s ease;
-
-}
-
-.feedbackBox.correctFeedback{
-
-    background:
-        rgba(53,166,111,.08);
-
-    border-color:#35a66f;
-
-}
-
-.feedbackBox.wrongFeedback{
-
-    background:
-        rgba(224,91,110,.08);
-
-    border-color:#e05b6e;
-
-}
-
-.feedbackTitle{
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
-
-.feedbackAnswer{
-
-    font-size:11px;
-
-    color:var(--muted);
-
-    margin-bottom:10px;
-
-}
-
-.explanationTitle{
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    margin-bottom:5px;
-
-}
-
-.explanation{
-
-    font-size:11px;
-
-    line-height:1.6;
-
-    color:var(--text);
-
-}
-
-
-/* =========================================
-   XP
-========================================= */
-
-.xpReward{
-
-    display:none;
-
-    margin-top:12px;
-
-    color:#d99b00;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-}
-
-
-/* =========================================
-   CONTROLS
-========================================= */
-
-.examControls{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    margin-top:20px;
-
-}
-
-.controlButton{
-
-    border:1px solid var(--border);
-
-    background:var(--card);
-
-    color:var(--text);
-
-    padding:12px 18px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-}
-
-.controlButton.primary{
-
-    background:var(--accent);
-
-    border-color:var(--accent);
-
-    color:white;
-
-}
-
-
-/* =========================================
-   RESULT
-========================================= */
-
-.resultScreen{
-
-    display:none;
-
-    animation:appear .6s ease;
-
-}
-
-.resultCard{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:30px;
-
-    padding:35px 25px;
-
-    box-shadow:var(--shadow);
-
-}
-
-.resultHeader{
-
-    text-align:center;
-
-}
-
-.resultMascot{
-
-    font-size:70px;
-
-    animation:float 3s infinite ease-in-out;
-
-}
-
-.resultCard h2{
-
-    font-size:27px;
-
-    margin-top:10px;
-
-}
-
-.scoreCircle{
-
-    width:135px;
-    height:135px;
-
-    margin:25px auto;
-
-    border-radius:50%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:var(--accentSoft);
-
-    border:8px solid var(--accent);
-
-}
-
-.scoreNumber{
-
-    color:var(--accent);
-
-    font-size:28px;
-
-    font-weight:bold;
-
-}
-
-.scoreLabel{
-
-    color:var(--muted);
-
-    font-size:9px;
-
-}
-
-.resultStats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-    margin:20px 0;
-
-}
-
-.resultStat{
-
-    padding:15px 5px;
-
-    border-radius:15px;
-
-    background:var(--accentSoft);
-
-    text-align:center;
-
-}
-
-.resultStat strong{
-
-    display:block;
-
-    color:var(--accent);
-
-    font-size:16px;
-
-}
-
-.resultStat span{
-
-    color:var(--muted);
-
-    font-size:9px;
-
-}
-
-.resultMessage{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.6;
-
-    text-align:center;
-
-}
-
-
-/* =========================================
-   REVIEW MISTAKES
-========================================= */
-
-.reviewSection{
-
-    margin-top:25px;
-
-    display:none;
-
-}
-
-.reviewTitle{
-
-    font-size:18px;
-
-    margin-bottom:13px;
-
-}
-
-.mistakeCard{
-
-    background:var(--bg);
-
-    border:1px solid var(--border);
-
-    border-radius:17px;
-
-    padding:17px;
-
-    margin-bottom:12px;
-
-}
-
-.mistakeNumber{
-
-    color:var(--accent);
-
-    font-size:10px;
-
-    font-weight:bold;
-
-}
-
-.mistakeQuestion{
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    line-height:1.5;
-
-    margin:8px 0;
-
-}
-
-.yourAnswer{
-
-    color:#e05b6e;
-
-    font-size:10px;
-
-    margin-top:7px;
-
-}
-
-.correctAnswer{
-
-    color:#35a66f;
-
-    font-size:10px;
-
-    margin-top:5px;
-
-}
-
-.mistakeExplanation{
-
-    margin-top:10px;
-
-    padding:10px;
-
-    border-radius:11px;
-
-    background:var(--accentSoft);
-
-    color:var(--text);
-
-    font-size:10px;
-
-    line-height:1.6;
-
-}
-
-.resultButtons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin-top:25px;
-
-    flex-wrap:wrap;
-
-}
-
-.resultButton{
-
-    border:0;
-
-    padding:12px 17px;
-
-    border-radius:12px;
-
-    background:var(--accent);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-}
-
-.resultButton.secondary{
-
-    background:var(--accentSoft);
-
-    color:var(--accent);
-
-}
-
-
-/* =========================================
-   ANIMATIONS
-========================================= */
-
-@keyframes appear{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice | Ethio Mock Exam</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to{
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+    }
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
+    }
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
+    }
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
 
-        opacity:1;
-
-        transform:translateY(0);
-
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-}
-
-@keyframes float{
-
-    0%,100%{
-
-        transform:
-            translateY(0)
-            rotate(-2deg);
-
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    50%{
-
-        transform:
-            translateY(-9px)
-            rotate(2deg);
-
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .back-btn {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover, .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
     }
 
-}
-
-@keyframes feedbackAppear{
-
-    from{
-
-        opacity:0;
-
-        transform:scale(.96);
-
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 35px 24px 60px;
     }
 
-    to{
+    .setup-intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .setup-intro .mascot { font-size: 3.5rem; display: block; margin-bottom: 10px; }
+    .setup-intro h1 { font-size: 2rem; }
+    .setup-intro p { color: var(--muted); }
 
-        opacity:1;
-
-        transform:scale(1);
-
+    .setup-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
     }
 
-}
+    .option-group { margin-bottom: 22px; }
+    .option-group .label { font-weight: 600; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .option-group .label span { color: var(--muted); font-weight: 400; }
 
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .subject-btn {
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      padding: 14px 10px;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s;
+    }
+    .subject-btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .subject-btn.selected { background: var(--accentSoft); border-color: var(--accent); color: var(--accent); }
+    .subject-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+    .subject-btn .name { font-weight: 600; font-size: 0.85rem; }
 
-/* =========================================
-   NO ANIMATION
-========================================= */
+    .option-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .option-btn {
+      padding: 10px 16px;
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .option-btn:hover { border-color: var(--accent); }
+    .option-btn.selected { background: var(--accent); color: white; border-color: var(--accent); }
 
-:root.noAnimations *,
-:root.noAnimations *::before{
+    .count-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+    }
+    .count-btn {
+      padding: 12px 5px;
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+      text-align: center;
+    }
+    .count-btn:hover { border-color: var(--accent); }
+    .count-btn.selected { background: var(--accent); color: white; border-color: var(--accent); }
 
-    animation:none !important;
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--accentSoft);
+      margin: 18px 0;
+    }
+    .summary .item { text-align: center; }
+    .summary .item .value { font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+    .summary .item .label { font-size: 0.7rem; color: var(--muted); }
 
-    transition:none !important;
+    .start-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .start-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(74, 91, 217, 0.25); }
 
-}
+    .exam-screen { display: none; }
+    .exam-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .exam-top .counter { color: var(--muted); }
+    .exam-top .timer { padding: 8px 14px; border-radius: 10px; background: var(--accentSoft); color: var(--accent); font-weight: 600; }
 
+    .progress-bar { height: 8px; background: rgba(128, 140, 180, 0.2); border-radius: 20px; overflow: hidden; margin-bottom: 18px; }
+    .progress-bar .fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--accent), var(--pink)); transition: width 0.4s; }
 
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:700px){
-
-    .subjectGrid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+    .question-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .question-card .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: var(--accentSoft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .question-card .q-text {
+      font-size: 1.3rem;
+      line-height: 1.5;
+      margin: 18px 0 22px;
     }
 
-    .countGrid{
-
-        grid-template-columns:
-            repeat(4,1fr);
-
+    .answers { display: grid; gap: 10px; }
+    .answer {
+      padding: 14px 18px;
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s;
     }
+    .answer:hover { transform: translateX(4px); border-color: var(--accent); }
+    .answer:disabled { cursor: default; opacity: 0.7; }
+    .answer.correct { border-color: #35c879; background: rgba(53, 200, 121, 0.1); }
+    .answer.wrong { border-color: #e05b6e; background: rgba(224, 91, 110, 0.1); }
 
-}
-
-@media(max-width:500px){
-
-    .examHeader{
-
-        padding:0 12px;
-
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      background: var(--accentSoft);
     }
+    .feedback.show { display: block; }
+    .feedback .title { font-weight: 600; margin-bottom: 5px; }
+    .feedback .explanation { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .feedback .xp { color: #d99b00; font-weight: 600; margin-top: 8px; }
 
-    .examContainer{
-
-        width:94%;
-
+    .exam-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
     }
-
-    .setupCard{
-
-        padding:20px;
-
+    .exam-controls button {
+      padding: 12px 20px;
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 12px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+      flex: 1;
     }
-
-    .questionText{
-
-        font-size:18px;
-
+    .exam-controls button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
     }
+    .exam-controls button:hover { transform: translateY(-2px); }
 
-    .examControls{
-
-        flex-direction:column-reverse;
-
+    .result-screen { display: none; }
+    .result-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
-
-    .controlButton{
-
-        width:100%;
-
+    .result-card .mascot { font-size: 4rem; display: block; margin-bottom: 10px; }
+    .result-card .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 8px solid var(--accent);
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--accentSoft);
     }
+    .result-card .score-circle .number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .result-card .score-circle .label { font-size: 0.7rem; color: var(--muted); }
 
-}
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .result-stats .stat { padding: 14px; border-radius: 14px; background: var(--accentSoft); }
+    .result-stats .stat strong { display: block; font-size: 1.3rem; color: var(--accent); }
+    .result-stats .stat span { font-size: 0.75rem; color: var(--muted); }
 
-</style>
+    .result-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .result-btns button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .result-btns .primary { background: var(--accent); color: white; }
+    .result-btns .secondary { background: var(--accentSoft); color: var(--accent); }
+    .result-btns button:hover { transform: translateY(-2px); }
 
+    @media (max-width: 600px) {
+      .subject-grid { grid-template-columns: repeat(2, 1fr); }
+      .count-grid { grid-template-columns: repeat(4, 1fr); }
+      header { padding: 0 16px; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+      .exam-controls { flex-direction: column; }
+      .result-stats { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="back-btn" onclick="window.location.href='home.html'"><i class="fas fa-home"></i></button>
+    </div>
+  </header>
 
-<!-- THEME -->
+  <div class="container">
+    <div id="setupScreen">
+      <div class="setup-intro">
+        <span class="mascot">🦊</span>
+        <h1>Ready for a challenge?</h1>
+        <p>Build your own mock exam and learn from every answer.</p>
+      </div>
 
-<script src="theme.js"></script>
+      <div class="setup-card">
+        <div class="option-group">
+          <div class="label">📚 Choose Subject <span id="selectedSubjectText">Biology</span></div>
+          <div class="subject-grid" id="subjectGrid">
+            <button class="subject-btn selected" data-value="Biology" onclick="selectSubject(this)"><span class="icon">🧬</span><span class="name">Biology</span></button>
+            <button class="subject-btn" data-value="Mathematics" onclick="selectSubject(this)"><span class="icon">📐</span><span class="name">Mathematics</span></button>
+            <button class="subject-btn" data-value="Physics" onclick="selectSubject(this)"><span class="icon">⚡</span><span class="name">Physics</span></button>
+            <button class="subject-btn" data-value="Chemistry" onclick="selectSubject(this)"><span class="icon">🧪</span><span class="name">Chemistry</span></button>
+            <button class="subject-btn" data-value="English" onclick="selectSubject(this)"><span class="icon">📖</span><span class="name">English</span></button>
+            <button class="subject-btn" data-value="Geography" onclick="selectSubject(this)"><span class="icon">🌍</span><span class="name">Geography</span></button>
+            <button class="subject-btn" data-value="History" onclick="selectSubject(this)"><span class="icon">🏛️</span><span class="name">History</span></button>
+            <button class="subject-btn" data-value="Economics" onclick="selectSubject(this)"><span class="icon">📊</span><span class="name">Economics</span></button>
+            <button class="subject-btn" data-value="Civics" onclick="selectSubject(this)"><span class="icon">⚖️</span><span class="name">Civics</span></button>
+          </div>
+        </div>
 
+        <div class="option-group">
+          <div class="label">🧠 Difficulty <span id="selectedDifficultyText">Easy</span></div>
+          <div class="option-btns">
+            <button class="option-btn selected" data-value="Easy" onclick="selectDifficulty(this)">🌱 Easy</button>
+            <button class="option-btn" data-value="Medium" onclick="selectDifficulty(this)">🔥 Medium</button>
+            <button class="option-btn" data-value="Hard" onclick="selectDifficulty(this)">🚀 Hard</button>
+            <button class="option-btn" data-value="Mixed" onclick="selectDifficulty(this)">🎲 Mixed</button>
+          </div>
+        </div>
 
-<!-- BACKGROUND -->
+        <div class="option-group">
+          <div class="label">📝 Number of Questions <span id="selectedCountText">10 Questions</span></div>
+          <div class="count-grid">
+            <button class="count-btn" data-value="5" onclick="selectCount(this)">5</button>
+            <button class="count-btn selected" data-value="10" onclick="selectCount(this)">10</button>
+            <button class="count-btn" data-value="15" onclick="selectCount(this)">15</button>
+            <button class="count-btn" data-value="20" onclick="selectCount(this)">20</button>
+            <button class="count-btn" data-value="25" onclick="selectCount(this)">25</button>
+            <button class="count-btn" data-value="30" onclick="selectCount(this)">30</button>
+            <button class="count-btn" data-value="40" onclick="selectCount(this)">40</button>
+            <button class="count-btn" data-value="50" onclick="selectCount(this)">50</button>
+          </div>
+        </div>
 
-<div class="examBackground">
+        <div class="summary">
+          <div class="item"><div class="value" id="summarySubject">Biology</div><div class="label">Subject</div></div>
+          <div class="item"><div class="value" id="summaryDifficulty">Easy</div><div class="label">Difficulty</div></div>
+          <div class="item"><div class="value" id="summaryCount">10</div><div class="label">Questions</div></div>
+        </div>
 
-    <div class="examOrb orb1"></div>
-
-    <div class="examOrb orb2"></div>
-
-</div>
-
-
-<!-- HEADER -->
-
-<header class="examHeader">
-
-    <button
-        class="backButton"
-        onclick="goHome()">
-
-        ← Back
-
-    </button>
-
-
-    <div class="examTitle">
-
-        <h1>
-            Practice Arena
-        </h1>
-
-        <p>
-            Learn • Practice • Improve
-        </p>
-
+        <button class="start-btn" onclick="startExam()">🚀 Start Mock Exam</button>
+      </div>
     </div>
 
+    <div class="exam-screen" id="examScreen">
+      <div class="exam-top">
+        <span class="counter" id="questionCounter">Question 1 of 10</span>
+        <span class="timer" id="timer">⏱ 10:00</span>
+      </div>
+      <div class="progress-bar"><div class="fill" id="progressFill" style="width:0%"></div></div>
 
-    <div class="headerIcon">
-        🎯
+      <div class="question-card">
+        <span class="tag" id="questionSubject">Biology</span>
+        <div class="q-text" id="questionText">Loading question...</div>
+        <div class="answers" id="answers"></div>
+
+        <div class="feedback" id="feedback">
+          <div class="title" id="feedbackTitle"></div>
+          <div class="explanation" id="explanationText"></div>
+          <div class="xp" id="xpReward">⭐ +10 XP</div>
+        </div>
+
+        <div class="exam-controls">
+          <button onclick="previousQuestion()">← Previous</button>
+          <button class="primary" id="nextButton" onclick="nextQuestion()">Next →</button>
+        </div>
+      </div>
     </div>
 
-</header>
-
-
-<main class="examContainer">
-
-
-<!-- =========================================
-     SETUP
-========================================= -->
-
-<section id="setupScreen">
-
-
-    <div class="setupIntro">
-
-        <div class="mascot">
-            🦊
+    <div class="result-screen" id="resultScreen">
+      <div class="result-card">
+        <span class="mascot">🦊</span>
+        <h1>Exam Complete!</h1>
+        <div class="score-circle">
+          <span class="number" id="scoreNumber">0%</span>
+          <span class="label">SCORE</span>
         </div>
 
-        <h2>
-            Ready for a challenge?
-        </h2>
+        <div class="result-stats">
+          <div class="stat"><strong id="correctCount">0</strong><span>Correct</span></div>
+          <div class="stat"><strong id="wrongCount">0</strong><span>Wrong</span></div>
+          <div class="stat"><strong id="xpEarned">0</strong><span>XP Earned</span></div>
+        </div>
 
-        <p>
-            Build your own mock exam and learn from every answer.
-        </p>
+        <p id="resultMessage" style="color:var(--muted);line-height:1.6;"></p>
 
+        <div class="result-btns">
+          <button class="primary" onclick="restartExam()">🔄 Try Again</button>
+          <button class="secondary" onclick="window.location.href='home.html'">🏠 Home</button>
+        </div>
+      </div>
     </div>
-
-
-    <div class="setupCard">
-
-
-        <!-- SUBJECT -->
-
-        <div class="optionGroup">
-
-            <div class="optionHeader">
-
-                <h3>
-                    📚 Choose Subject
-                </h3>
-
-                <span id="selectedSubjectText">
-                    Biology
-                </span>
-
-            </div>
-
-
-            <div class="subjectGrid">
-
-
-                <button
-                    class="subjectButton selected"
-                    data-value="Biology"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        🧬
-                    </div>
-
-                    <div class="subjectName">
-                        Biology
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Mathematics"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        📐
-                    </div>
-
-                    <div class="subjectName">
-                        Mathematics
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Physics"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        ⚡
-                    </div>
-
-                    <div class="subjectName">
-                        Physics
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Chemistry"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        🧪
-                    </div>
-
-                    <div class="subjectName">
-                        Chemistry
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="English"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        📖
-                    </div>
-
-                    <div class="subjectName">
-                        English
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Geography"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        🌍
-                    </div>
-
-                    <div class="subjectName">
-                        Geography
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="History"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        🏛️
-                    </div>
-
-                    <div class="subjectName">
-                        History
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Economics"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        📊
-                    </div>
-
-                    <div class="subjectName">
-                        Economics
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="subjectButton"
-                    data-value="Civics"
-                    onclick="selectSubject(this)">
-
-                    <div class="subjectIcon">
-                        ⚖️
-                    </div>
-
-                    <div class="subjectName">
-                        Civics
-                    </div>
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- DIFFICULTY -->
-
-        <div class="optionGroup">
-
-            <div class="optionHeader">
-
-                <h3>
-                    🧠 Difficulty
-                </h3>
-
-                <span id="selectedDifficultyText">
-                    Easy
-                </span>
-
-            </div>
-
-
-            <div class="optionButtons">
-
-                <button
-                    class="optionButton selected"
-                    data-value="Easy"
-                    onclick="selectDifficulty(this)">
-
-                    🌱 Easy
-
-                </button>
-
-
-                <button
-                    class="optionButton"
-                    data-value="Medium"
-                    onclick="selectDifficulty(this)">
-
-                    🔥 Medium
-
-                </button>
-
-
-                <button
-                    class="optionButton"
-                    data-value="Hard"
-                    onclick="selectDifficulty(this)">
-
-                    🚀 Hard
-
-                </button>
-
-
-                <button
-                    class="optionButton"
-                    data-value="Mixed"
-                    onclick="selectDifficulty(this)">
-
-                    🎲 Mixed
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUESTION COUNT -->
-
-        <div class="optionGroup">
-
-            <div class="optionHeader">
-
-                <h3>
-                    📝 Number of Questions
-                </h3>
-
-                <span id="selectedCountText">
-                    10 Questions
-                </span>
-
-            </div>
-
-
-            <div class="countGrid">
-
-                <button
-                    class="countButton"
-                    data-value="5"
-                    onclick="selectCount(this)">
-                    5
-                </button>
-
-                <button
-                    class="countButton selected"
-                    data-value="10"
-                    onclick="selectCount(this)">
-                    10
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="15"
-                    onclick="selectCount(this)">
-                    15
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="20"
-                    onclick="selectCount(this)">
-                    20
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="25"
-                    onclick="selectCount(this)">
-                    25
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="30"
-                    onclick="selectCount(this)">
-                    30
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="40"
-                    onclick="selectCount(this)">
-                    40
-                </button>
-
-                <button
-                    class="countButton"
-                    data-value="50"
-                    onclick="selectCount(this)">
-                    50
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- SUMMARY -->
-
-        <div class="examSummary">
-
-            <div class="summaryItem">
-
-                <div
-                    class="summaryValue"
-                    id="summarySubject">
-
-                    Biology
-
-                </div>
-
-                <div class="summaryLabel">
-                    Subject
-                </div>
-
-            </div>
-
-
-            <div class="summaryItem">
-
-                <div
-                    class="summaryValue"
-                    id="summaryDifficulty">
-
-                    Easy
-
-                </div>
-
-                <div class="summaryLabel">
-                    Difficulty
-                </div>
-
-            </div>
-
-
-            <div class="summaryItem">
-
-                <div
-                    class="summaryValue"
-                    id="summaryCount">
-
-                    10
-
-                </div>
-
-                <div class="summaryLabel">
-                    Questions
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="startButton"
-            onclick="startExam()">
-
-            🚀 Start Mock Exam
-
-        </button>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     EXAM
-========================================= -->
-
-<section
-    class="examScreen"
-    id="examScreen">
-
-
-    <div class="examTop">
-
-        <div
-            class="questionCounter"
-            id="questionCounter">
-
-            Question 1 of 10
-
-        </div>
-
-
-        <div
-            class="timer"
-            id="timer">
-
-            ⏱ 10:00
-
-        </div>
-
-    </div>
-
-
-    <div class="progress">
-
-        <div
-            class="progressFill"
-            id="progressFill">
-
-        </div>
-
-    </div>
-
-
-    <div class="questionCard">
-
-
-        <div
-            class="questionTag"
-            id="questionSubject">
-
-            Biology
-
-        </div>
-
-
-        <div
-            class="questionText"
-            id="questionText">
-
-            Loading question...
-
-        </div>
-
-
-        <div
-            class="answers"
-            id="answers">
-
-        </div>
-
-
-        <!-- FEEDBACK -->
-
-        <div
-            class="feedbackBox"
-            id="feedbackBox">
-
-            <div
-                class="feedbackTitle"
-                id="feedbackTitle">
-
-            </div>
-
-
-            <div
-                class="feedbackAnswer"
-                id="feedbackAnswer">
-
-            </div>
-
-
-            <div class="explanationTitle">
-
-                💡 Why?
-
-            </div>
-
-
-            <div
-                class="explanation"
-                id="explanation">
-
-            </div>
-
-
-            <div
-                class="xpReward"
-                id="xpReward">
-
-                ⭐ +10 XP
-
-            </div>
-
-        </div>
-
-
-        <!-- CONTROLS -->
-
-        <div class="examControls">
-
-            <button
-                class="controlButton"
-                onclick="previousQuestion()">
-
-                ← Previous
-
-            </button>
-
-
-            <button
-                class="controlButton primary"
-                id="nextButton"
-                onclick="nextQuestion()">
-
-                Next →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     RESULT
-========================================= -->
-
-<section
-    class="resultScreen"
-    id="resultScreen">
-
-
-    <div class="resultCard">
-
-
-        <div class="resultHeader">
-
-            <div class="resultMascot">
-                🦊
-            </div>
-
-
-            <h2>
-                Exam Complete!
-            </h2>
-
-
-            <div class="scoreCircle">
-
-                <div
-                    class="scoreNumber"
-                    id="scoreNumber">
-
-                    0%
-
-                </div>
-
-                <div class="scoreLabel">
-                    SCORE
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- RESULT STATS -->
-
-        <div class="resultStats">
-
-
-            <div class="resultStat">
-
-                <strong id="correctCount">
-                    0
-                </strong>
-
-                <span>
-                    Correct
-                </span>
-
-            </div>
-
-
-            <div class="resultStat">
-
-                <strong id="wrongCount">
-                    0
-                </strong>
-
-                <span>
-                    Wrong
-                </span>
-
-            </div>
-
-
-            <div class="resultStat">
-
-                <strong id="xpEarned">
-                    0
-                </strong>
-
-                <span>
-                    XP Earned
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <p
-            class="resultMessage"
-            id="resultMessage">
-
-        </p>
-
-
-        <!-- REVIEW -->
-
-        <div
-            class="reviewSection"
-            id="reviewSection">
-
-            <div class="reviewTitle">
-
-                📖 Review Your Mistakes
-
-            </div>
-
-
-            <div
-                id="mistakesContainer">
-
-            </div>
-
-        </div>
-
-
-        <!-- BUTTONS -->
-
-        <div class="resultButtons">
-
-            <button
-                class="resultButton"
-                onclick="restartExam()">
-
-                🔄 Try Again
-
-            </button>
-
-
-            <button
-                class="resultButton secondary"
-                onclick="goHome()">
-
-                🏠 Home
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-<script>
-
-/* =========================================
-   SETTINGS
-========================================= */
-
-let selectedSubject = "Biology";
-
-let selectedDifficulty = "Easy";
-
-let selectedCount = 10;
-
-
-/* =========================================
-   QUESTION DATABASE
-========================================= */
-
-const questionBank = {
-
-Biology:[
-
-{
-q:"Which organelle is known as the powerhouse of the cell?",
-a:["Nucleus","Mitochondria","Ribosome","Cell wall"],
-c:1,
-e:"Mitochondria produce most of the usable energy for the cell through cellular respiration."
-},
-
-{
-q:"Which process do green plants use to make food?",
-a:["Respiration","Digestion","Photosynthesis","Fermentation"],
-c:2,
-e:"Photosynthesis allows green plants to use light energy to make glucose from carbon dioxide and water."
-},
-
-{
-q:"Which part of a plant mainly absorbs water from the soil?",
-a:["Flower","Root","Fruit","Leaf"],
-c:1,
-e:"Roots contain structures that absorb water and mineral nutrients from the soil."
-},
-
-{
-q:"What carries genetic information in most living organisms?",
-a:["DNA","Water","Glucose","Oxygen"],
-c:0,
-e:"DNA stores the genetic instructions used for growth, development and reproduction."
-},
-
-{
-q:"Which gas is released during photosynthesis?",
-a:["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],
-c:2,
-e:"During photosynthesis, plants release oxygen as a product of the process."
-}
-
-],
-
-Mathematics:[
-
-{
-q:"What is 12 × 5?",
-a:["50","60","70","80"],
-c:1,
-e:"12 multiplied by 5 equals 60."
-},
-
-{
-q:"What is the square root of 81?",
-a:["7","8","9","10"],
-c:2,
-e:"9 × 9 = 81, so the square root of 81 is 9."
-},
-
-{
-q:"What is 25% of 200?",
-a:["25","40","50","75"],
-c:2,
-e:"25% means one quarter. One quarter of 200 is 50."
-}
-
-],
-
-Physics:[
-
-{
-q:"What is the SI unit of force?",
-a:["Joule","Watt","Newton","Pascal"],
-c:2,
-e:"The Newton (N) is the SI unit used to measure force."
-},
-
-{
-q:"Which quantity measures how fast an object moves?",
-a:["Mass","Speed","Force","Energy"],
-c:1,
-e:"Speed describes how much distance an object travels per unit of time."
-}
-
-],
-
-Chemistry:[
-
-{
-q:"What is the chemical formula for water?",
-a:["CO₂","H₂O","O₂","NaCl"],
-c:1,
-e:"A water molecule contains two hydrogen atoms and one oxygen atom, giving H₂O."
-},
-
-{
-q:"What is the atomic number of hydrogen?",
-a:["1","2","8","10"],
-c:0,
-e:"Hydrogen has one proton in its nucleus, so its atomic number is 1."
-}
-
-],
-
-English:[
-
-{
-q:"Which word is a noun?",
-a:["Run","Beautiful","School","Quickly"],
-c:2,
-e:"School is a noun because it names a place or institution."
-},
-
-{
-q:"Choose the correct plural of 'child'.",
-a:["Childs","Children","Childes","Childrens"],
-c:1,
-e:"Children is the irregular plural form of child."
-}
-
-],
-
-Geography:[
-
-{
-q:"Which is the largest continent?",
-a:["Africa","Asia","Europe","Australia"],
-c:1,
-e:"Asia is the largest continent by both area and population."
-},
-
-{
-q:"What is the capital city of Ethiopia?",
-a:["Dire Dawa","Adama","Addis Ababa","Gondar"],
-c:2,
-e:"Addis Ababa is the capital city of Ethiopia."
-}
-
-],
-
-History:[
-
-{
-q:"Which ancient civilization built the pyramids of Giza?",
-a:["Romans","Greeks","Egyptians","Persians"],
-c:2,
-e:"The pyramids of Giza were built in ancient Egypt."
-},
-
-{
-q:"History mainly studies what?",
-a:["Past events","Future events","Weather","Plants"],
-c:0,
-e:"History is the study of past events, people, societies and changes over time."
-}
-
-],
-
-Economics:[
-
-{
-q:"What does supply refer to?",
-a:[
-"Goods producers are willing to sell",
-"Money saved",
-"Government laws",
-"Consumer income"
-],
-c:0,
-e:"Supply refers to the amount of a good or service that producers are willing and able to sell."
-},
-
-{
-q:"What is inflation?",
-a:[
-"A fall in population",
-"A general rise in prices",
-"A rise in rainfall",
-"A decrease in production"
-],
-c:1,
-e:"Inflation is a general increase in the prices of goods and services over time."
-}
-
-],
-
-Civics:[
-
-{
-q:"What is a constitution?",
-a:[
-"A country's fundamental law",
-"A school timetable",
-"A business plan",
-"A newspaper"
-],
-c:0,
-e:"A constitution establishes fundamental principles, structures and rules for governing a country."
-},
-
-{
-q:"Which is an important responsibility of citizens?",
-a:[
-"Ignoring laws",
-"Respecting laws",
-"Avoiding education",
-"Destroying public property"
-],
-c:1,
-e:"Respecting laws helps maintain order and protects the rights of people in society."
-}
-
-]
-
-};
-
-
-/* =========================================
-   EXAM VARIABLES
-========================================= */
-
-let questions=[];
-
-let currentQuestion=0;
-
-let score=0;
-
-let answersGiven=[];
-
-let timeLeft=600;
-
-let timer;
-
-
-/* =========================================
-   SELECT SUBJECT
-========================================= */
-
-function selectSubject(button){
-
-document
-.querySelectorAll(".subjectButton")
-.forEach(btn=>{
-btn.classList.remove("selected");
-});
-
-button.classList.add("selected");
-
-selectedSubject=
-button.dataset.value;
-
-document.getElementById(
-"selectedSubjectText"
-).textContent=
-selectedSubject;
-
-document.getElementById(
-"summarySubject"
-).textContent=
-selectedSubject;
-
-}
-
-
-/* =========================================
-   SELECT DIFFICULTY
-========================================= */
-
-function selectDifficulty(button){
-
-document
-.querySelectorAll(".optionButton")
-.forEach(btn=>{
-btn.classList.remove("selected");
-});
-
-button.classList.add("selected");
-
-selectedDifficulty=
-button.dataset.value;
-
-document.getElementById(
-"selectedDifficultyText"
-).textContent=
-selectedDifficulty;
-
-document.getElementById(
-"summaryDifficulty"
-).textContent=
-selectedDifficulty;
-
-}
-
-
-/* =========================================
-   SELECT COUNT
-========================================= */
-
-function selectCount(button){
-
-document
-.querySelectorAll(".countButton")
-.forEach(btn=>{
-btn.classList.remove("selected");
-});
-
-button.classList.add("selected");
-
-selectedCount=
-Number(button.dataset.value);
-
-document.getElementById(
-"selectedCountText"
-).textContent=
-selectedCount+
-" Questions";
-
-document.getElementById(
-"summaryCount"
-).textContent=
-selectedCount;
-
-}
-
-
-/* =========================================
-   BUILD QUESTIONS
-========================================= */
-
-function buildQuestions(){
-
-const bank=
-questionBank[selectedSubject]
-||questionBank.Biology;
-
-questions=[];
-
-for(
-let i=0;
-i<selectedCount;
-i++
-){
-
-questions.push(
-bank[i%bank.length]
-);
-
-}
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-function startExam(){
-
-buildQuestions();
-
-currentQuestion=0;
-
-score=0;
-
-answersGiven=[];
-
-timeLeft=
-selectedCount*60;
-
-document.getElementById(
-"setupScreen"
-).style.display=
-"none";
-
-document.getElementById(
-"examScreen"
-).style.display=
-"block";
-
-document.getElementById(
-"resultScreen"
-).style.display=
-"none";
-
-startTimer();
-
-showQuestion();
-
-}
-
-
-/* =========================================
-   SHOW QUESTION
-========================================= */
-
-function showQuestion(){
-
-const question=
-questions[currentQuestion];
-
-document.getElementById(
-"questionCounter"
-).textContent=
-"Question "+
-(currentQuestion+1)+
-" of "+
-selectedCount;
-
-document.getElementById(
-"questionSubject"
-).textContent=
-selectedSubject;
-
-document.getElementById(
-"questionText"
-).textContent=
-question.q;
-
-const answers=
-document.getElementById("answers");
-
-answers.innerHTML="";
-
-
-question.a.forEach(
-(answer,index)=>{
-
-const button=
-document.createElement("button");
-
-button.className="answer";
-
-button.textContent=
-String.fromCharCode(65+index)+
-". "+
-answer;
-
-button.onclick=
-()=>{
-chooseAnswer(index,button);
-};
-
-answers.appendChild(button);
-
-});
-
-
-/* RESET FEEDBACK */
-
-const feedback=
-document.getElementById(
-"feedbackBox"
-);
-
-feedback.style.display="none";
-
-feedback.className=
-"feedbackBox";
-
-document.getElementById(
-"xpReward"
-).style.display="none";
-
-
-/* PROGRESS */
-
-document.getElementById(
-"progressFill"
-).style.width=
-(
-((currentQuestion+1)/
-selectedCount)*100
-)+"%";
-
-
-document.getElementById(
-"nextButton"
-).textContent=
-currentQuestion===
-selectedCount-1
-?"Finish ✓"
-:"Next →";
-
-}
-
-
-/* =========================================
-   CHOOSE ANSWER
-========================================= */
-
-function chooseAnswer(index,button){
-
-if(
-answersGiven[currentQuestion]
-!==undefined
-){
-return;
-}
-
-answersGiven[currentQuestion]=index;
-
-const question=
-questions[currentQuestion];
-
-const allAnswers=
-document.querySelectorAll(".answer");
-
-
-allAnswers.forEach(
-(btn,i)=>{
-
-btn.disabled=true;
-
-if(i===question.c){
-
-btn.classList.add("correct");
-
-}
-
-});
-
-
-const feedback=
-document.getElementById(
-"feedbackBox"
-);
-
-const title=
-document.getElementById(
-"feedbackTitle"
-);
-
-const answerText=
-document.getElementById(
-"feedbackAnswer"
-);
-
-const explanation=
-document.getElementById(
-"explanation"
-);
-
-const xp=
-document.getElementById(
-"xpReward"
-);
-
-
-feedback.style.display="block";
-
-
-if(index===question.c){
-
-score++;
-
-button.classList.add("correct");
-
-feedback.classList.add(
-"correctFeedback"
-);
-
-title.textContent=
-"✅ Correct! Great job!";
-
-answerText.textContent=
-"Your answer: "+
-question.a[index];
-
-xp.style.display="block";
-
-}
-
-else{
-
-button.classList.add("wrong");
-
-feedback.classList.add(
-"wrongFeedback"
-);
-
-title.textContent=
-"❌ Not quite!";
-
-answerText.innerHTML=
-"Your answer: "+
-question.a[index]+
-"<br>✅ Correct answer: "+
-question.a[question.c];
-
-}
-
-
-explanation.textContent=
-question.e;
-
-}
-
-
-/* =========================================
-   NEXT
-========================================= */
-
-function nextQuestion(){
-
-if(
-currentQuestion>=
-selectedCount-1
-){
-
-finishExam();
-
-return;
-
-}
-
-currentQuestion++;
-
-showQuestion();
-
-}
-
-
-/* =========================================
-   PREVIOUS
-========================================= */
-
-function previousQuestion(){
-
-if(currentQuestion<=0){
-
-return;
-
-}
-
-currentQuestion--;
-
-showQuestion();
-
-}
-
-
-/* =========================================
-   TIMER
-========================================= */
-
-function startTimer(){
-
-clearInterval(timer);
-
-updateTimer();
-
-timer=
-setInterval(
-()=>{
-
-timeLeft--;
-
-updateTimer();
-
-if(timeLeft<=0){
-
-finishExam();
-
-}
-
-},
-1000
-);
-
-}
-
-
-function updateTimer(){
-
-const minutes=
-Math.floor(
-timeLeft/60
-);
-
-const seconds=
-timeLeft%60;
-
-document.getElementById(
-"timer"
-).textContent=
-"⏱ "+
-String(minutes)
-.padStart(2,"0")+
-":"+
-String(seconds)
-.padStart(2,"0");
-
-}
-
-
-/* =========================================
-   FINISH
-========================================= */
-
-function finishExam(){
-
-clearInterval(timer);
-
-const percentage=
-Math.round(
-(score/selectedCount)*100
-);
-
-
-document.getElementById(
-"examScreen"
-).style.display=
-"none";
-
-document.getElementById(
-"resultScreen"
-).style.display=
-"block";
-
-
-document.getElementById(
-"scoreNumber"
-).textContent=
-percentage+"%";
-
-
-document.getElementById(
-"correctCount"
-).textContent=
-score;
-
-
-document.getElementById(
-"wrongCount"
-).textContent=
-selectedCount-score;
-
-
-const earnedXP=
-score*10;
-
-
-document.getElementById(
-"xpEarned"
-).textContent=
-earnedXP;
-
-
-/* MESSAGE */
-
-let message;
-
-if(percentage>=80){
-
-message=
-"Excellent! 🌟 You really know your stuff. Keep challenging yourself!";
-
-}
-
-else if(percentage>=50){
-
-message=
-"Good work! 💪 Review your mistakes and try again to improve your score.";
-
-}
-
-else{
-
-message=
-"Don't give up! 🌱 Your mistakes show you what you should study next.";
-
-}
-
-document.getElementById(
-"resultMessage"
-).textContent=
-message;
-
-
-/* SAVE XP */
-
-const oldXP=
-Number(
-localStorage.getItem(
-"ethioXP"
-)||0
-);
-
-localStorage.setItem(
-"ethioXP",
-oldXP+earnedXP
-);
-
-
-/* SAVE QUESTIONS */
-
-const oldQuestions=
-Number(
-localStorage.getItem(
-"ethioQuestions"
-)||0
-);
-
-localStorage.setItem(
-"ethioQuestions",
-oldQuestions+
-selectedCount
-);
-
-
-/* BUILD MISTAKE REVIEW */
-
-buildMistakeReview();
-
-}
-
-
-/* =========================================
-   REVIEW MISTAKES
-========================================= */
-
-function buildMistakeReview(){
-
-const container=
-document.getElementById(
-"mistakesContainer"
-);
-
-container.innerHTML="";
-
-let mistakes=0;
-
-
-questions.forEach(
-(question,index)=>{
-
-const given=
-answersGiven[index];
-
-
-if(
-given!==undefined &&
-given!==question.c
-){
-
-mistakes++;
-
-
-const card=
-document.createElement(
-"div"
-);
-
-card.className=
-"mistakeCard";
-
-
-card.innerHTML=`
-
-<div class="mistakeNumber">
-Question ${index+1}
-</div>
-
-<div class="mistakeQuestion">
-${question.q}
-</div>
-
-<div class="yourAnswer">
-❌ Your answer:
-${question.a[given]}
-</div>
-
-<div class="correctAnswer">
-✅ Correct answer:
-${question.a[question.c]}
-</div>
-
-<div class="mistakeExplanation">
-💡 <strong>Explanation:</strong><br>
-${question.e}
-</div>
-
-`;
-
-container.appendChild(card);
-
-}
-
-});
-
-
-const review=
-document.getElementById(
-"reviewSection"
-);
-
-
-if(mistakes>0){
-
-review.style.display="block";
-
-}
-else{
-
-review.style.display="none";
-
-}
-
-}
-
-
-/* =========================================
-   RESTART
-========================================= */
-
-function restartExam(){
-
-document.getElementById(
-"resultScreen"
-).style.display=
-"none";
-
-document.getElementById(
-"setupScreen"
-).style.display=
-"block";
-
-}
-
-
-/* =========================================
-   HOME
-========================================= */
-
-function goHome(){
-
-window.location.href=
-"home.html";
-
-}
-
-</script>
-
+  </div>
+
+  <script>
+    // Simplified exercise logic - keeping it compact but functional
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
+        }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeIcon();
+      }
+
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
+
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+
+      // Simple question bank
+      const questionBank = {
+        Biology: [
+          { q: "Which organelle is known as the powerhouse of the cell?", a: ["Nucleus", "Mitochondria", "Ribosome", "Cell wall"], c: 1, e: "Mitochondria produce most of the usable energy for the cell." },
+          { q: "Which process do green plants use to make food?", a: ["Respiration", "Digestion", "Photosynthesis", "Fermentation"], c: 2, e: "Photosynthesis allows green plants to make glucose from carbon dioxide and water." },
+          { q: "Which gas is released during photosynthesis?", a: ["Carbon dioxide", "Nitrogen", "Oxygen", "Hydrogen"], c: 2, e: "During photosynthesis, plants release oxygen." }
+        ],
+        Mathematics: [
+          { q: "What is 12 × 5?", a: ["50", "60", "70", "80"], c: 1, e: "12 × 5 = 60" },
+          { q: "What is the square root of 81?", a: ["7", "8", "9", "10"], c: 2, e: "9 × 9 = 81" },
+          { q: "What is 25% of 200?", a: ["25", "40", "50", "75"], c: 2, e: "25% of 200 is 50" }
+        ],
+        Physics: [
+          { q: "What is the SI unit of force?", a: ["Joule", "Watt", "Newton", "Pascal"], c: 2, e: "The Newton (N) is the SI unit for force." },
+          { q: "Which quantity measures how fast an object moves?", a: ["Mass", "Speed", "Force", "Energy"], c: 1, e: "Speed measures distance per unit time." }
+        ],
+        Chemistry: [
+          { q: "What is the chemical formula for water?", a: ["CO₂", "H₂O", "O₂", "NaCl"], c: 1, e: "Water has two hydrogen atoms and one oxygen atom." },
+          { q: "What is the atomic number of hydrogen?", a: ["1", "2", "8", "10"], c: 0, e: "Hydrogen has one proton." }
+        ],
+        English: [
+          { q: "Which word is a noun?", a: ["Run", "Beautiful", "School", "Quickly"], c: 2, e: "School is a noun." },
+          { q: "Choose the correct plural of 'child'.", a: ["Childs", "Children", "Childes", "Childrens"], c: 1, e: "Children is the irregular plural." }
+        ],
+        Geography: [
+          { q: "Which is the largest continent?", a: ["Africa", "Asia", "Europe", "Australia"], c: 1, e: "Asia is the largest continent." },
+          { q: "What is the capital of Ethiopia?", a: ["Dire Dawa", "Adama", "Addis Ababa", "Gondar"], c: 2, e: "Addis Ababa is the capital of Ethiopia." }
+        ],
+        History: [
+          { q: "Which ancient civilization built the pyramids?", a: ["Romans", "Greeks", "Egyptians", "Persians"], c: 2, e: "The pyramids were built in ancient Egypt." }
+        ],
+        Economics: [
+          { q: "What does supply refer to?", a: ["Goods producers sell", "Money saved", "Government laws", "Consumer income"], c: 0, e: "Supply is the amount producers are willing to sell." }
+        ],
+        Civics: [
+          { q: "What is a constitution?", a: ["A country's fundamental law", "A school timetable", "A business plan", "A newspaper"], c: 0, e: "A constitution establishes fundamental rules for governing." }
+        ]
+      };
+
+      let selectedSubject = "Biology";
+      let selectedDifficulty = "Easy";
+      let selectedCount = 10;
+      let questions = [];
+      let currentQuestion = 0;
+      let score = 0;
+      let answersGiven = [];
+      let timeLeft = 600;
+      let timer = null;
+
+      window.selectSubject = function(button) {
+        document.querySelectorAll('.subject-btn').forEach(b => b.classList.remove('selected'));
+        button.classList.add('selected');
+        selectedSubject = button.dataset.value;
+        document.getElementById('selectedSubjectText').textContent = selectedSubject;
+        document.getElementById('summarySubject').textContent = selectedSubject;
+      };
+
+      window.selectDifficulty = function(button) {
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        button.classList.add('selected');
+        selectedDifficulty = button.dataset.value;
+        document.getElementById('selectedDifficultyText').textContent = selectedDifficulty;
+        document.getElementById('summaryDifficulty').textContent = selectedDifficulty;
+      };
+
+      window.selectCount = function(button) {
+        document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('selected'));
+        button.classList.add('selected');
+        selectedCount = Number(button.dataset.value);
+        document.getElementById('selectedCountText').textContent = selectedCount + ' Questions';
+        document.getElementById('summaryCount').textContent = selectedCount;
+      };
+
+      function buildQuestions() {
+        const bank = questionBank[selectedSubject] || questionBank.Biology;
+        questions = [];
+        for (let i = 0; i < selectedCount; i++) {
+          questions.push(bank[i % bank.length]);
+        }
+      }
+
+      window.startExam = function() {
+        buildQuestions();
+        currentQuestion = 0;
+        score = 0;
+        answersGiven = [];
+        timeLeft = selectedCount * 60;
+
+        document.getElementById('setupScreen').style.display = 'none';
+        document.getElementById('examScreen').style.display = 'block';
+        document.getElementById('resultScreen').style.display = 'none';
+
+        startTimer();
+        showQuestion();
+      };
+
+      function showQuestion() {
+        const q = questions[currentQuestion];
+        document.getElementById('questionCounter').textContent = 'Question ' + (currentQuestion + 1) + ' of ' + selectedCount;
+        document.getElementById('questionSubject').textContent = selectedSubject;
+        document.getElementById('questionText').textContent = q.q;
+        document.getElementById('progressFill').style.width = ((currentQuestion + 1) / selectedCount * 100) + '%';
+
+        const answers = document.getElementById('answers');
+        answers.innerHTML = '';
+        q.a.forEach((answer, index) => {
+          const btn = document.createElement('button');
+          btn.className = 'answer';
+          btn.textContent = String.fromCharCode(65 + index) + '. ' + answer;
+          btn.onclick = () => chooseAnswer(index, btn);
+          answers.appendChild(btn);
+        });
+
+        document.getElementById('feedback').classList.remove('show');
+        document.getElementById('nextButton').textContent = currentQuestion === selectedCount - 1 ? 'Finish ✓' : 'Next →';
+      }
+
+      function chooseAnswer(index, button) {
+        if (answersGiven[currentQuestion] !== undefined) return;
+        answersGiven[currentQuestion] = index;
+
+        const q = questions[currentQuestion];
+        const allAnswers = document.querySelectorAll('.answer');
+        allAnswers.forEach((btn, i) => {
+          btn.disabled = true;
+          if (i === q.c) btn.classList.add('correct');
+        });
+
+        const feedback = document.getElementById('feedback');
+        const title = document.getElementById('feedbackTitle');
+        const explanation = document.getElementById('explanationText');
+        const xp = document.getElementById('xpReward');
+
+        feedback.classList.add('show');
+        if (index === q.c) {
+          score++;
+          button.classList.add('correct');
+          title.textContent = '✅ Correct! Great job!';
+          xp.style.display = 'block';
+        } else {
+          button.classList.add('wrong');
+          title.textContent = '❌ Not quite!';
+          explanation.innerHTML = 'Correct answer: ' + q.a[q.c] + '<br><br>' + q.e;
+          xp.style.display = 'none';
+        }
+      }
+
+      window.nextQuestion = function() {
+        if (currentQuestion >= selectedCount - 1) {
+          finishExam();
+          return;
+        }
+        currentQuestion++;
+        showQuestion();
+      };
+
+      window.previousQuestion = function() {
+        if (currentQuestion <= 0) return;
+        currentQuestion--;
+        showQuestion();
+      };
+
+      function startTimer() {
+        clearInterval(timer);
+        updateTimer();
+        timer = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+          if (timeLeft <= 0) finishExam();
+        }, 1000);
+      }
+
+      function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('timer').textContent = '⏱ ' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+      }
+
+      function finishExam() {
+        clearInterval(timer);
+        const percentage = Math.round((score / selectedCount) * 100);
+
+        document.getElementById('examScreen').style.display = 'none';
+        document.getElementById('resultScreen').style.display = 'block';
+        document.getElementById('scoreNumber').textContent = percentage + '%';
+        document.getElementById('correctCount').textContent = score;
+        document.getElementById('wrongCount').textContent = selectedCount - score;
+        document.getElementById('xpEarned').textContent = score * 10;
+
+        const oldXP = Number(localStorage.getItem('ethioXP') || 0);
+        localStorage.setItem('ethioXP', oldXP + (score * 10));
+
+        let msg = percentage >= 80 ? 'Excellent! 🌟 You really know your stuff!' :
+                  percentage >= 50 ? 'Good work! 💪 Review your mistakes and try again.' :
+                  "Don't give up! 🌱 Your mistakes show you what to study next.";
+        document.getElementById('resultMessage').textContent = msg;
+      }
+
+      window.restartExam = function() {
+        document.getElementById('resultScreen').style.display = 'none';
+        document.getElementById('setupScreen').style.display = 'block';
+      };
+    })();
+  </script>
 </body>
-
 </html>
