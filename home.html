@@ -1,1343 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Ethio Mock Exam</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-/* =====================================================
-   HOME PAGE
-===================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    margin: 0;
-}
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.background {
-
-    position: fixed;
-
-    inset: 0;
-
-    overflow: hidden;
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-.circle {
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    filter: blur(5px);
-
-    opacity: .35;
-}
-
-.circle1 {
-
-    width: 330px;
-    height: 330px;
-
-    background: #756cff;
-
-    top: -150px;
-    right: -100px;
-}
-
-.circle2 {
-
-    width: 280px;
-    height: 280px;
-
-    background: #ff77a9;
-
-    bottom: -140px;
-    left: -100px;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-header {
-
-    height: 72px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 25px;
-
-    background: var(--card);
-
-    border-bottom:
-        1px solid var(--border);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 10;
-}
-
-.logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-weight: bold;
-
-    font-size: 17px;
-
-    color: var(--text);
-}
-
-.logoIcon {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 14px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7168e8,
-            #ff72a8
-        );
-
-    color: white;
-
-    font-size: 20px;
-
-    animation:
-        float 3s infinite ease-in-out;
-}
-
-.headerRight {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-}
-
-.xp {
-
-    padding: 9px 12px;
-
-    border-radius: 12px;
-
-    background: var(--accentSoft);
-
-    color: var(--accent);
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-.settingsButton {
-
-    width: 42px;
-    height: 42px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 12px;
-
-    background: var(--card);
-
-    color: var(--text);
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.settingsButton:hover {
-
-    transform:
-        rotate(25deg);
-}
-
-
-/* =====================================================
-   ABOUT US BUTTON
-===================================================== */
-
-.aboutButton {
-
-    height: 42px;
-
-    padding: 0 14px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 12px;
-
-    background: var(--card);
-
-    color: var(--text);
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.aboutButton:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        var(--accent);
-
-    color:
-        var(--accent);
-}
-
-
-/* =====================================================
-   AVATAR
-===================================================== */
-
-.avatar {
-
-    width: 42px;
-    height: 42px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: var(--accent);
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-main {
-
-    width:
-        min(1100px, 92%);
-
-    margin: auto;
-
-    padding:
-        35px 0 70px;
-}
-
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-.welcome {
-
-    min-height: 270px;
-
-    padding: 35px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            #8d84ff
-        );
-
-    color: white;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    overflow: hidden;
-
-    animation:
-        appear .7s ease;
-}
-
-.welcome small {
-
-    opacity: .8;
-
-    letter-spacing: 1px;
-}
-
-.welcome h1 {
-
-    font-size: 40px;
-
-    margin: 13px 0;
-}
-
-.welcome p {
-
-    max-width: 520px;
-
-    line-height: 1.6;
-
-    opacity: .9;
-}
-
-.startButton {
-
-    margin-top: 20px;
-
-    border: none;
-
-    border-radius: 13px;
-
-    padding:
-        13px 18px;
-
-    background: white;
-
-    color: var(--accent);
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.startButton:hover {
-
-    transform:
-        translateY(-4px);
-}
-
-
-/* =====================================================
-   MASCOT
-===================================================== */
-
-.mascot {
-
-    width: 150px;
-    height: 150px;
-
-    border-radius: 45%;
-
-    background:
-        rgba(255,255,255,.18);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 75px;
-
-    animation:
-        mascot 3s infinite ease-in-out;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.sectionTitle {
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    align-items: center;
-
-    margin:
-        35px 0 16px;
-}
-
-.sectionTitle h2 {
-
-    font-size: 21px;
-
-    color: var(--text);
-}
-
-.sectionTitle span {
-
-    font-size: 12px;
-
-    color: var(--muted);
-}
-
-
-/* =====================================================
-   FEATURES
-===================================================== */
-
-.features {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 15px;
-}
-
-.feature {
-
-    min-height: 190px;
-
-    padding: 23px;
-
-    text-align: left;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 23px;
-
-    background: var(--card);
-
-    color: var(--text);
-
-    cursor: pointer;
-
-    box-shadow: var(--shadow);
-
-    transition: .25s;
-}
-
-.feature:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color:
-        var(--accent);
-}
-
-.featureIcon {
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 17px;
-
-    background:
-        var(--accentSoft);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 25px;
-
-    margin-bottom: 20px;
-}
-
-.feature h3 {
-
-    margin-bottom: 8px;
-}
-
-.feature p {
-
-    color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =====================================================
-   LOWER CARDS
-===================================================== */
-
-.lower {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 15px;
-
-    margin-top: 16px;
-}
-
-.card {
-
-    padding: 25px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius: 23px;
-
-    background: var(--card);
-
-    box-shadow: var(--shadow);
-}
-
-
-/* =====================================================
-   CLICKABLE CARDS
-===================================================== */
-
-.clickableCard {
-
-    width: 100%;
-
-    text-align: left;
-
-    color: var(--text);
-
-    cursor: pointer;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-}
-
-.clickableCard:hover {
-
-    transform:
-        translateY(-6px);
-
-    border-color:
-        var(--accent);
-
-    box-shadow:
-        0 12px 30px
-        rgba(80,70,180,.15);
-}
-
-.clickableCard:active {
-
-    transform:
-        scale(.98);
-}
-
-.card p {
-
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-.cardLink {
-
-    display: block;
-
-    margin-top: 18px;
-
-    color: var(--accent);
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
-
-.progress {
-
-    height: 9px;
-
-    margin-top: 20px;
-
-    background: var(--border);
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-.progressFill {
-
-    width: 65%;
-
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            #ff72a8
-        );
-
-    transition:
-        width .5s ease;
-}
-
-
-/* =====================================================
-   STREAK
-===================================================== */
-
-.streak {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-}
-
-.streakIcon {
-
-    width: 55px;
-    height: 55px;
-
-    border-radius: 17px;
-
-    background:
-        var(--accentSoft);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 25px;
-}
-
-
-/* =====================================================
-   ANIMATIONS
-===================================================== */
-
-@keyframes appear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethio Mock Exam | Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      margin: 0;
+      transition: background 0.4s, color 0.4s;
     }
 
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
     }
-}
-
-@keyframes float {
-
-    0%,100% {
-
-        transform:
-            translateY(0);
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
     }
-
-    50% {
-
-        transform:
-            translateY(-6px);
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #7b8cff;
+      top: -120px;
+      right: -80px;
     }
-}
-
-@keyframes mascot {
-
-    0%,100% {
-
-        transform:
-            translateY(0)
-            rotate(-2deg);
+    .blob-2 {
+      width: 340px;
+      height: 340px;
+      background: #f26b8a;
+      bottom: -100px;
+      left: -60px;
     }
-
-    50% {
-
-        transform:
-            translateY(-10px)
-            rotate(2deg);
-    }
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:850px) {
-
-    .features {
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-}
-
-@media(max-width:600px) {
+    body.dark .blob-1 { background: #5b6ee0; opacity: 0.2; }
+    body.dark .blob-2 { background: #c75a7a; opacity: 0.2; }
 
     header {
-
-        padding:
-            0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 80px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(128, 140, 180, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.3s;
     }
 
-    .xp {
-
-        display: none;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text .sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    .aboutButton {
-
-        padding:
-            0 9px;
-
-        font-size: 11px;
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .settings-btn {
+      background: var(--card);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle:hover, .settings-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+    .avatar-btn {
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .avatar-btn:hover {
+      transform: scale(1.05);
     }
 
-    main {
-
-        width: 94%;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 24px 60px;
     }
 
-    .welcome {
-
-        padding: 25px;
+    .hero {
+      background: linear-gradient(135deg, var(--primary), #7b8cff, var(--pink));
+      border-radius: 28px;
+      padding: 40px 45px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 48px;
+      box-shadow: 0 20px 40px -10px rgba(60, 70, 180, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      font-size: 12rem;
+      right: -20px;
+      bottom: -40px;
+      opacity: 0.08;
+      color: white;
+      pointer-events: none;
+    }
+    .hero-left {
+      max-width: 580px;
+      z-index: 2;
+    }
+    .hero-left small {
+      opacity: 0.85;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+    .hero-left h1 {
+      font-size: 2.6rem;
+      margin: 12px 0 10px;
+      line-height: 1.2;
+    }
+    .hero-left p {
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+    .hero-btn {
+      background: white;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 28px;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+    .hero-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.1);
+    }
+    .hero-mascot {
+      font-size: 5rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 60px;
+      padding: 12px 20px;
+      line-height: 1;
+      animation: floatY 3s infinite alternate ease-in-out;
+      backdrop-filter: blur(6px);
+    }
+    @keyframes floatY {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-12px); }
     }
 
-    .welcome h1 {
-
-        font-size: 30px;
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 40px 0 18px;
+    }
+    .section-title h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .mascot {
-
-        display: none;
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 24px 20px;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: var(--shadow);
+      color: var(--text);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 35px -8px rgba(60, 70, 180, 0.15);
+    }
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(74, 91, 217, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    .features {
-
-        grid-template-columns:
-            1fr;
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .info-card {
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(128, 140, 180, 0.12);
+      border-radius: 28px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+    }
+    .info-card .progress {
+      height: 8px;
+      background: rgba(128, 140, 180, 0.2);
+      border-radius: 20px;
+      margin: 16px 0 12px;
+      overflow: hidden;
+    }
+    .info-card .progress-fill {
+      height: 100%;
+      width: 60%;
+      background: linear-gradient(90deg, var(--primary), var(--pink));
+      border-radius: 20px;
+    }
+    .info-card .link-arrow {
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .streak-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .streak-icon {
+      width: 54px;
+      height: 54px;
+      background: rgba(242, 107, 138, 0.12);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
 
-    .lower {
-
-        grid-template-columns:
-            1fr;
+    .settings-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 380px;
+      height: 100%;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(128, 140, 180, 0.12);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.06);
+      padding: 28px 24px;
+      transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 999;
+      overflow-y: auto;
+      color: var(--text);
     }
-}
+    .settings-panel.open {
+      right: 0;
+    }
+    .settings-panel .close-settings {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      float: right;
+      transition: 0.2s;
+    }
+    .settings-panel .close-settings:hover {
+      color: var(--text);
+      transform: rotate(90deg);
+    }
+    .settings-panel h2 {
+      margin: 0 0 24px 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(128, 140, 180, 0.08);
+    }
+    .setting-item:last-child { border-bottom: none; }
+    .setting-label { font-weight: 500; }
+    .theme-options {
+      display: flex;
+      gap: 8px;
+    }
+    .theme-options button {
+      background: var(--bg);
+      border: 1px solid rgba(128, 140, 180, 0.15);
+      border-radius: 10px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text);
+      transition: 0.2s;
+    }
+    .theme-options button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .toggle-switch {
+      width: 48px;
+      height: 26px;
+      background: rgba(128, 140, 180, 0.25);
+      border-radius: 40px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .toggle-switch.active::after {
+      left: 25px;
+    }
 
+    .settings-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.15);
+      backdrop-filter: blur(2px);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+    .settings-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-/* =====================================================
-   ANIMATION OFF SETTING
-===================================================== */
-
-body.animations-off *,
-body.animations-off *::before,
-body.animations-off *::after {
-
-    animation: none !important;
-
-    transition: none !important;
-}
-
-</style>
-
+    @media (max-width: 700px) {
+      .hero { padding: 30px 24px; }
+      .hero-left h1 { font-size: 2rem; }
+      .hero-mascot { font-size: 3.8rem; }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .settings-panel { width: 100%; right: -100%; }
+    }
+    @media (max-width: 480px) {
+      header { padding: 0 16px; }
+      .hero-left h1 { font-size: 1.6rem; }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .logo img { height: 36px; }
+      .logo-text .brand { font-size: 1rem; }
+    }
+  </style>
 </head>
-
-
 <body>
+  <div class="bg-blobs">
+    <span class="blob-1"></span>
+    <span class="blob-2"></span>
+  </div>
 
+  <header>
+    <a href="home.html" class="logo">
+      <img src="ethio-mock-exam-logo.png" alt="Ethio Mock Exam Logo">
+      <div class="logo-text">
+        <span class="brand">Ethio Mock Exam</span>
+        <span class="sub">Learn · Practice · Succeed</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="settings-btn" id="openSettingsBtn"><i class="fas fa-cog"></i></button>
+      <button class="avatar-btn" id="avatarBtn">S</button>
+    </div>
+  </header>
 
-<!-- =====================================================
-     THEME.JS
-===================================================== -->
+  <div class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <small>WELCOME BACK</small>
+        <h1>Hi, <span id="usernameDisplay">Student</span> 👋</h1>
+        <p>Turn your notes into practice, challenge yourself, and make studying more exciting.</p>
+        <button class="hero-btn" onclick="window.location.href='exercise.html'">Start Learning →</button>
+      </div>
+      <div class="hero-mascot">🐼</div>
+    </section>
 
-<script src="theme.js"></script>
-
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="background">
-
-    <div class="circle circle1"></div>
-
-    <div class="circle circle2"></div>
-
-</div>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-    <div class="logo">
-
-        <div class="logoIcon">
-            ✦
-        </div>
-
-        Ethio Mock Exam
-
+    <div class="section-title">
+      <h2>Explore</h2>
+      <span>Choose your next activity</span>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card" onclick="window.location.href='upload.html'">
+        <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+        <h3>My Notes</h3>
+        <p>Upload notes, photos, or type your own.</p>
+      </div>
+      <div class="feature-card" onclick="window.location.href='exercise.html'">
+        <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Practice</h3>
+        <p>Answer questions and improve.</p>
+      </div>
+      <div class="feature-card" onclick="window.location.href='shortnotes.html'">
+        <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+        <h3>Quick Learn</h3>
+        <p>Review short notes anytime.</p>
+      </div>
+      <div class="feature-card" onclick="window.location.href='friends.html'">
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <h3>Study Together</h3>
+        <p>Challenge friends and learn.</p>
+      </div>
     </div>
 
-
-    <div class="headerRight">
-
-
-        <div class="xp">
-
-            ⭐
-
-            <span id="xp">
-                0
-            </span>
-
-            XP
-
+    <div class="bottom-grid">
+      <div class="info-card" onclick="window.location.href='dailygoal.html'">
+        <h3>🎯 Daily Goal</h3>
+        <p class="text-muted">6 of 10 questions completed</p>
+        <div class="progress"><div class="progress-fill" style="width:60%"></div></div>
+        <span class="link-arrow">View Daily Goal →</span>
+      </div>
+      <div class="info-card" onclick="window.location.href='streak.html'">
+        <div class="streak-box">
+          <div class="streak-icon">🔥</div>
+          <div>
+            <h3 style="margin:0;">3 Day Streak</h3>
+            <p class="text-muted" style="margin:4px 0 0;">Keep learning every day!</p>
+          </div>
         </div>
-
-
-        <!-- ABOUT US -->
-
-        <button
-            class="aboutButton"
-            onclick="goAboutUs()">
-
-            About Us
-
-        </button>
-
-
-        <!-- SETTINGS -->
-
-        <button
-            class="settingsButton"
-            onclick="goSettings()">
-
-            ⚙️
-
-        </button>
-
-
-        <!-- PROFILE -->
-
-        <button
-            class="avatar"
-            id="avatar"
-            onclick="goProfile()">
-
-            S
-
-        </button>
-
+        <span class="link-arrow" style="margin-top:12px;display:inline-block;">View Streak →</span>
+      </div>
     </div>
+  </div>
 
-</header>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main>
-
-
-<!-- =====================================================
-     WELCOME
-===================================================== -->
-
-<section class="welcome">
-
-
-    <div>
-
-        <small>
-            WELCOME BACK
-        </small>
-
-
-        <h1>
-
-            Hi,
-
-            <span id="username">
-                Student
-            </span>
-
-            👋
-
-        </h1>
-
-
-        <p>
-
-            Turn your notes into practice,
-            challenge yourself, and make
-            studying more exciting.
-
-        </p>
-
-
-        <button
-            class="startButton"
-            onclick="goExercise()">
-
-            Start Learning →
-
-        </button>
-
+  <div class="settings-overlay" id="settingsOverlay"></div>
+  <aside class="settings-panel" id="settingsPanel">
+    <button class="close-settings" id="closeSettingsBtn"><i class="fas fa-times"></i></button>
+    <h2>⚙️ Settings</h2>
+    <div class="setting-item">
+      <span class="setting-label">🌗 Theme</span>
+      <div class="theme-options">
+        <button data-theme="light">Light</button>
+        <button data-theme="dark">Dark</button>
+        <button data-theme="system">System</button>
+      </div>
     </div>
-
-
-    <div class="mascot">
-
-        🐼
-
+    <div class="setting-item">
+      <span class="setting-label">✨ Animations</span>
+      <div class="toggle-switch active" id="animToggle"></div>
     </div>
-
-
-</section>
-
-
-<!-- =====================================================
-     EXPLORE
-===================================================== -->
-
-<div class="sectionTitle">
-
-    <h2>
-        Explore
-    </h2>
-
-    <span>
-        Choose your next activity
-    </span>
-
-</div>
-
-
-<section class="features">
-
-
-    <!-- MY NOTES -->
-
-    <button
-        class="feature"
-        onclick="goUpload()">
-
-        <div class="featureIcon">
-            📄
-        </div>
-
-        <h3>
-            My Notes
-        </h3>
-
-        <p>
-
-            Upload a note, photo,
-            document, or type your
-            own notes.
-
-        </p>
-
-    </button>
-
-
-    <!-- PRACTICE -->
-
-    <button
-        class="feature"
-        onclick="goExercise()">
-
-        <div class="featureIcon">
-            🎯
-        </div>
-
-        <h3>
-            Practice
-        </h3>
-
-        <p>
-
-            Answer questions and
-            improve your knowledge.
-
-        </p>
-
-    </button>
-
-
-    <!-- QUICK LEARN -->
-
-    <button
-        class="feature"
-        onclick="goShortNotes()">
-
-        <div class="featureIcon">
-            📚
-        </div>
-
-        <h3>
-            Quick Learn
-        </h3>
-
-        <p>
-
-            Review useful short notes
-            whenever you want.
-
-        </p>
-
-    </button>
-
-
-    <!-- FRIENDS -->
-
-    <button
-        class="feature"
-        onclick="goFriends()">
-
-        <div class="featureIcon">
-            🎮
-        </div>
-
-        <h3>
-            Study Together
-        </h3>
-
-        <p>
-
-            Challenge your friends
-            and learn together.
-
-        </p>
-
-    </button>
-
-
-</section>
-
-
-<!-- =====================================================
-     DAILY GOAL + STREAK
-===================================================== -->
-
-<div class="lower">
-
-
-    <!-- DAILY GOAL -->
-
-    <button
-        class="card clickableCard"
-        onclick="goDailyGoal()">
-
-
-        <h3>
-            🎯 Daily Goal
-        </h3>
-
-
-        <p>
-            6 of 10 questions completed
-        </p>
-
-
-        <div class="progress">
-
-            <div
-                class="progressFill">
-            </div>
-
-        </div>
-
-
-        <span class="cardLink">
-
-            View Daily Goal →
-
-        </span>
-
-
-    </button>
-
-
-    <!-- STREAK -->
-
-    <button
-        class="card clickableCard"
-        onclick="goStreak()">
-
-
-        <div class="streak">
-
-
-            <div class="streakIcon">
-
-                🔥
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    3 Day Streak
-                </h3>
-
-                <p>
-                    Keep learning every day!
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <span class="cardLink">
-
-            View Streak →
-
-        </span>
-
-
-    </button>
-
-
-</div>
-
-
-</main>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-
-/* =====================================================
-   USER NAME
-===================================================== */
-
-const name =
-    localStorage.getItem(
-        "ethioUserName"
-    ) || "Student";
-
-
-document.getElementById(
-    "username"
-).textContent =
-    name;
-
-
-/* =====================================================
-   AVATAR
-===================================================== */
-
-document.getElementById(
-    "avatar"
-).textContent =
-    name
-        .charAt(0)
-        .toUpperCase();
-
-
-/* =====================================================
-   XP
-===================================================== */
-
-document.getElementById(
-    "xp"
-).textContent =
-    localStorage.getItem(
-        "ethioXP"
-    ) || "0";
-
-
-/* =====================================================
-   ABOUT US
-===================================================== */
-
-function goAboutUs() {
-
-    window.location.href =
-        "about.html";
-
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function goSettings() {
-
-    window.location.href =
-        "settings.html";
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function goProfile() {
-
-    window.location.href =
-        "profile.html";
-
-}
-
-
-/* =====================================================
-   UPLOAD
-===================================================== */
-
-function goUpload() {
-
-    window.location.href =
-        "upload.html";
-
-}
-
-
-/* =====================================================
-   EXERCISE
-===================================================== */
-
-function goExercise() {
-
-    window.location.href =
-        "exercise.html";
-
-}
-
-
-/* =====================================================
-   SHORT NOTES
-===================================================== */
-
-function goShortNotes() {
-
-    window.location.href =
-        "shortnotes.html";
-
-}
-
-
-/* =====================================================
-   FRIENDS
-===================================================== */
-
-function goFriends() {
-
-    window.location.href =
-        "friends.html";
-
-}
-
-
-/* =====================================================
-   DAILY GOAL
-===================================================== */
-
-function goDailyGoal() {
-
-    window.location.href =
-        "dailygoal.html";
-
-}
-
-
-/* =====================================================
-   STREAK
-===================================================== */
-
-function goStreak() {
-
-    window.location.href =
-        "streak.html";
-
-}
-
-</script>
-
-
+    <div class="setting-item">
+      <span class="setting-label">🔔 Notifications</span>
+      <div class="toggle-switch" id="notifToggle"></div>
+    </div>
+    <div class="setting-item">
+      <span class="setting-label">🔊 Sound</span>
+      <div class="toggle-switch" id="soundToggle"></div>
+    </div>
+    <div style="margin-top:28px; border-top:1px solid rgba(128,140,180,0.1); padding-top:20px;">
+      <button onclick="window.location.href='profile.html'" style="background:none;border:none;color:var(--primary);font-weight:600;font-size:1rem;cursor:pointer;display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-user-circle"></i> My Profile
+      </button>
+      <button onclick="window.location.href='about.html'" style="background:none;border:none;color:var(--muted);font-weight:500;font-size:0.95rem;cursor:pointer;margin-top:12px;display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-info-circle"></i> About Us
+      </button>
+    </div>
+  </aside>
+
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const openSettings = document.getElementById('openSettingsBtn');
+      const closeSettings = document.getElementById('closeSettingsBtn');
+      const settingsPanel = document.getElementById('settingsPanel');
+      const overlay = document.getElementById('settingsOverlay');
+      const avatarBtn = document.getElementById('avatarBtn');
+      const usernameSpan = document.getElementById('usernameDisplay');
+
+      const name = localStorage.getItem('ethioUserName') || 'Student';
+      usernameSpan.textContent = name;
+      avatarBtn.textContent = name.charAt(0).toUpperCase();
+
+      function setTheme(theme) {
+        document.body.classList.remove('dark');
+        if (theme === 'dark') document.body.classList.add('dark');
+        else if (theme === 'system') {
+          const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefers) document.body.classList.add('dark');
+        }
+        localStorage.setItem('ethioTheme', theme);
+        updateThemeButtons(theme);
+        updateThemeIcon();
+      }
+
+      function getStoredTheme() {
+        return localStorage.getItem('ethioTheme') || 'light';
+      }
+
+      function updateThemeButtons(activeTheme) {
+        document.querySelectorAll('.theme-options button').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.theme === activeTheme);
+        });
+      }
+
+      function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      }
+
+      const initialTheme = getStoredTheme();
+      setTheme(initialTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const current = getStoredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+
+      document.querySelectorAll('.theme-options button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const theme = e.target.dataset.theme;
+          setTheme(theme);
+        });
+      });
+
+      function openSettingsPanel() {
+        settingsPanel.classList.add('open');
+        overlay.classList.add('show');
+      }
+      function closeSettingsPanel() {
+        settingsPanel.classList.remove('open');
+        overlay.classList.remove('show');
+      }
+      openSettings.addEventListener('click', openSettingsPanel);
+      closeSettings.addEventListener('click', closeSettingsPanel);
+      overlay.addEventListener('click', closeSettingsPanel);
+
+      function initToggle(selector, storageKey, defaultState = true) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const saved = localStorage.getItem(storageKey);
+        const isActive = saved !== null ? saved === 'true' : defaultState;
+        el.classList.toggle('active', isActive);
+        el.addEventListener('click', () => {
+          const now = el.classList.toggle('active');
+          localStorage.setItem(storageKey, String(now));
+        });
+      }
+      initToggle('#animToggle', 'ethioAnimations', true);
+      initToggle('#notifToggle', 'ethioNotifications', false);
+      initToggle('#soundToggle', 'ethioSound', false);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSettingsPanel();
+      });
+
+      avatarBtn.addEventListener('click', () => {
+        window.location.href = 'profile.html';
+      });
+    })();
+  </script>
 </body>
-
 </html>
