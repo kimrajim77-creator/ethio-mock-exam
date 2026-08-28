@@ -4,87 +4,41 @@
 ========================================= */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-
-/* =========================================
-   LIGHT MODE
-========================================= */
 
 :root {
-
-    --bg: #f5f6fb;
-
-    --card: #ffffff;
-
-    --text: #25283b;
-
-    --muted: #7d8296;
-
-    --border: #e5e7ef;
-
-    --accent: #7168e8;
-
-    --accentSoft: #eeeaff;
-
-    --shadow:
-        0 15px 35px rgba(30, 35, 60, .08);
-
+  --bg: #f2f5fe;
+  --card: rgba(255, 255, 255, 0.9);
+  --text: #1a2340;
+  --muted: #5d6e8a;
+  --border: rgba(128, 140, 180, 0.12);
+  --accent: #4a5bd9;
+  --accentSoft: rgba(74, 91, 217, 0.08);
+  --pink: #f26b8a;
+  --shadow: 0 20px 40px -10px rgba(30, 40, 80, 0.12);
 }
-
-
-/* =========================================
-   DARK MODE
-========================================= */
 
 :root.dark {
-
-    --bg: #111522;
-
-    --card: #1c2232;
-
-    --text: #f5f7ff;
-
-    --muted: #aeb5c8;
-
-    --border: #30374b;
-
-    --accent: #958cff;
-
-    --accentSoft: #302d50;
-
-    --shadow:
-        0 15px 35px rgba(0, 0, 0, .35);
-
+  --bg: #131a2c;
+  --card: rgba(28, 34, 58, 0.92);
+  --text: #edf2fc;
+  --muted: #9aabca;
+  --border: rgba(128, 140, 180, 0.15);
+  --accent: #7b8cff;
+  --accentSoft: rgba(123, 140, 255, 0.12);
+  --pink: #ff7a9e;
+  --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
 }
-
-
-/* =========================================
-   BODY
-========================================= */
 
 html,
 body {
-
-    margin: 0;
-
-    padding: 0;
-
-    background: var(--bg);
-
-    color: var(--text);
-
-    transition:
-        background-color .35s ease,
-        color .35s ease;
-
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
-
-
-/* =========================================
-   COMMON ELEMENTS
-========================================= */
 
 .card,
 header,
@@ -92,50 +46,65 @@ button,
 input,
 textarea,
 select {
-
-    transition:
-        background-color .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
-
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
-
-
-/* =========================================
-   DARK MODE INPUTS
-========================================= */
 
 :root.dark input,
 :root.dark textarea,
 :root.dark select {
-
-    background: #161c2b;
-
-    color: #ffffff;
-
-    border-color: var(--border);
-
+  background: #1e2540;
+  color: #ffffff;
+  border-color: var(--border);
 }
-
-
-/* =========================================
-   DARK MODE BUTTON
-========================================= */
 
 :root.dark button {
-
-    color: var(--text);
-
+  color: var(--text);
 }
 
-
-/* =========================================
-   LINKS
-========================================= */
-
 a {
+  color: var(--accent);
+}
 
-    color: var(--accent);
+.text-muted {
+  color: var(--muted);
+}
 
+/* Logo styles for all pages */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo img {
+  height: 45px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-text .brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo-text .sub {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+body.dark .logo-text .sub {
+  color: #9aabca;
 }
